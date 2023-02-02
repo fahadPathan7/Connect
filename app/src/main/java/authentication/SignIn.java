@@ -1,6 +1,7 @@
-package com.example.android;
+package authentication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -13,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import user.HomeScreen_user;
+import com.example.android.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,13 +24,15 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
+    // declaring variables
     TextView signUp, forgotPass;
     Button logIn;
     ImageView google, facebook;
     EditText email, password;
 
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth; // firebase variable
 
+    // it will check if the user already logged in or not
     @Override
     protected void onStart() {
         super.onStart();
@@ -44,8 +49,11 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
+        // initializing variables
         mAuth = FirebaseAuth.getInstance();
 
+
+        // connecting with id
         signUp = findViewById(R.id.signupID);
         logIn = findViewById(R.id.loginID);
         google = findViewById(R.id.googleID);
@@ -54,6 +62,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         password = findViewById(R.id.passwordID);
         forgotPass = findViewById(R.id.forgotPassID);
 
+
+        // adding acting click listeners
         signUp.setOnClickListener(this);
         logIn.setOnClickListener(this);
         google.setOnClickListener(this);
@@ -63,11 +73,13 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     // to work with on Click listeners
     @Override
     public void onClick(View v) {
+        // if the user wants to sign up a new account
         if (v.getId() == R.id.signupID) {
             finish();
             start_SignUp_activity();
         }
 
+        // if the user wants to log in with email and pass
         if (v.getId() == R.id.loginID) {
             getLogin("email");
         }
@@ -108,8 +120,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    finish();
-                    start_HomeScreenUser_activity();
+                    finish(); // finishing current activity
+                    start_HomeScreenUser_activity(); // changing activity
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "Login failed!", Toast.LENGTH_SHORT).show();
@@ -118,6 +130,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         });
     }
 
+
+    // changing activity starts
     public void start_SignUp_activity() {
         Intent intent = new Intent(this, SignUp.class);
         startActivity(intent);
@@ -127,4 +141,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         Intent intent = new Intent(this, HomeScreen_user.class);
         startActivity(intent);
     }
+    // changing activity ends
+
 }

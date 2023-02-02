@@ -1,6 +1,7 @@
-package com.example.android;
+package authentication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -13,12 +14,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import user.HomeScreen_user;
+import com.example.android.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
@@ -35,6 +36,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        //hideActionBar();
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -105,6 +108,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                         if (task.isSuccessful()) {
                             // Sign up success, update UI with the signed-in user's information
                             Toast.makeText(getApplicationContext(), "Registration is successful", Toast.LENGTH_SHORT).show();
+
+                            finish();
+                            start_HomeScreenUser_activity();
                         } else {
                             // If sign up fails, display a message to the user.
                             Toast.makeText(getApplicationContext(), "Already exists! Try sign in.", Toast.LENGTH_SHORT).show();
@@ -120,5 +126,15 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     public void start_SignIn_activity() {
         Intent intent = new Intent(this, SignIn.class);
         startActivity(intent);
+    }
+
+    public void start_HomeScreenUser_activity() {
+        Intent intent = new Intent(this, HomeScreen_user.class);
+        startActivity(intent);
+    }
+
+    public void hideActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
     }
 }

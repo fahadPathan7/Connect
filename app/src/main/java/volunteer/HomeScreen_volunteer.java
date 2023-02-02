@@ -1,8 +1,10 @@
-package com.example.android;
+package volunteer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.android.R;
 
 public class HomeScreen_volunteer extends AppCompatActivity {
 

@@ -5,31 +5,34 @@ after the intro it will automatically goto sign in page.
 
 package com.example.android;
 
-import androidx.appcompat.app.AppCompatActivity;
+import authentication.*;
+import navigationBars.DrawerBaseActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import com.example.android.databinding.ActivityMainBinding;
+
+public class MainActivity extends DrawerBaseActivity {
 
     Button startButton;
+    ActivityMainBinding activityMainBinding;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(activityMainBinding.getRoot());
 
-        startButton = findViewById(R.id.START_BUTTON);
-        startButton.setOnClickListener(this);
+        start_SignIn_activity();
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.START_BUTTON) {
-            Intent intent = new Intent(this, SignIn.class);
-            startActivity(intent);
-        }
+    public void start_SignIn_activity() {
+        Intent intent = new Intent(this, SignIn.class);
+        startActivity(intent);
     }
+
 }
