@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:id="@+id/relativeLayoutID"
-    tools:context="user.HomeScreen_user">
+    tools:context="user.HomeScreenUser">
 
     <TextView
         android:id="@+id/titleViewID"

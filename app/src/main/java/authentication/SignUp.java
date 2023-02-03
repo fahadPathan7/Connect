@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import user.HomeScreen_user;
+import user.HomeScreenUser;
 import com.example.android.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -129,7 +129,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void start_HomeScreenUser_activity() {
-        Intent intent = new Intent(this, HomeScreen_user.class);
+        Intent intent = new Intent(this, HomeScreenUser.class);
         startActivity(intent);
     }
 

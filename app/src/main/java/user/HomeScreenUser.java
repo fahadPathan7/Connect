@@ -1,14 +1,12 @@
 package user;
 
-import navigationBars.*;
-
 import android.os.Bundle;
 
 import com.example.android.databinding.ActivityHomeScreenUserBinding;
 
 import navigationBars.DrawerBaseActivity;
 
-public class HomeScreen_user extends DrawerBaseActivity {
+public class HomeScreenUser extends DrawerBaseActivity {
 
     ActivityHomeScreenUserBinding activityHomeScreenUserBinding;
 
@@ -18,6 +16,7 @@ public class HomeScreen_user extends DrawerBaseActivity {
         activityHomeScreenUserBinding = ActivityHomeScreenUserBinding.inflate(getLayoutInflater());
         setContentView(activityHomeScreenUserBinding.getRoot());
         allocateActivityTitle("Home");
+
     }
 
 }

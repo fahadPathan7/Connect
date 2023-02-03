@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.android.R;
 
-public class HomeScreen_volunteer extends AppCompatActivity {
+public class HomeScreenVolunteer extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
