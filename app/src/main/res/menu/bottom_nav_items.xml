@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+    <item
+        android:id="@+id/homeMenuID"
+        android:title="Home"
+        android:icon="@drawable/ic_baseline_home_24"
+        />
+    <item
+        android:id="@+id/helplineMenuID"
+        android:icon="@drawable/ic_baseline_helpline_24"
+        android:title="Helpline"
+        />
+    <item
+        android:id="@+id/aboutUsMenuID"
+        android:title="About Us"
+        android:icon="@drawable/ic_baseline_about_us_24"
+        />
+
+<!--    <item-->
+<!--        android:id="@+id/logoutMenuID"-->
+<!--        android:title="Logout"-->
+<!--        android:icon="@drawable/ic_baseline_logout_24"-->
+<!--        />-->
+
+    </group>
+
+</menu>

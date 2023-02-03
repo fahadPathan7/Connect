@@ -13,7 +13,21 @@
         android:theme="@style/Theme.Android"
         tools:targetApi="31">
         <activity
-            android:name="navigationBars.DrawerBaseActivity"
+            android:name=".Profile"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".BottomNavBar"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".DrawerBaseActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

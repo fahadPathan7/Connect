@@ -5,7 +5,7 @@ after the intro it will automatically goto sign in page.
 
 package com.example.android;
 
-import authentication.*;
+import authentication.SignIn;
 import navigationBars.DrawerBaseActivity;
 
 import android.annotation.SuppressLint;
@@ -31,6 +31,7 @@ public class MainActivity extends DrawerBaseActivity {
     }
 
     public void start_SignIn_activity() {
+        //finish();
         Intent intent = new Intent(this, SignIn.class);
         startActivity(intent);
     }
