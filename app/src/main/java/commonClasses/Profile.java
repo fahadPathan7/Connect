@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -74,8 +75,6 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
         activityProfileBinding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(activityProfileBinding.getRoot());
         allocateActivityTitle("Profile");
-
-        changeStatusBarColor();
 
 
         initializeViewIDs();
@@ -161,16 +160,8 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
     public void start_UpdateProfile_activity() {
         finish();
         Intent intent = new Intent(this, UpdateProfile.class);
-        startActivity(intent);
-    }
-
-    public void changeStatusBarColor() {
-        if (Build.VERSION.SDK_INT >= 21) {
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(this.getResources().getColor(R.color.theme_color));
-        }
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
     }
 
 

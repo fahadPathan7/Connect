@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -82,18 +84,21 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
     public void start_Profile_activity() {
         finish();
         Intent intent = new Intent(this, Profile.class);
-        startActivity(intent);
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
     }
 
     public void start_HomeScreenUser_activity() {
         finish();
         Intent intent = new Intent(this, HomeScreenUser.class);
-        startActivity(intent);
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
     }
 
     public void start_SignIn_activity() {
         finish();
         Intent intent = new Intent(this, SignIn.class);
-        startActivity(intent);
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
     }
 }

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import user.HomeScreenUser;
+import volunteer.HomeScreenVolunteer;
+
 import com.example.android.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -132,12 +135,14 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     public void start_SignUp_activity() {
         finish();
         Intent intent = new Intent(this, SignUp.class);
-        startActivity(intent);
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
     }
 
     public void start_HomeScreenUser_activity() {
         finish();
         Intent intent = new Intent(this, HomeScreenUser.class);
+        //Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
         startActivity(intent);
     }
     // changing activity ends

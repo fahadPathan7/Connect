@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -125,16 +126,13 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
     public void start_SignIn_activity() {
         Intent intent = new Intent(this, SignIn.class);
-        startActivity(intent);
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
     }
 
     public void start_HomeScreenUser_activity() {
         Intent intent = new Intent(this, HomeScreenUser.class);
-        startActivity(intent);
-    }
-
-    public void hideActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
     }
 }

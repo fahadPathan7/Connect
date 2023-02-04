@@ -1,5 +1,6 @@
 package user;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,8 +37,6 @@ public class HomeScreenUser extends DrawerBaseActivity {
         setContentView(activityHomeScreenUserBinding.getRoot());
         allocateActivityTitle("Home");
 
-        changeStatusBarColor();
-
         cardView = findViewById(R.id.safetyTipsCardViewID);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,28 +63,21 @@ public class HomeScreenUser extends DrawerBaseActivity {
     public void start_HomeScreenVolunteer_activity() {
         finish();
         Intent intent = new Intent(this, HomeScreenVolunteer.class);
-        startActivity(intent);
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
     }
 
     public void start_SafetyTips_activity() {
         finish();
         Intent intent = new Intent(this, SafetyTips.class);
-        startActivity(intent);
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
     }
     public void start_forecast_activity() {
         finish();
         Intent intent=new Intent(this, Forecast.class);
-        startActivity(intent);
-    }
-
-
-    public void changeStatusBarColor() {
-        if (Build.VERSION.SDK_INT >= 21) {
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(this.getResources().getColor(R.color.theme_color));
-        }
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
     }
 
 }
