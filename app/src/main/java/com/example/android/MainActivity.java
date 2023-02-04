@@ -7,6 +7,7 @@ package com.example.android;
 
 import authentication.SignIn;
 import commonClasses.Profile;
+import commonClasses.UpdateProfile;
 import navigationBars.DrawerBaseActivity;
 
 import android.annotation.SuppressLint;

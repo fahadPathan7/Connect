@@ -10,10 +10,13 @@ import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.example.android.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 import authentication.SignIn;
 import commonClasses.Profile;
@@ -22,6 +25,10 @@ import user.HomeScreenUser;
 public class DrawerBaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
+
+    TextView emailTextView;
+
+    FirebaseAuth mAuth;
 
     @Override
     public void setContentView(View view) {
@@ -42,6 +49,7 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
 
         NavigationView navigationView1 = findViewById(R.id.navViewID);
         navigationView1.setNavigationItemSelectedListener(this);
+
     }
 
     @Override

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#F5F5F5"
     android:orientation="vertical"
     tools:context="commonClasses.Profile">
@@ -47,11 +47,11 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/titleNameID"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="Fahad Pathan"
+                        android:text=""
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -85,7 +85,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView">
+                        app:layout_constraintTop_toBottomOf="@+id/titleNameID">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -96,17 +96,18 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Name"
+                                android:text="Email"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:textColor="#9635A6"
                                 />
 
                             <TextView
+                                android:id="@+id/emailID"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAlignment="viewEnd"
-                                android:text="Fahad Pathan"
+                                android:text=""
                                 android:textSize="16sp"
                                 android:textColor="#5B5B5B"
                                 android:layout_weight="1"
@@ -137,10 +138,11 @@
                                 />
 
                             <TextView
+                                android:id="@+id/contact1ID"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAlignment="viewEnd"
-                                android:text="01612363458"
+                                android:text=""
                                 android:textSize="16sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
@@ -171,10 +173,11 @@
                                 />
 
                             <TextView
+                                android:id="@+id/contact2ID"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAlignment="viewEnd"
-                                android:text="01638536426"
+                                android:text=""
                                 android:textSize="16sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
@@ -205,10 +208,11 @@
                                 />
 
                             <TextView
+                                android:id="@+id/genderID"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAlignment="viewEnd"
-                                android:text="Male"
+                                android:text=""
                                 android:textSize="16sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
@@ -239,10 +243,11 @@
                                 />
 
                             <TextView
+                                android:id="@+id/districtID"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAlignment="viewEnd"
-                                android:text="Dhaka"
+                                android:text=""
                                 android:textSize="16sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
@@ -273,10 +278,11 @@
                                 />
 
                             <TextView
+                                android:id="@+id/thanaID"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAlignment="viewEnd"
-                                android:text="Mugda"
+                                android:text=""
                                 android:textSize="16sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
@@ -307,10 +313,11 @@
                                 />
 
                             <TextView
+                                android:id="@+id/areaID"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAlignment="viewEnd"
-                                android:text="North Mugdapara"
+                                android:text=""
                                 android:textSize="16sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
@@ -341,10 +348,11 @@
                                 />
 
                             <TextView
+                                android:id="@+id/roadID"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAlignment="viewEnd"
-                                android:text="Wasa road"
+                                android:text=""
                                 android:textSize="16sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
@@ -375,10 +383,11 @@
                                 />
 
                             <TextView
+                                android:id="@+id/houseID"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAlignment="viewEnd"
-                                android:text="124/C"
+                                android:text=""
                                 android:textSize="16sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
@@ -391,13 +400,13 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/editProfileID"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginBottom="30dp"
-                    android:text="Edit Profile"
+                    android:text="Update Profile"
                     android:textSize="15sp"
                     android:textAllCaps="false"
                     android:backgroundTint="#9635A6"
