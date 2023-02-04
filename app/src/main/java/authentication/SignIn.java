@@ -118,7 +118,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    finish(); // finishing current activity
                     start_HomeScreenUser_activity(); // changing activity
                 }
                 else {
@@ -137,6 +136,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void start_HomeScreenUser_activity() {
+        finish();
         Intent intent = new Intent(this, HomeScreenUser.class);
         startActivity(intent);
     }

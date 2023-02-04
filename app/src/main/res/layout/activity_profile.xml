@@ -76,7 +76,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
-                        android:layout_marginTop="60dp"
+                        android:layout_marginTop="40dp"
                         android:layout_marginEnd="24dp"
                         android:layout_marginBottom="20dp"
                         android:background="@drawable/white_background"
@@ -99,7 +99,7 @@
                                 android:text="Email"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                android:textColor="#9635A6"
+                                android:textColor="@color/profile_first"
                                 />
 
                             <TextView
@@ -109,7 +109,7 @@
                                 android:textAlignment="viewEnd"
                                 android:text=""
                                 android:textSize="16sp"
-                                android:textColor="#5B5B5B"
+                                android:textColor="@color/profile_second"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
                                 />
@@ -134,7 +134,7 @@
                                 android:text="Contact 1"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                android:textColor="#9635A6"
+                                android:textColor="@color/profile_first"
                                 />
 
                             <TextView
@@ -146,7 +146,7 @@
                                 android:textSize="16sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
-                                android:textColor="#5B5B5B"
+                                android:textColor="@color/profile_second"
                                 />
                         </LinearLayout>
 
@@ -169,7 +169,7 @@
                                 android:text="Contact 2"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                android:textColor="#9635A6"
+                                android:textColor="@color/profile_first"
                                 />
 
                             <TextView
@@ -181,7 +181,7 @@
                                 android:textSize="16sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
-                                android:textColor="#5B5B5B"
+                                android:textColor="@color/profile_second"
                                 />
                         </LinearLayout>
 
@@ -204,7 +204,7 @@
                                 android:text="Gender"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                android:textColor="#9635A6"
+                                android:textColor="@color/profile_first"
                                 />
 
                             <TextView
@@ -216,7 +216,7 @@
                                 android:textSize="16sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
-                                android:textColor="#5B5B5B"
+                                android:textColor="@color/profile_second"
                                 />
                         </LinearLayout>
 
@@ -239,7 +239,7 @@
                                 android:text="District"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                android:textColor="#9635A6"
+                                android:textColor="@color/profile_first"
                                 />
 
                             <TextView
@@ -251,7 +251,7 @@
                                 android:textSize="16sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
-                                android:textColor="#5B5B5B"
+                                android:textColor="@color/profile_second"
                                 />
                         </LinearLayout>
 
@@ -274,7 +274,7 @@
                                 android:text="Thana"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                android:textColor="#9635A6"
+                                android:textColor="@color/profile_first"
                                 />
 
                             <TextView
@@ -286,7 +286,7 @@
                                 android:textSize="16sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
-                                android:textColor="#5B5B5B"
+                                android:textColor="@color/profile_second"
                                 />
                         </LinearLayout>
 
@@ -309,7 +309,7 @@
                                 android:text="Area"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                android:textColor="#9635A6"
+                                android:textColor="@color/profile_first"
                                 />
 
                             <TextView
@@ -321,7 +321,7 @@
                                 android:textSize="16sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
-                                android:textColor="#5B5B5B"
+                                android:textColor="@color/profile_second"
                                 />
                         </LinearLayout>
 
@@ -344,7 +344,7 @@
                                 android:text="Road"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                android:textColor="#9635A6"
+                                android:textColor="@color/profile_first"
                                 />
 
                             <TextView
@@ -356,7 +356,7 @@
                                 android:textSize="16sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
-                                android:textColor="#5B5B5B"
+                                android:textColor="@color/profile_second"
                                 />
                         </LinearLayout>
 
@@ -379,7 +379,7 @@
                                 android:text="House"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                android:textColor="#9635A6"
+                                android:textColor="@color/profile_first"
                                 />
 
                             <TextView
@@ -391,7 +391,7 @@
                                 android:textSize="16sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
-                                android:textColor="#5B5B5B"
+                                android:textColor="@color/profile_second"
                                 />
                         </LinearLayout>
 
@@ -409,7 +409,7 @@
                     android:text="Update Profile"
                     android:textSize="15sp"
                     android:textAllCaps="false"
-                    android:backgroundTint="#9635A6"
+                    android:backgroundTint="@color/theme_color"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

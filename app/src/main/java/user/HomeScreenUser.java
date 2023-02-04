@@ -1,8 +1,11 @@
 package user;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.CompoundButton;
 
 import androidx.appcompat.widget.SwitchCompat;
@@ -32,6 +35,8 @@ public class HomeScreenUser extends DrawerBaseActivity {
         activityHomeScreenUserBinding = ActivityHomeScreenUserBinding.inflate(getLayoutInflater());
         setContentView(activityHomeScreenUserBinding.getRoot());
         allocateActivityTitle("Home");
+
+        changeStatusBarColor();
 
         cardView = findViewById(R.id.safetyTipsCardViewID);
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +76,16 @@ public class HomeScreenUser extends DrawerBaseActivity {
         finish();
         Intent intent=new Intent(this, Forecast.class);
         startActivity(intent);
+    }
+
+
+    public void changeStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.theme_color));
+        }
     }
 
 }

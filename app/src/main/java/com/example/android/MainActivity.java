@@ -12,7 +12,10 @@ import navigationBars.DrawerBaseActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.android.databinding.ActivityMainBinding;
@@ -29,6 +32,8 @@ public class MainActivity extends DrawerBaseActivity {
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
 
+        changeStatusBarColor();
+
         start_activity();
     }
 
@@ -38,4 +43,12 @@ public class MainActivity extends DrawerBaseActivity {
         startActivity(intent);
     }
 
+    public void changeStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.theme_color));
+        }
+    }
 }

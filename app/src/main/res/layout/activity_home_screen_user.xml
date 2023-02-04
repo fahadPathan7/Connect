@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:text="Dashboard"
-        android:textColor="@color/black"
+        android:textColor="#555252"
         android:textStyle="bold"
         android:textSize="20sp"
         android:layout_marginTop="20dp"
@@ -38,12 +38,12 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="1.5dp"
         android:layout_below="@+id/titleViewID"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="638dp"
-        android:background="#403E3E" />
+        android:background="#8c8c8c" />
 
     <GridLayout
         android:layout_width="match_parent"
@@ -78,9 +78,10 @@
                 >
                 <ImageView
                     android:id="@+id/forecastID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_forecast_24"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/forecast"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -115,9 +116,10 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 >
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_safety_24"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/safety_tips"
+                    android:scaleType="fitCenter"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -151,9 +153,10 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 >
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_contact_phone_24"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/emergency_contacts"
+                    android:scaleType="fitCenter"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -187,9 +190,10 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 >
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_area_24"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/your_area"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -223,9 +227,10 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 >
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_live_help_24"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/request_help"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -259,9 +264,10 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 >
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_emergency_24"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/emergency_rescue"
+                    android:scaleType="fitCenter"
                     />
                 <TextView
                     android:layout_width="wrap_content"
