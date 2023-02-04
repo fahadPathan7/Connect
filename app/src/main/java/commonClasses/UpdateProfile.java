@@ -63,6 +63,7 @@ public class UpdateProfile extends DrawerBaseActivity {
         super.onCreate(savedInstanceState);
         activityUpdateProfileBinding = ActivityUpdateProfileBinding.inflate(getLayoutInflater());
         setContentView(activityUpdateProfileBinding.getRoot());
+        allocateActivityTitle("Update Profile");
 
         // connect views with ids
         connectWithIDs();

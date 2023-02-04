@@ -43,6 +43,7 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         NavigationView navigationView = drawerLayout.findViewById(R.id.navViewID);
         navigationView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.nav_open, R.string.nav_close);
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 

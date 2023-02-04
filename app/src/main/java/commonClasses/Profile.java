@@ -70,6 +70,7 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         activityProfileBinding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(activityProfileBinding.getRoot());
+        allocateActivityTitle("Profile");
 
 
         initializeViewIDs();

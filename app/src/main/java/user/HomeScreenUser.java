@@ -1,14 +1,26 @@
 package user;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.CompoundButton;
 
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.cardview.widget.CardView;
+
+import com.example.android.R;
 import com.example.android.databinding.ActivityHomeScreenUserBinding;
 
 import navigationBars.DrawerBaseActivity;
+import volunteer.HomeScreenVolunteer;
 
 public class HomeScreenUser extends DrawerBaseActivity {
 
+    CardView cardView;
+
     ActivityHomeScreenUserBinding activityHomeScreenUserBinding;
+
+    SwitchCompat switchCompat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +29,34 @@ public class HomeScreenUser extends DrawerBaseActivity {
         setContentView(activityHomeScreenUserBinding.getRoot());
         allocateActivityTitle("Home");
 
+        cardView = findViewById(R.id.safetyTipsCardViewID);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                start_SafetyTips_activity();
+            }
+        });
+
+
+        switchCompat = findViewById(R.id.switchID);
+        switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                start_HomeScreenVolunteer_activity();
+            }
+        });
+    }
+
+    public void start_HomeScreenVolunteer_activity() {
+        finish();
+        Intent intent = new Intent(this, HomeScreenVolunteer.class);
+        startActivity(intent);
+    }
+
+    public void start_SafetyTips_activity() {
+        finish();
+        Intent intent = new Intent(this, SafetyTips.class);
+        startActivity(intent);
     }
 
 }

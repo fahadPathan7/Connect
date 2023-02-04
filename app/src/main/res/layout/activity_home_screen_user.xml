@@ -22,6 +22,7 @@
         />
 
     <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -32,6 +33,7 @@
         app:showText="true"
         android:textOff="User"
         android:textOn="Volunteer"
+        android:checked="false"
         />
 
     <View
@@ -74,6 +76,7 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 >
                 <ImageView
+                    android:id="@+id/forecastID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_forecast_24"
@@ -90,6 +93,7 @@
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/safetyTipsCardViewID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="0"

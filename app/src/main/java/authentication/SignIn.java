@@ -74,7 +74,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         // if the user wants to sign up a new account
         if (v.getId() == R.id.signupID) {
-            finish();
             start_SignUp_activity();
         }
 
@@ -132,6 +131,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
     // changing activity starts
     public void start_SignUp_activity() {
+        finish();
         Intent intent = new Intent(this, SignUp.class);
         startActivity(intent);
     }
