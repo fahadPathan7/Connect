@@ -8,6 +8,7 @@ import android.widget.CompoundButton;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 
+import com.example.android.Forecast;
 import com.example.android.R;
 import com.example.android.databinding.ActivityHomeScreenUserBinding;
 
@@ -17,6 +18,9 @@ import volunteer.HomeScreenVolunteer;
 public class HomeScreenUser extends DrawerBaseActivity {
 
     CardView cardView;
+    CardView cardView2;
+
+
 
     ActivityHomeScreenUserBinding activityHomeScreenUserBinding;
 
@@ -35,6 +39,11 @@ public class HomeScreenUser extends DrawerBaseActivity {
             public void onClick(View v) {
                 start_SafetyTips_activity();
             }
+        });
+        cardView2=findViewById(R.id.forecastCardViewID);
+        cardView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {start_forecast_activity();}
         });
 
 
@@ -56,6 +65,11 @@ public class HomeScreenUser extends DrawerBaseActivity {
     public void start_SafetyTips_activity() {
         finish();
         Intent intent = new Intent(this, SafetyTips.class);
+        startActivity(intent);
+    }
+    public void start_forecast_activity() {
+        finish();
+        Intent intent=new Intent(this, Forecast.class);
         startActivity(intent);
     }
 
