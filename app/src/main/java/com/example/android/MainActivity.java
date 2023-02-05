@@ -7,6 +7,7 @@ package com.example.android;
 
 import authentication.SignIn;
 import commonClasses.Profile;
+import commonClasses.StartActivities;
 import commonClasses.UpdateProfile;
 import navigationBars.DrawerBaseActivity;
 
@@ -38,10 +39,12 @@ public class MainActivity extends DrawerBaseActivity {
     }
 
     public void start_activity() {
-        finish();
         Intent intent = new Intent(this, SignIn.class);
-        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-        startActivity(intent, bundle);
+        startActivity(intent);
+        //finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+//        StartActivities startActivities = new StartActivities();
+//        startActivities.start_SignIn_activity(getApplicationContext());
     }
 
 }

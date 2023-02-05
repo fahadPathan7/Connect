@@ -60,7 +60,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         // if tries to go to the sign in page from sign up page
         if (v.getId() == R.id.signInID) {
-            finish();
             start_SignIn_activity();
         }
 
@@ -110,7 +109,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                             // Sign up success, update UI with the signed-in user's information
                             Toast.makeText(getApplicationContext(), "Registration is successful", Toast.LENGTH_SHORT).show();
 
-                            finish();
                             start_HomeScreenUser_activity();
                         } else {
                             // If sign up fails, display a message to the user.
@@ -126,13 +124,17 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
     public void start_SignIn_activity() {
         Intent intent = new Intent(this, SignIn.class);
-        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-        startActivity(intent, bundle);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        //finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     public void start_HomeScreenUser_activity() {
         Intent intent = new Intent(this, HomeScreenUser.class);
-        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-        startActivity(intent, bundle);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        //finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

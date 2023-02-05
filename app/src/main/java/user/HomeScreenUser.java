@@ -47,6 +47,7 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                switchCompat.setChecked(false);
                 start_HomeScreenVolunteer_activity();
             }
         });
@@ -106,48 +107,52 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
 
 
     public void start_HomeScreenVolunteer_activity() {
-        finish();
-        Intent intent = new Intent(this, HomeScreenVolunteer.class);
-        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-        startActivity(intent, bundle);
+//        Intent intent = new Intent(this, HomeScreenVolunteer.class);
+//        startActivity(intent);
+//        //finish();
+        // cleaning all the activities on stack
+        Intent intent = new Intent(getApplicationContext(), HomeScreenVolunteer.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     public void start_SafetyTips_activity() {
-        finish();
         Intent intent = new Intent(this, SafetyTips.class);
-        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-        startActivity(intent, bundle);
+        startActivity(intent);
+        //finish();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
     public void start_forecast_activity() {
-        finish();
         Intent intent=new Intent(this, Forecast.class);
-        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-        startActivity(intent, bundle);
+        startActivity(intent);
+        //finish();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
     public void start_EmergencyContacts_activity(){
-        finish();
         Intent intent = new Intent(this, EmergencyContacts.class);
-        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-        startActivity(intent, bundle);
+        startActivity(intent);
+        //finish();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     }
     public void start_YourArea_activity() {
-        finish();
         Intent intent=new Intent(this,YourArea.class);
-        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-        startActivity(intent, bundle);
+        startActivity(intent);
+        //finish();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
     public void start_RequestHelp_activity() {
-        finish();
         Intent intent=new Intent(this, RequestHelp.class);
-        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-        startActivity(intent, bundle);
+        startActivity(intent);
+        //finish();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
     public void start_EmergencyRescueSOS_activity() {
-        finish();
         Intent intent=new Intent(this, EmergencyRescueSOS.class);
-        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-        startActivity(intent, bundle);
+        startActivity(intent);
+        //finish();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
 }

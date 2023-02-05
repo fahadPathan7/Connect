@@ -158,10 +158,10 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
     }
 
     public void start_UpdateProfile_activity() {
-        finish();
         Intent intent = new Intent(this, UpdateProfile.class);
-        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-        startActivity(intent, bundle);
+        startActivity(intent);
+        //finish();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
 

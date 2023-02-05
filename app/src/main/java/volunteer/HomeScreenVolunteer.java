@@ -35,20 +35,21 @@ public class HomeScreenVolunteer extends DrawerBaseActivity {
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                switchCompat.setChecked(true);
                 start_HomeScreenUser_activity();
             }
         });
     }
 
     public void start_HomeScreenUser_activity() {
-        finish();
-        Intent intent = new Intent(this, HomeScreenUser.class);
-        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-        startActivity(intent, bundle);
-
-//        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this);
 //        Intent intent = new Intent(this, HomeScreenUser.class);
-//        startActivity(intent, options.toBundle());
+//        startActivity(intent);
+//        //finish();
+        // cleaning all the activities on stack
+        Intent intent = new Intent(getApplicationContext(), HomeScreenUser.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
 }

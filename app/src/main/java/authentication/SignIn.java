@@ -40,7 +40,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            finish();
             start_HomeScreenUser_activity();
         }
     }
@@ -133,17 +132,19 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
     // changing activity starts
     public void start_SignUp_activity() {
-        finish();
         Intent intent = new Intent(this, SignUp.class);
-        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-        startActivity(intent, bundle);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        //finish();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     public void start_HomeScreenUser_activity() {
-        finish();
         Intent intent = new Intent(this, HomeScreenUser.class);
-        //Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
+        //finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
     // changing activity ends
 
