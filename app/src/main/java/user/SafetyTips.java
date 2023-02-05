@@ -11,7 +11,8 @@ import com.example.android.databinding.ActivitySafetyTipsBinding;
 import navigationBars.DrawerBaseActivity;
 
 public class SafetyTips extends DrawerBaseActivity {
-    ActivitySafetyTipsBinding activitySafetyTipsBinding = ActivitySafetyTipsBinding.inflate(getLayoutInflater());
+
+    ActivitySafetyTipsBinding activitySafetyTipsBinding ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
