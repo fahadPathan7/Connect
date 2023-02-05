@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:rowCount="3"
         android:columnCount="1"
-        android:layout_margin="40dp"
+        android:layout_margin="70dp"
         >
         <androidx.cardview.widget.CardView
             android:id="@+id/floodCardViewID"
@@ -39,8 +39,8 @@
                 >
                 <ImageView
                     android:id="@+id/floodID"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/flood"
                     />
@@ -76,8 +76,8 @@
                 >
                 <ImageView
                     android:id="@+id/tsunamiID"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/tsunami"
                     />
@@ -113,8 +113,8 @@
                 >
                 <ImageView
                     android:id="@+id/earthquakeID"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/earthquake"
                     />
@@ -128,6 +128,14 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </GridLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_items"
+        android:background="@drawable/shape_bottom_nav"
+        />
 
 </RelativeLayout>
 

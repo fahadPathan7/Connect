@@ -2,11 +2,8 @@ package user;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.CompoundButton;
 
 import androidx.appcompat.widget.SwitchCompat;
@@ -19,10 +16,15 @@ import com.example.android.databinding.ActivityHomeScreenUserBinding;
 import navigationBars.DrawerBaseActivity;
 import volunteer.HomeScreenVolunteer;
 
-public class HomeScreenUser extends DrawerBaseActivity {
+public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickListener {
 
-    CardView cardView;
-    CardView cardView2;
+//declaring variables
+    CardView safetyTipsCardView;
+    CardView forecastCardView;
+    CardView emergencyContactsCardView;
+    CardView yourAreaCArdView;
+    CardView requestHelpCardView;
+    CardView emergencyRescueSOSCardView;
 
 
     ActivityHomeScreenUserBinding activityHomeScreenUserBinding;
@@ -36,18 +38,8 @@ public class HomeScreenUser extends DrawerBaseActivity {
         setContentView(activityHomeScreenUserBinding.getRoot());
         allocateActivityTitle("Home");
 
-        cardView = findViewById(R.id.safetyTipsCardViewID);
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                start_SafetyTips_activity();
-            }
-        });
-        cardView2=findViewById(R.id.forecastCardViewID);
-        cardView2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {start_forecast_activity();}
-        });
+        //initializing the viewID
+        initializeViewIDs();
 
 
         switchCompat = findViewById(R.id.switchID);
@@ -57,7 +49,58 @@ public class HomeScreenUser extends DrawerBaseActivity {
                 start_HomeScreenVolunteer_activity();
             }
         });
+        //button click
+        forecastCardView.setOnClickListener(this);
+        safetyTipsCardView.setOnClickListener(this);
+        emergencyContactsCardView.setOnClickListener(this);
+        yourAreaCArdView.setOnClickListener(this);
+        requestHelpCardView.setOnClickListener(this);
+        emergencyRescueSOSCardView.setOnClickListener(this);
+
     }
+
+
+
+    private void initializeViewIDs() {
+        forecastCardView= findViewById(R.id.forecastCardViewID);
+        safetyTipsCardView= findViewById(R.id.safetyTipsCardViewID);
+        emergencyContactsCardView = findViewById(R.id.emergencyContactsCardViewID);
+        yourAreaCArdView = findViewById(R.id.yourAreaCardViewID);
+        requestHelpCardView = findViewById(R.id.requestHelpCardViewID);
+        emergencyRescueSOSCardView = findViewById(R.id.emergencyRescueSOSCardViewID);
+
+    }
+
+
+    public void onClick( View v)
+    {
+        if (v.getId() == R.id.forecastCardViewID) {
+            start_forecast_activity();
+        }
+        else if (v.getId() == R.id.safetyTipsCardViewID) {
+            start_SafetyTips_activity();
+        }
+        else if (v.getId() == R.id.emergencyContactsCardViewID) {
+            start_EmergencyContacts_activity();
+
+        }
+        else if (v.getId() == R.id.yourAreaCardViewID) {
+            start_YourArea_activity();
+
+        }
+        else if (v.getId() == R.id.requestHelpCardViewID) {
+            start_RequestHelp_activity();
+
+        }
+        else if (v.getId() == R.id.emergencyRescueSOSCardViewID) {
+            start_EmergencyRescueSOS_activity();
+
+        }
+
+
+
+    }
+
 
     public void start_HomeScreenVolunteer_activity() {
         finish();
@@ -75,6 +118,31 @@ public class HomeScreenUser extends DrawerBaseActivity {
     public void start_forecast_activity() {
         finish();
         Intent intent=new Intent(this, Forecast.class);
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
+    }
+    public void start_EmergencyContacts_activity(){
+        finish();
+        Intent intent = new Intent(this, EmergencyContacts.class);
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
+
+    }
+    public void start_YourArea_activity() {
+        finish();
+        Intent intent=new Intent(this,YourArea.class);
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
+    }
+    public void start_RequestHelp_activity() {
+        finish();
+        Intent intent=new Intent(this, RequestHelp.class);
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
+    }
+    public void start_EmergencyRescueSOS_activity() {
+        finish();
+        Intent intent=new Intent(this, EmergencyRescueSOS.class);
         Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
         startActivity(intent, bundle);
     }
