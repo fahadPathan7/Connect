@@ -26,10 +26,11 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
     CardView requestHelpCardView;
     CardView emergencyRescueSOSCardView;
 
+    SwitchCompat switchCompat;
 
     ActivityHomeScreenUserBinding activityHomeScreenUserBinding;
 
-    SwitchCompat switchCompat;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,8 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         yourAreaCArdView.setOnClickListener(this);
         requestHelpCardView.setOnClickListener(this);
         emergencyRescueSOSCardView.setOnClickListener(this);
+
+
 
     }
 

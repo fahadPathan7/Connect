@@ -5,12 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.android.R;
+import com.example.android.databinding.ActivityEmergencyContactsBinding;
 
-public class EmergencyContacts extends AppCompatActivity {
+import navigationBars.DrawerBaseActivity;
+
+public class EmergencyContacts extends DrawerBaseActivity {
+    ActivityEmergencyContactsBinding activityEmergencyContactsBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emergency_contacts);
+        activityEmergencyContactsBinding=ActivityEmergencyContactsBinding.inflate(getLayoutInflater());
+
+        setContentView(activityEmergencyContactsBinding.getRoot());
+        allocateActivityTitle("Emergency Contacts");
     }
 }

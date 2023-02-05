@@ -5,12 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.android.R;
+import com.example.android.databinding.ActivityRequestHelpBinding;
 
-public class RequestHelp extends AppCompatActivity {
+import navigationBars.DrawerBaseActivity;
+
+public class RequestHelp extends DrawerBaseActivity {
+    ActivityRequestHelpBinding activityRequestHelpBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request_help);
+        activityRequestHelpBinding=ActivityRequestHelpBinding.inflate(getLayoutInflater());
+        setContentView(activityRequestHelpBinding.getRoot());
+        allocateActivityTitle("Request Help");
     }
 }
