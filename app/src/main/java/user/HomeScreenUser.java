@@ -25,7 +25,6 @@ public class HomeScreenUser extends DrawerBaseActivity {
     CardView cardView2;
 
 
-
     ActivityHomeScreenUserBinding activityHomeScreenUserBinding;
 
     SwitchCompat switchCompat;
