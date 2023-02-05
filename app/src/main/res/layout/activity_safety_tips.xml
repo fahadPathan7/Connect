@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     tools:context="user.SafetyTips">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Safety Tips"
-        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

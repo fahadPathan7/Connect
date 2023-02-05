@@ -110,24 +110,23 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
+                android:layout_height="67dp"
                 android:layout_gravity="center_horizontal|center_vertical"
-                >
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/safety_tips"
                     android:scaleType="fitCenter"
-                    />
+                    android:src="@drawable/safety_tips" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Safety Tips"
-                    android:textStyle="bold"
                     android:textAlignment="center"
-                    />
+                    android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
