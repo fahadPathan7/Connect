@@ -279,6 +279,7 @@
         </androidx.cardview.widget.CardView>
     </GridLayout>
 
+<!--   bottom navigation bar design-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavID"
         android:layout_width="match_parent"
