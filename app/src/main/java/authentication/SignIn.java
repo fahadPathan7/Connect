@@ -38,6 +38,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
+        //Toast.makeText(getApplicationContext(), "sign in onStart", Toast.LENGTH_SHORT).show();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             start_HomeScreenUser_activity();
@@ -69,6 +70,13 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         logIn.setOnClickListener(this);
         google.setOnClickListener(this);
         facebook.setOnClickListener(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        System.exit(0);
     }
 
     // to work with on Click listeners

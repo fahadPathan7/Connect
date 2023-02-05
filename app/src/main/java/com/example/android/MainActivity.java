@@ -38,6 +38,17 @@ public class MainActivity extends DrawerBaseActivity {
         start_activity();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        System.exit(0);
+    }
+
+    public static void exitProgram() {
+        System.exit(0);
+    }
+
     public void start_activity() {
         Intent intent = new Intent(this, SignIn.class);
         startActivity(intent);
