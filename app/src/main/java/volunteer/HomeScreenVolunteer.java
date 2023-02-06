@@ -10,9 +10,13 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import com.example.android.R;
 import com.example.android.databinding.ActivityHomeScreenVolunteerBinding;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 import navigationBars.DrawerBaseActivity;
 import user.HomeScreenUser;
@@ -41,11 +45,14 @@ public class HomeScreenVolunteer extends DrawerBaseActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        HomeScreenUser.makeBackPressedCntZero();
+    }
+
     public void start_HomeScreenUser_activity() {
-//        Intent intent = new Intent(this, HomeScreenUser.class);
-//        startActivity(intent);
-//        //finish();
-        // cleaning all the activities on stack
+        HomeScreenUser.makeBackPressedCntZero();
         Intent intent = new Intent(getApplicationContext(), HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);

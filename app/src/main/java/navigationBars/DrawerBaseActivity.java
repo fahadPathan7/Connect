@@ -1,6 +1,7 @@
 package navigationBars;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -17,6 +18,12 @@ import android.widget.TextView;
 import com.example.android.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.Objects;
 
@@ -27,10 +34,6 @@ import user.HomeScreenUser;
 public class DrawerBaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
-
-    TextView emailTextView;
-
-    FirebaseAuth mAuth;
 
     @Override
     public void setContentView(View view) {
@@ -54,6 +57,7 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         navigationView1.setNavigationItemSelectedListener(this);
 
     }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

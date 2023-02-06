@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.android.databinding.ActivityMainBinding;
 
@@ -34,13 +35,11 @@ public class MainActivity extends DrawerBaseActivity {
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
 
-
         start_activity();
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         finish();
         System.exit(0);
     }
@@ -52,6 +51,7 @@ public class MainActivity extends DrawerBaseActivity {
     public void start_activity() {
         Intent intent = new Intent(this, SignIn.class);
         startActivity(intent);
+        Toast.makeText(this, "MainActivity", Toast.LENGTH_SHORT).show();
         //finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
 //        StartActivities startActivities = new StartActivities();

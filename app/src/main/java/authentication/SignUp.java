@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import commonClasses.UpdateProfile;
 import user.HomeScreenUser;
 import com.example.android.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -109,7 +110,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                             // Sign up success, update UI with the signed-in user's information
                             Toast.makeText(getApplicationContext(), "Registration is successful", Toast.LENGTH_SHORT).show();
 
-                            start_HomeScreenUser_activity();
+                            start_UpdateProfile_activity();
                         } else {
                             // If sign up fails, display a message to the user.
                             Toast.makeText(getApplicationContext(), "Already exists! Try sign in.", Toast.LENGTH_SHORT).show();
@@ -131,10 +132,19 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void start_HomeScreenUser_activity() {
+        HomeScreenUser.makeBackPressedCntZero();
         Intent intent = new Intent(this, HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         //finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    public void start_UpdateProfile_activity() {
+        HomeScreenUser.makeBackPressedCntZero();
+        Intent intent = new Intent(this, UpdateProfile.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

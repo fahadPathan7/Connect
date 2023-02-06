@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 
@@ -15,7 +17,17 @@ import com.example.android.Forecast;
 import com.example.android.MainActivity;
 import com.example.android.R;
 import com.example.android.databinding.ActivityHomeScreenUserBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.util.Objects;
+
+import authentication.SignIn;
 import navigationBars.DrawerBaseActivity;
 import volunteer.HomeScreenVolunteer;
 
@@ -32,7 +44,7 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
     SwitchCompat switchCompat;
 
     ActivityHomeScreenUserBinding activityHomeScreenUserBinding;
-
+    public static int backPressedCnt = 0;
 
 
     @Override
@@ -104,31 +116,23 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
 
         }
 
-
     }
-
 
     @Override
     public void onBackPressed() {
-//        long pressedTime = System.currentTimeMillis();;
-//        if (pressedTime + 2000 > System.currentTimeMillis()) {
-//            //super.onBackPressed();
-//            finish();
-//        } else {
-//            Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
-//        }
-//        Toast.makeText(getApplicationContext(), "back pressed", Toast.LENGTH_SHORT).show();
-        //MainActivity.exitProgram();
-        this.finish();
-        System.exit(0);
+        backPressedCnt++;
+        if (backPressedCnt == 1) {
+            Toast.makeText(this, "Press again to exit!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Intent intent = new Intent(this, SignIn.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.putExtra("Exit me", true);
+            startActivity(intent);
+        }
     }
 
-
     public void start_HomeScreenVolunteer_activity() {
-//        Intent intent = new Intent(this, HomeScreenVolunteer.class);
-//        startActivity(intent);
-//        //finish();
-        // cleaning all the activities on stack
         Intent intent = new Intent(getApplicationContext(), HomeScreenVolunteer.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
@@ -136,18 +140,21 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
     }
 
     public void start_SafetyTips_activity() {
+        makeBackPressedCntZero();
         Intent intent = new Intent(this, SafetyTips.class);
         startActivity(intent);
         //finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
     public void start_forecast_activity() {
+        makeBackPressedCntZero();
         Intent intent=new Intent(this, Forecast.class);
         startActivity(intent);
         //finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
     public void start_EmergencyContacts_activity(){
+        makeBackPressedCntZero();
         Intent intent = new Intent(this, EmergencyContacts.class);
         startActivity(intent);
         //finish();
@@ -155,22 +162,30 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
 
     }
     public void start_YourArea_activity() {
+        makeBackPressedCntZero();
         Intent intent=new Intent(this,YourArea.class);
         startActivity(intent);
         //finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
     public void start_RequestHelp_activity() {
+        makeBackPressedCntZero();
         Intent intent=new Intent(this, RequestHelp.class);
         startActivity(intent);
         //finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
     public void start_EmergencyRescueSOS_activity() {
+        makeBackPressedCntZero();
         Intent intent=new Intent(this, EmergencyRescueSOS.class);
         startActivity(intent);
         //finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+
+    public static void makeBackPressedCntZero() {
+        backPressedCnt = 0;
     }
 
 }

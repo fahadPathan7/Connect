@@ -32,6 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import navigationBars.DrawerBaseActivity;
+import user.HomeScreenUser;
 
 public class Profile extends DrawerBaseActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
@@ -151,6 +152,12 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        HomeScreenUser.makeBackPressedCntZero();
+    }
+
+    @Override
     public void onClick(View v) {
         if (v.getId() == R.id.editProfileID) {
             start_UpdateProfile_activity();
@@ -162,6 +169,14 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
         startActivity(intent);
         //finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    public void start_HomeScreenUser_activity() {
+        HomeScreenUser.makeBackPressedCntZero();
+        Intent intent = new Intent(getApplicationContext(), HomeScreenUser.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
 

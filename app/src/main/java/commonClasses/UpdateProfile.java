@@ -108,16 +108,16 @@ public class UpdateProfile extends DrawerBaseActivity {
 
         Map<String, Object> info = new HashMap<>();
 
-        if (!name.equals("")) info.put(KEY_NAME, name);
-        if (!email.equals("")) info.put(KEY_EMAIL, email);
-        if (!contact1.equals("")) info.put(KEY_CONTACT1, contact1);
-        if (!contact2.equals("")) info.put(KEY_CONTACT2, contact2);
-        if (!gender.equals("")) info.put(KEY_GENDER, gender);
-        if (!district.equals("")) info.put(KEY_DISTRICT, district);
-        if (!thana.equals("")) info.put(KEY_THANA, thana);
-        if (!area.equals("")) info.put(KEY_AREA, area);
-        if (!road.equals("")) info.put(KEY_ROAD, road);
-        if (!house.equals("")) info.put(KEY_HOUSE, house);
+        info.put(KEY_NAME, name);
+        info.put(KEY_EMAIL, email);
+        info.put(KEY_CONTACT1, contact1);
+        info.put(KEY_CONTACT2, contact2);
+        info.put(KEY_GENDER, gender);
+        info.put(KEY_DISTRICT, district);
+        info.put(KEY_THANA, thana);
+        info.put(KEY_AREA, area);
+        info.put(KEY_ROAD, road);
+        info.put(KEY_HOUSE, house);
 
         documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -135,6 +135,7 @@ public class UpdateProfile extends DrawerBaseActivity {
     }
 
     public void start_HomeScreenUser_Activity() {
+        HomeScreenUser.makeBackPressedCntZero();
         Intent intent = new Intent(this, HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);

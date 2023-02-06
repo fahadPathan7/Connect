@@ -24,6 +24,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
     // declaring variables
@@ -38,9 +40,10 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
-        //Toast.makeText(getApplicationContext(), "sign in onStart", Toast.LENGTH_SHORT).show();
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
+
             start_HomeScreenUser_activity();
         }
     }
@@ -50,6 +53,13 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
+
+        // to exit the app
+        if( getIntent().getBooleanExtra("Exit me", false)){
+            finish();
+            System.exit(0);
+            return;
+        }
 
         // initializing variables
         mAuth = FirebaseAuth.getInstance();
@@ -75,7 +85,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
         System.exit(0);
     }
 
@@ -148,6 +157,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void start_HomeScreenUser_activity() {
+        HomeScreenUser.makeBackPressedCntZero();
         Intent intent = new Intent(this, HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
