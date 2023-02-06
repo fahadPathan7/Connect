@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="user.RequestHelp">
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <LinearLayout
@@ -40,7 +50,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"/>
+                    android:inputType="phone"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -64,8 +74,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:singleLine="false"
+                    android:inputType="textMultiLine"
+
+
                     android:maxLength="200"
                     android:isScrollContainer="true"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -76,8 +87,10 @@
                 android:layout_marginStart="100dp"
                 android:layout_marginEnd="120dp"
                 android:backgroundTint="@color/theme_color"
+                android:layout_marginBottom="55dp"
                 android:text="Submit"/>
         </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavID"
@@ -87,6 +100,4 @@
         app:menu="@menu/bottom_nav_items"
         android:background="@drawable/shape_bottom_nav"
         />
-
-
 </RelativeLayout>

@@ -9,9 +9,16 @@
     android:id="@+id/relativeLayoutID"
     tools:context="user.SafetyTips">
 
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
-    <GridLayout
+       <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:rowCount="4"
@@ -171,7 +178,8 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
- </GridLayout>
+         </GridLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavID"
