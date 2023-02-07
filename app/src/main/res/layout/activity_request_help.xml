@@ -94,6 +94,7 @@
                 android:onClick="sendRequest"
                 android:text="Submit"
                 />
+
         </LinearLayout>
     </ScrollView>
 
