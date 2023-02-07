@@ -15,9 +15,9 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Android"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        tools:ignore="ExtraText">
         <activity
-<<<<<<< Updated upstream
             android:name="safetyTips.Earthquake"
             android:exported="false">
             <meta-data
@@ -39,19 +39,25 @@
                 android:value="" />
         </activity>
         <activity
+            android:name="safetyTips.Cyclone"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name="safetyTips.Flood"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-=======
+        <activity
             android:name="volunteer.RescueRequests"
             android:exported="false" />
         <activity
             android:name="volunteer.YourGoals"
             android:exported="false" />
->>>>>>> Stashed changes
         <activity
             android:name="volunteer.HelpRequests"
             android:exported="false" />
@@ -90,13 +96,13 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name="user.SafetyTips$forecast"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+<!--        <activity-->
+<!--            android:name="user.SafetyTips$forecast"-->
+<!--            android:exported="false">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--        </activity>-->
         <activity
             android:name="user.SafetyTips"
             android:exported="false" />
@@ -110,27 +116,27 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".Test"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".BottomNavBar"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".DrawerBaseActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+<!--        <activity-->
+<!--            android:name=".Test"-->
+<!--            android:exported="false">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--        </activity>-->
+<!--        <activity-->
+<!--            android:name=".BottomNavBar"-->
+<!--            android:exported="false">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--        </activity>-->
+<!--        <activity-->
+<!--            android:name=".DrawerBaseActivity"-->
+<!--            android:exported="false">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--        </activity>-->
         <activity
             android:name=".MainActivity"
             android:exported="false">

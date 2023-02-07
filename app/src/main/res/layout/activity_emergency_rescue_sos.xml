@@ -54,21 +54,23 @@
                     android:inputType="phone"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/locationEditTextID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Location"
                 android:layout_margin="7dp"
+                android:enabled="false"
                 app:startIconDrawable="@drawable/baseline_location_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/locationEditTextID2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="14sp"
                     android:inputType="text"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/submitButtonID2"
+                android:id="@+id/submitButtonID"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="100dp"

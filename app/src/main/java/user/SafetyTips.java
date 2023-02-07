@@ -73,7 +73,6 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
         {
             start_Earthquake_activity();
         }
-
         else if(v.getId() == R.id.cycloneCardViewID)
         {
             start_Cyclone_activity();
@@ -86,7 +85,7 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
     }
     public void start_Flood_activity()
     {
-        makeBackPressedCntZero();
+        //makeBackPressedCntZero();
         Intent intent = new Intent(this, Flood.class);
         startActivity(intent);
 
@@ -94,7 +93,7 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
     }
     public void start_Tsunami_activity()
     {
-        makeBackPressedCntZero();
+        //makeBackPressedCntZero();
 
         Intent intent = new Intent(this, Tsunami.class);
         startActivity(intent);
@@ -103,7 +102,7 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
     }
     public void start_Earthquake_activity()
     {
-        makeBackPressedCntZero();
+        //makeBackPressedCntZero();
 
         Intent intent = new Intent(this, Earthquake.class);
         startActivity(intent);
@@ -112,7 +111,7 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
     }
     public void start_Cyclone_activity()
     {
-        makeBackPressedCntZero();
+        //makeBackPressedCntZero();
         Intent intent = new Intent(this, Cyclone.class);
         startActivity(intent);
 
@@ -120,7 +119,7 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
     }
     public void start_Fire_activity()
     {
-        makeBackPressedCntZero();
+        //makeBackPressedCntZero();
         Intent intent = new Intent(this, Fire.class);
         startActivity(intent);
 
