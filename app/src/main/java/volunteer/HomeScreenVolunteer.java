@@ -2,11 +2,13 @@ package volunteer;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.cardview.widget.CardView;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
@@ -21,10 +23,11 @@ import java.util.Objects;
 import navigationBars.DrawerBaseActivity;
 import user.HomeScreenUser;
 
-public class HomeScreenVolunteer extends DrawerBaseActivity {
+public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnClickListener {
 
     SwitchCompat switchCompat;
 
+    CardView helpRequestsCardView;
 
     ActivityHomeScreenVolunteerBinding activityHomeScreenVolunteerBinding;
     @Override
@@ -43,12 +46,23 @@ public class HomeScreenVolunteer extends DrawerBaseActivity {
                 start_HomeScreenUser_activity();
             }
         });
+
+
+        helpRequestsCardView = findViewById(R.id.helpRequestsCardViewID);
+        helpRequestsCardView.setOnClickListener(this);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         HomeScreenUser.makeBackPressedCntZero();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.helpRequestsCardViewID) {
+            start_HelpRequests_activity();
+        }
     }
 
     public void start_HomeScreenUser_activity() {
@@ -59,4 +73,9 @@ public class HomeScreenVolunteer extends DrawerBaseActivity {
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
+    public void start_HelpRequests_activity() {
+        Intent intent = new Intent(getApplicationContext(), HelpRequests.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
 }
