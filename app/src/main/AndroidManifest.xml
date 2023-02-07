@@ -13,6 +13,34 @@
         android:theme="@style/Theme.Android"
         tools:targetApi="31">
         <activity
+            android:name="safetyTips.Earthquake"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="safetyTips.Fire"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="safetyTips.Tsunami"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="safetyTips.Flood"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name="volunteer.HelpRequests"
             android:exported="false" />
         <activity
