@@ -35,7 +35,7 @@ public class RequestHelp extends DrawerBaseActivity {
     public final String KEY_NAME = "Name";
     public final String KEY_CONTACT = "Contact";
     public final String KEY_LOCATION = "Location";
-    public final String KEY_DETAILS = "details";
+    public final String KEY_DETAILS = "Details";
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference documentReference;

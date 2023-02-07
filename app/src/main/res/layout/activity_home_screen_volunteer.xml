@@ -53,6 +53,7 @@
         >
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/rescueRequestsCardViewID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="0"
@@ -239,6 +240,7 @@
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/yourGoalsCardViewID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="2"

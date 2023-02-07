@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
 import com.example.android.R;
@@ -21,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -35,12 +37,15 @@ import java.util.Map;
 
 import navigationBars.DrawerBaseActivity;
 
-public class HelpRequests extends DrawerBaseActivity implements View.OnClickListener {
+public class HelpRequests extends DrawerBaseActivity {
 
+
+    public final String KEY_TYPE = "Type";
     public final String KEY_NAME = "Name";
     public final String KEY_CONTACT = "Contact";
     public final String KEY_LOCATION = "Location";
-    public final String KEY_DETAILS = "details";
+    public final String KEY_DETAILS = "Details";
+    public final String KEY_INFORMATION = "Information";
 
     CardView[] cardViews = new CardView[6];
     TextView[] textViews = new TextView[6];
@@ -49,7 +54,6 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference helpRequests = db.collection("Help Requests");
-    //private DocumentReference noteRef = db.document("Notebook/My First Note");
 
     ActivityHelpRequestsBinding activityHelpRequestsBinding;
 
@@ -61,20 +65,12 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
         allocateActivityTitle("Help Requests");
 
 
-//        try {
-//            for (int i = 0; i < 6; i++) {
-//                imageViews[i].setOnClickListener(this);
-//            }
-//        } catch (Exception e) {
-//            Toast.makeText(getApplicationContext(), "onClick fault", Toast.LENGTH_SHORT).show();
-//        }
+        connectWithIDs();
+        showRequests();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    public void showRequests() {
 
-        connectWithIDs();
         makeViewsInvisible();
 
         helpRequests.addSnapshotListener(this, new EventListener<QuerySnapshot>() {
@@ -140,49 +136,32 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
         imageViews[pos].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                writeOnYourGoals(0);
+                writeOnYourGoals(pos);
             }
         });
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.textView0ID) {
-            writeOnYourGoals(0);
-        }
-        if (v.getId() == R.id.textView1ID) {
-            writeOnYourGoals(1);
-        }
-        if (v.getId() == R.id.textView2ID) {
-            writeOnYourGoals(2);
-        }
-        if (v.getId() == R.id.textView3ID) {
-            writeOnYourGoals(3);
-        }
-        if (v.getId() == R.id.textView4ID) {
-            writeOnYourGoals(4);
-        }
-        if (v.getId() == R.id.textView5ID) {
-            writeOnYourGoals(5);
-        }
-    }
-
     public void writeOnYourGoals(int idx) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         try {
             String uid = user.getUid();
             String collectionName = "Your Goals: " + uid;
             String documentName = documentSnapShotIDs[idx];
             DocumentReference documentReference = db.collection(collectionName).document(documentName);
 
+            DocumentReference documentReference1 = db.collection("Help Requests").document(documentName);
+
             Map<String, Object> info = new HashMap<>();
-            info.put("Type", "Help");
-            info.put("Info", textViews[idx].getText().toString().trim());
+            String information = textViews[idx].getText().toString().trim();
+
+            info.put(KEY_INFORMATION, information);
 
             documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
                     Toast.makeText(getApplicationContext(), "Thanks for your help.", Toast.LENGTH_SHORT).show();
+                    documentReference1.delete();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -191,7 +170,7 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
                 }
             });
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "YourGoals write fault", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "YourGoals write fault", Toast.LENGTH_SHORT).show();
         }
     }
 }

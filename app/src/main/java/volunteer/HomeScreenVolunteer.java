@@ -28,6 +28,9 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
     SwitchCompat switchCompat;
 
     CardView helpRequestsCardView;
+    CardView yourGoalsCardView;
+
+    CardView rescueRequestsCardView;
 
     ActivityHomeScreenVolunteerBinding activityHomeScreenVolunteerBinding;
     @Override
@@ -50,6 +53,12 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
 
         helpRequestsCardView = findViewById(R.id.helpRequestsCardViewID);
         helpRequestsCardView.setOnClickListener(this);
+
+        yourGoalsCardView = findViewById(R.id.yourGoalsCardViewID);
+        yourGoalsCardView.setOnClickListener(this);
+
+        rescueRequestsCardView = findViewById(R.id.rescueRequestsCardViewID);
+        rescueRequestsCardView.setOnClickListener(this);
     }
 
     @Override
@@ -63,6 +72,12 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
         if (v.getId() == R.id.helpRequestsCardViewID) {
             start_HelpRequests_activity();
         }
+        if (v.getId() == R.id.yourGoalsCardViewID) {
+            start_YourGoals_activity();
+        }
+        if (v.getId() == R.id.rescueRequestsCardViewID) {
+            start_RescueRequests_activity();
+        }
     }
 
     public void start_HomeScreenUser_activity() {
@@ -75,6 +90,17 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
 
     public void start_HelpRequests_activity() {
         Intent intent = new Intent(getApplicationContext(), HelpRequests.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    public void start_YourGoals_activity() {
+        Intent intent = new Intent(getApplicationContext(), YourGoals.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+    public void start_RescueRequests_activity() {
+        Intent intent = new Intent(getApplicationContext(), RescueRequests.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
