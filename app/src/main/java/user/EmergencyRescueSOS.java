@@ -5,12 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.android.R;
+import com.example.android.databinding.ActivityEmergencyContactsBinding;
+import com.example.android.databinding.ActivitySafetyTipsBinding;
 
-public class EmergencyRescueSOS extends AppCompatActivity {
+import navigationBars.DrawerBaseActivity;
+
+public class EmergencyRescueSOS extends DrawerBaseActivity {
+    ActivityEmergencyContactsBinding activityEmergencyContactsBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emergency_rescue_sos);
+        activityEmergencyContactsBinding=ActivityEmergencyContactsBinding.inflate(getLayoutInflater());
+        setContentView(activityEmergencyContactsBinding.getRoot());
+        allocateActivityTitle("Emergency Rescue SOS");
     }
 }
