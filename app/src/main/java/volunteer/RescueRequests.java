@@ -52,6 +52,7 @@ public class RescueRequests extends DrawerBaseActivity {
         super.onCreate(savedInstanceState);
         activityRescueRequestsBinding = ActivityRescueRequestsBinding.inflate(getLayoutInflater());
         setContentView(activityRescueRequestsBinding.getRoot());
+        allocateActivityTitle("Rescue Requests");
 
         connectWithIDs();
         showRequests();

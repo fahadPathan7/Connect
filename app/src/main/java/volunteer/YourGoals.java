@@ -52,6 +52,7 @@ public class YourGoals extends DrawerBaseActivity {
         super.onCreate(savedInstanceState);
         activityYourGoalsBinding = ActivityYourGoalsBinding.inflate(getLayoutInflater());
         setContentView(activityYourGoalsBinding.getRoot());
+        allocateActivityTitle("Your Goals");
 
         connectWithIDs();
         showGoals();

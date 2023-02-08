@@ -2,10 +2,16 @@ package authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -54,6 +60,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.theme_color));
+
         // to exit the app
         if( getIntent().getBooleanExtra("Exit me", false)){
             finish();
@@ -66,20 +74,21 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
 
         // connecting with id
-        signUp = findViewById(R.id.signupID);
-        logIn = findViewById(R.id.loginID);
-        google = findViewById(R.id.googleID);
-        facebook = findViewById(R.id.facebookID);
+        signUp = findViewById(R.id.signUpID);
+        logIn = findViewById(R.id.signInID);
         email = findViewById(R.id.emailID);
         password = findViewById(R.id.passwordID);
-        forgotPass = findViewById(R.id.forgotPassID);
+
+
+        ImageView imageView = findViewById(R.id.iconViewID);
+        Drawable drawable = getResources().getDrawable(R.drawable.ic_baseline_person_24);
+        drawable.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+        imageView.setImageDrawable(drawable);
 
 
         // adding acting click listeners
         signUp.setOnClickListener(this);
         logIn.setOnClickListener(this);
-        google.setOnClickListener(this);
-        facebook.setOnClickListener(this);
     }
 
     @Override
@@ -92,12 +101,12 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         // if the user wants to sign up a new account
-        if (v.getId() == R.id.signupID) {
+        if (v.getId() == R.id.signUpID) {
             start_SignUp_activity();
         }
 
         // if the user wants to log in with email and pass
-        if (v.getId() == R.id.loginID) {
+        if (v.getId() == R.id.signInID) {
             getLogin("email");
         }
     }

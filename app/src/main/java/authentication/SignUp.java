@@ -29,7 +29,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     TextView signIn;
     Button create;
     ImageView google, facebook;
-    EditText email, password;
+    EditText email, password, confirmPassword;
 
     private FirebaseAuth mAuth; // to work with firebase
 
@@ -45,16 +45,14 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
         signIn = findViewById(R.id.signInID);
         create = findViewById(R.id.createID);
-        google = findViewById(R.id.googleID);
-        facebook = findViewById(R.id.facebookID);
+
         email = findViewById(R.id.emailID);
         password = findViewById(R.id.passwordID);
+        confirmPassword = findViewById(R.id.confirmPasswordID);
 
         // setting on click listener
         create.setOnClickListener(this);
         signIn.setOnClickListener(this);
-        google.setOnClickListener(this);
-        facebook.setOnClickListener(this);
     }
 
     @Override
@@ -74,6 +72,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private void createAccount(String type) {
         String emailText = email.getText().toString().trim(); // text of email (input)
         String passText = password.getText().toString(); // text of password (input)
+        String confirmPassText = confirmPassword.getText().toString();
 
         // checking for email input
         if(emailText.isEmpty()) {
@@ -91,7 +90,13 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
         // checking the validity of the password
         if(passText.isEmpty() || passText.length() < 8) {
-            password.setError("minimum length is 8");
+            password.setError("Minimum length is 8");
+            password.requestFocus();
+            return;
+        }
+
+        if (!passText.equals(confirmPassText)) {
+            password.setError("Password didn't match!");
             password.requestFocus();
             return;
         }
