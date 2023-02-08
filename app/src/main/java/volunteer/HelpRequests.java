@@ -93,7 +93,7 @@ public class HelpRequests extends DrawerBaseActivity {
 
                     documentSnapShotIDs[cnt] = documentSnapshot.getId();
 
-                    data += "Name: " + name + "\n\nContact: " + contact + "\n\nLocation: " + location +
+                    data = "Name: " + name + "\n\nContact: " + contact + "\n\nLocation: " + location +
                             "\n\nDetails: " + details + "\n\n";
 
                     addData(data, cnt++);
@@ -102,7 +102,7 @@ public class HelpRequests extends DrawerBaseActivity {
         });
     }
 
-    public void connectWithIDs() {
+    private void connectWithIDs() {
         cardViews[0] = findViewById(R.id.cardView0ID);
         cardViews[1] = findViewById(R.id.cardView1ID);
         cardViews[2] = findViewById(R.id.cardView2ID);
@@ -153,8 +153,9 @@ public class HelpRequests extends DrawerBaseActivity {
             DocumentReference documentReference1 = db.collection("Help Requests").document(documentName);
 
             Map<String, Object> info = new HashMap<>();
-            String information = textViews[idx].getText().toString().trim();
+            String information = '\n' + textViews[idx].getText().toString().trim();
 
+            info.put(KEY_TYPE, "Help");
             info.put(KEY_INFORMATION, information);
 
             documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {

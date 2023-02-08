@@ -35,7 +35,7 @@
                 app:startIconDrawable="@drawable/ic_baseline_person_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nameEditTextID2"
+                    android:id="@+id/nameEditTextID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"/>
@@ -48,21 +48,21 @@
                 app:startIconDrawable="@drawable/ic_baseline_contact_phone_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/contactEditTextID2"
+                    android:id="@+id/contactEditTextID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/locationEditTextID"
+                android:id="@+id/locationTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Location"
                 android:layout_margin="7dp"
-                android:enabled="false"
                 app:startIconDrawable="@drawable/baseline_location_24">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/locationEditTextID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
@@ -76,8 +76,10 @@
                 android:layout_marginStart="100dp"
                 android:layout_marginEnd="100dp"
                 android:backgroundTint="@color/theme_color"
+                android:textColor="@color/white"
                 android:layout_marginBottom="60dp"
                 android:layout_marginTop="20dp"
+                android:onClick="sendRequest"
                 android:text="Submit"
                 />
 

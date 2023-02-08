@@ -1,5 +1,7 @@
 package user;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,16 +36,35 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import navigationBars.DrawerBaseActivity;
 
 public class EmergencyRescueSOS extends DrawerBaseActivity {
+
+    public final String KEY_NAME = "Name";
+    public final String KEY_CONTACT = "Contact";
+    public final String KEY_LOCATION = "Location";
+
     ActivityEmergencyRescueSosBinding activityEmergencyRescueSosBinding;
 
-    TextInputLayout locationEditText;
+    TextInputEditText locationEditText;
+    TextInputEditText nameEditText;
+    TextInputEditText contactEditText;
+    TextInputLayout locationTextInputLayout;
+
     Button submitButton;
     private LocationRequest locationRequest;
 
@@ -56,6 +77,8 @@ public class EmergencyRescueSOS extends DrawerBaseActivity {
 
 
         locationEditText = findViewById(R.id.locationEditTextID);
+        nameEditText = findViewById(R.id.nameEditTextID);
+        contactEditText = findViewById(R.id.contactEditTextID);
         submitButton = findViewById(R.id.submitButtonID);
 
         locationRequest = LocationRequest.create();
@@ -66,10 +89,57 @@ public class EmergencyRescueSOS extends DrawerBaseActivity {
 
         getCurrentLocation();
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
+    }
+
+    public void sendRequest(View v) {
+        if (isGPSEnabled()) {
+            getCurrentLocation();
+        }
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference documentReference;
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        documentReference = db.collection("Rescue Requests").document(uid);
+
+        String name = nameEditText.getText().toString().trim();
+        String contact = contactEditText.getText().toString().trim();
+        String location = locationEditText.getText().toString().trim();
+
+        if (name.isEmpty()) {
+            nameEditText.setError("Name can not be empty!");
+            nameEditText.requestFocus();
+            return;
+        }
+        if (contact.isEmpty()) {
+            contactEditText.setError("Contact can not be empty!");
+            contactEditText.requestFocus();
+            return;
+        }
+        if (location.isEmpty()) {
+            locationEditText.setError("Location can not be empty!");
+            locationEditText.requestFocus();
+            return;
+        }
+
+        Map<String, Object> info = new HashMap<>();
+
+        info.put(KEY_NAME, name);
+        info.put(KEY_CONTACT, contact);
+        info.put(KEY_LOCATION, location);
+
+        documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onClick(View v) {
-                //
+            public void onSuccess(Void unused) {
+                Toast.makeText(getApplicationContext(), "Request Submitted", Toast.LENGTH_SHORT).show();
+                start_HomeScreenUser_activity();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "Request Submit Failed!", Toast.LENGTH_SHORT).show();
+                start_HomeScreenUser_activity();
             }
         });
     }
@@ -104,12 +174,13 @@ public class EmergencyRescueSOS extends DrawerBaseActivity {
                                     LocationServices.getFusedLocationProviderClient(EmergencyRescueSOS.this)
                                             .removeLocationUpdates(this);
 
-                                    if (locationResult != null && locationResult.getLocations().size() >0){
+                                    if (locationResult != null && locationResult.getLocations().size() > 0){
                                         int index = locationResult.getLocations().size() - 1;
                                         double latitude = locationResult.getLocations().get(index).getLatitude();
                                         double longitude = locationResult.getLocations().get(index).getLongitude();
 
-                                        locationEditText.setHint("Latitude: "+ latitude + " Longitude: "+ longitude);
+                                        locationEditText.setText("Latitude: "+ latitude + ", Longitude: "+ longitude);
+                                        locationEditText.setEnabled(false);
                                     }
                                 }
                             }, Looper.getMainLooper());
@@ -123,6 +194,7 @@ public class EmergencyRescueSOS extends DrawerBaseActivity {
             }
         }
     }
+
 
     private void turnOnGPS() {
 
@@ -139,7 +211,7 @@ public class EmergencyRescueSOS extends DrawerBaseActivity {
 
                 try {
                     LocationSettingsResponse response = task.getResult(ApiException.class);
-                    Toast.makeText(getApplicationContext(), "GPS is already tured on", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "GPS is already turned on", Toast.LENGTH_SHORT).show();
 
                 } catch (ApiException e) {
 
@@ -149,6 +221,7 @@ public class EmergencyRescueSOS extends DrawerBaseActivity {
                             try {
                                 ResolvableApiException resolvableApiException = (ResolvableApiException) e;
                                 resolvableApiException.startResolutionForResult(EmergencyRescueSOS.this, 2);
+
                             } catch (IntentSender.SendIntentException ex) {
                                 ex.printStackTrace();
                             }
@@ -161,7 +234,9 @@ public class EmergencyRescueSOS extends DrawerBaseActivity {
                 }
             }
         });
+
     }
+
 
     private boolean isGPSEnabled() {
         LocationManager locationManager = null;
@@ -172,6 +247,7 @@ public class EmergencyRescueSOS extends DrawerBaseActivity {
         }
 
         isEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
         return isEnabled;
     }
 }

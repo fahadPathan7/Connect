@@ -56,7 +56,6 @@ public class RequestHelp extends DrawerBaseActivity {
         locationEditText = findViewById(R.id.locationEditTextID);
         detailsEditText = findViewById(R.id.detailsEditTextID);
 
-
     }
 
     public void sendRequest(View v) {

@@ -106,7 +106,7 @@ public class YourGoals extends DrawerBaseActivity {
 
                         documentSnapShotIDs[cnt] = documentSnapshot.getId();
 
-                        data += "Type: " + type + "\n\nInformation: " + information + "\n\n";
+                        data = "Type: " + type + "\n\nInformation: " + information + "\n\n";
 
                         addData(data, cnt++);
                     }
@@ -142,14 +142,14 @@ public class YourGoals extends DrawerBaseActivity {
             String uid = user.getUid();
             String collectionName = "Your Success: " + uid;
             String documentName = documentSnapShotIDs[idx];
-            DocumentReference documentReference = db.collection(collectionName).document(documentName);
+            DocumentReference documentReference = db.collection(collectionName).document();
 
             DocumentReference documentReference1 = db.collection("Your Goals: " + uid).document(documentName);
 
             Map<String, Object> info = new HashMap<>();
             String information = textViews[idx].getText().toString().trim();
 
-            info.put(KEY_TYPE, "Help");
+            //info.put(KEY_TYPE, "Help");
             info.put(KEY_INFORMATION, information);
 
             documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {

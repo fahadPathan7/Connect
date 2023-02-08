@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:paddingBottom="100dp"
             android:columnCount="1"
             android:rowCount="7"
             tools:ignore="MissingConstraints">
