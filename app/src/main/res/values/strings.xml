@@ -2,4 +2,8 @@
     <string name="app_name">HeartStrings</string>
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
+    <string name="safe">"Your area is safe."</string>
+    <string name="warning">"Warning!\n\nBe prepared for the upcoming disaster!"</string>
+    <string name="danger">"Danger!\n\nMove to a safe place and stay connected."</string>
+    <string name="complete_profile">"Please update your profile!"</string>
 </resources>
