@@ -80,12 +80,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         password = findViewById(R.id.passwordID);
 
 
-        ImageView imageView = findViewById(R.id.iconViewID);
-        Drawable drawable = getResources().getDrawable(R.drawable.ic_baseline_person_24);
-        drawable.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
-        imageView.setImageDrawable(drawable);
-
-
         // adding acting click listeners
         signUp.setOnClickListener(this);
         logIn.setOnClickListener(this);

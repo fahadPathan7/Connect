@@ -203,7 +203,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="30dp"
-                android:backgroundTint="#9635A6"
+                android:backgroundTint="@color/theme_color"
                 android:onClick="updateProfile"
                 android:text="Save Info"
                 android:textAllCaps="false"

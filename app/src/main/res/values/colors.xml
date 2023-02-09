@@ -13,5 +13,7 @@
     <color name="button_color">#9635A6</color>
     <color name="profile_first">#5D3891</color>
     <color name="profile_second">#5B5B5B</color>
-    <color name="theme_color">#9635A6</color>
+    <color name="theme_color">#5D3891</color>
+    <color name="light_theme_color">#9A6CDA</color>
+<!--    9635A6 -->
 </resources>
