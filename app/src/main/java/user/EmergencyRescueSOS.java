@@ -39,6 +39,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,14 +52,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import navigationBars.DrawerBaseActivity;
+import navigationBars.Helpline;
 
-public class EmergencyRescueSOS extends DrawerBaseActivity {
+public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnClickListener {
 
     public final String KEY_NAME = "Name";
     public final String KEY_CONTACT = "Contact";
     public final String KEY_LOCATION = "Location";
 
     ActivityEmergencyRescueSosBinding activityEmergencyRescueSosBinding;
+
+    BottomNavigationItemView home;
+    BottomNavigationItemView helpline;
+    BottomNavigationItemView aboutUs;
 
     TextInputEditText locationEditText;
     TextInputEditText nameEditText;
@@ -80,6 +86,9 @@ public class EmergencyRescueSOS extends DrawerBaseActivity {
         nameEditText = findViewById(R.id.nameEditTextID);
         contactEditText = findViewById(R.id.contactEditTextID);
         submitButton = findViewById(R.id.submitButtonID);
+        home=findViewById(R.id.homeMenuID);
+        helpline=findViewById(R.id.helplineMenuID);
+        aboutUs=findViewById(R.id.aboutUsMenuID);
 
         locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -88,6 +97,13 @@ public class EmergencyRescueSOS extends DrawerBaseActivity {
 
 
         getCurrentLocation();
+
+
+        home.setOnClickListener(this);
+        helpline.setOnClickListener(this);
+        aboutUs.setOnClickListener(this);
+
+
 
     }
 
@@ -250,4 +266,48 @@ public class EmergencyRescueSOS extends DrawerBaseActivity {
 
         return isEnabled;
     }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.homeMenuID)
+        {
+            start_HomeScreenUser_activity();
+        }
+
+        else if(v.getId()==R.id.helplineMenuID)
+    {
+        start_Helpline_activity();
+    }
+        else if(v.getId()==R.id.aboutUsMenuID)
+    {
+        start_AboutUs_activity();
+    }
+
+
+}
+    public void start_HomeScreenUser_activity()
+    {
+        HomeScreenUser.makeBackPressedCntZero();
+        Intent intent = new Intent(getApplicationContext(), HomeScreenUser.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+    public void start_Helpline_activity()
+    {
+        Intent intent = new Intent(this, Helpline.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
+    }
+    public void start_AboutUs_activity()
+    {
+        Intent intent = new Intent(this, Helpline.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
+    }
+
 }

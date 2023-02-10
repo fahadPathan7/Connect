@@ -12,6 +12,7 @@ import com.example.android.R;
 import com.example.android.databinding.ActivityRequestHelpBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,14 +24,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 import navigationBars.DrawerBaseActivity;
+import navigationBars.Helpline;
 
-public class RequestHelp extends DrawerBaseActivity {
+public class RequestHelp extends DrawerBaseActivity implements View.OnClickListener {
 
     Button saveButton;
     TextInputEditText nameEditText;
     TextInputEditText contactEditText;
     TextInputEditText locationEditText;
     TextInputEditText detailsEditText;
+    BottomNavigationItemView home;
+    BottomNavigationItemView helpline;
+    BottomNavigationItemView aboutUs;
 
     public final String KEY_NAME = "Name";
     public final String KEY_CONTACT = "Contact";
@@ -55,6 +60,14 @@ public class RequestHelp extends DrawerBaseActivity {
         contactEditText = findViewById(R.id.contactEditTextID);
         locationEditText = findViewById(R.id.locationEditTextID);
         detailsEditText = findViewById(R.id.detailsEditTextID);
+        home=findViewById(R.id.homeMenuID);
+        helpline=findViewById(R.id.helplineMenuID);
+        aboutUs=findViewById(R.id.aboutUsMenuID);
+
+
+        home.setOnClickListener(this);
+        helpline.setOnClickListener(this);
+        aboutUs.setOnClickListener(this);
 
     }
 
@@ -111,6 +124,24 @@ public class RequestHelp extends DrawerBaseActivity {
         });
     }
 
+
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.homeMenuID)
+        {
+            start_HomeScreenUser_activity();
+        }
+        else if(v.getId()==R.id.helplineMenuID)
+        {
+            start_Helpline_activity();
+        }
+        else if(v.getId()==R.id.aboutUsMenuID)
+        {
+            start_AboutUs_activity();
+        }
+    }
+
     public void start_HomeScreenUser_activity() {
         HomeScreenUser.makeBackPressedCntZero();
         Intent intent = new Intent(getApplicationContext(), HomeScreenUser.class);
@@ -118,4 +149,22 @@ public class RequestHelp extends DrawerBaseActivity {
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
+
+    public void start_Helpline_activity()
+    {
+        Intent intent = new Intent(this, Helpline.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
+    }
+    public void start_AboutUs_activity()
+    {
+        Intent intent = new Intent(this, Helpline.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
+    }
+
 }

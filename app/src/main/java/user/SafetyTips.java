@@ -13,8 +13,10 @@ import android.view.View;
 import com.example.android.R;
 import com.example.android.databinding.ActivityHomeScreenUserBinding;
 import com.example.android.databinding.ActivitySafetyTipsBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 
 import navigationBars.DrawerBaseActivity;
+import navigationBars.Helpline;
 import safetyTips.Cyclone;
 import safetyTips.Earthquake;
 import safetyTips.Fire;
@@ -31,6 +33,12 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
     CardView earthquakeCardView;
     CardView cycloneCardView;
     CardView fireCardView;
+    BottomNavigationItemView home;
+    BottomNavigationItemView helpline;
+    BottomNavigationItemView aboutUs;
+
+
+
 
     public static int backPressedCnt = 0;
 
@@ -49,28 +57,12 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
         earthquakeCardView.setOnClickListener(this);
         cycloneCardView.setOnClickListener(this);
         fireCardView.setOnClickListener(this);
-        activitySafetyTipsBinding.bottomNavID.setOnItemSelectedListener(item -> {
-
-            if(item.getItemId()==R.id.homeMenuID){
-                start_HomeScreenUser_activity();
-
-            }
-            else if(item.getItemId()==R.id.helplineMenuID)
-            {
-
-            }
-            else if(item.getItemId()==R.id.aboutUsMenuID)
-            {
-
-            }
-
-            return true;
-
-        });
-
-
+        home.setOnClickListener(this);
+        helpline.setOnClickListener(this);
+        aboutUs.setOnClickListener(this);
 
     }
+
     private void initializeViewIDs()
     {
         floodCardView=findViewById(R.id.floodCardViewID);
@@ -78,6 +70,9 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
         earthquakeCardView=findViewById(R.id.earthquakeCardViewID);
         cycloneCardView=findViewById(R.id.cycloneCardViewID);
         fireCardView=findViewById(R.id.fireCardViewID);
+        home=findViewById(R.id.homeMenuID);
+        helpline=findViewById(R.id.helplineMenuID);
+        aboutUs=findViewById(R.id.aboutUsMenuID);
 
     }
 
@@ -101,6 +96,18 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
         else if(v.getId() == R.id.fireCardViewID)
         {
             start_Fire_activity();
+        }
+        else if(v.getId()==R.id.homeMenuID)
+        {
+            start_HomeScreenUser_activity();
+        }
+        else if(v.getId()==R.id.helplineMenuID)
+        {
+            start_Helpline_activity();
+        }
+        else if(v.getId()==R.id.aboutUsMenuID)
+        {
+            start_AboutUs_activity();
         }
 
     }
@@ -152,7 +159,23 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
 
    public void start_HomeScreenUser_activity()
    {
-       Intent intent = new Intent(this, HomeScreenUser.class);
+       HomeScreenUser.makeBackPressedCntZero();
+       Intent intent = new Intent(getApplicationContext(), HomeScreenUser.class);
+       intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+       startActivity(intent);
+       overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+   }
+   public void start_Helpline_activity()
+   {
+       Intent intent = new Intent(this, Helpline.class);
+       startActivity(intent);
+
+       overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
+   }
+   public void start_AboutUs_activity()
+   {
+       Intent intent = new Intent(this, Helpline.class);
        startActivity(intent);
 
        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
