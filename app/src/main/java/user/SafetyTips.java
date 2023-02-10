@@ -1,35 +1,27 @@
 package user;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.example.android.R;
-import com.example.android.databinding.ActivityHomeScreenUserBinding;
 import com.example.android.databinding.ActivitySafetyTipsBinding;
 
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
 
+import commonClasses.AboutUs;
 import navigationBars.DrawerBaseActivity;
-import navigationBars.Helpline;
+import commonClasses.Helpline;
 import safetyTips.Cyclone;
 import safetyTips.Earthquake;
 import safetyTips.Fire;
 import safetyTips.Flood;
 import safetyTips.Tsunami;
-import volunteer.HomeScreenVolunteer;
 
 public class SafetyTips extends DrawerBaseActivity implements View.OnClickListener {
 //declaring variables
@@ -64,6 +56,9 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
         earthquakeCardView.setOnClickListener(this);
         cycloneCardView.setOnClickListener(this);
         fireCardView.setOnClickListener(this);
+        home.setOnClickListener(this);
+        helpline.setOnClickListener(this);
+        aboutUs.setOnClickListener(this);
 
 
         }
@@ -177,14 +172,14 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
        Intent intent = new Intent(this, Helpline.class);
        startActivity(intent);
 
-       overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+       overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
    }
    public void start_AboutUs_activity()
    {
-       Intent intent = new Intent(this, Helpline.class);
+       Intent intent = new Intent(this, AboutUs.class);
        startActivity(intent);
-       overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+       overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
    }
 
 }

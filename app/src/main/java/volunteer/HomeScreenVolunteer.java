@@ -1,26 +1,20 @@
 package volunteer;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 
 import com.example.android.R;
 import com.example.android.databinding.ActivityHomeScreenVolunteerBinding;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 
-import java.util.Objects;
-
+import commonClasses.AboutUs;
 import navigationBars.DrawerBaseActivity;
+import commonClasses.Helpline;
 import user.HomeScreenUser;
 
 public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnClickListener {
@@ -33,6 +27,11 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
     CardView rescueRequestsCardView;
     CardView yourSuccessCardView;
     CardView affectedAreasCardView;
+
+
+    BottomNavigationItemView home;
+    BottomNavigationItemView helpline;
+    BottomNavigationItemView aboutUs;
 
     ActivityHomeScreenVolunteerBinding activityHomeScreenVolunteerBinding;
     @Override
@@ -67,6 +66,13 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
 
         affectedAreasCardView = findViewById(R.id.affectedAreasCardViewID);
         affectedAreasCardView.setOnClickListener(this);
+        home=findViewById(R.id.homeMenuID);
+        helpline=findViewById(R.id.helplineMenuID);
+        aboutUs=findViewById(R.id.aboutUsMenuID);
+
+        home.setOnClickListener(this);
+        helpline.setOnClickListener(this);
+        aboutUs.setOnClickListener(this);
     }
 
     @Override
@@ -91,6 +97,14 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
         }
         if (v.getId() == R.id.affectedAreasCardViewID) {
             start_affectedAreas_activity();
+        }
+         if(v.getId()==R.id.helplineMenuID)
+        {
+            start_Helpline_activity();
+        }
+         if(v.getId()==R.id.aboutUsMenuID)
+        {
+            start_AboutUs_activity();
         }
     }
 
@@ -127,5 +141,21 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
         Intent intent = new Intent(getApplicationContext(), AffectedAreas.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+    public void start_Helpline_activity()
+    {
+        Intent intent = new Intent(this, Helpline.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+    }
+    public void start_AboutUs_activity()
+    {
+        Intent intent = new Intent(this, AboutUs.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
     }
 }

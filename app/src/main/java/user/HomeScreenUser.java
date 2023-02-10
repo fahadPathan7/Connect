@@ -1,33 +1,22 @@
 package user;
 
-import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 
-import com.example.android.MainActivity;
 import com.example.android.R;
 import com.example.android.databinding.ActivityHomeScreenUserBinding;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-
-import java.util.Objects;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 
 import authentication.SignIn;
+import commonClasses.AboutUs;
 import navigationBars.DrawerBaseActivity;
+import commonClasses.Helpline;
 import volunteer.HomeScreenVolunteer;
 
 public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickListener {
@@ -39,6 +28,10 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
     CardView yourAreaCArdView;
     CardView requestHelpCardView;
     CardView emergencyRescueSOSCardView;
+
+    BottomNavigationItemView home;
+    BottomNavigationItemView helpline;
+    BottomNavigationItemView aboutUs;
 
     SwitchCompat switchCompat;
 
@@ -74,6 +67,10 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         emergencyRescueSOSCardView.setOnClickListener(this);
 
 
+        helpline.setOnClickListener(this);
+        aboutUs.setOnClickListener(this);
+
+
 
     }
 
@@ -86,6 +83,9 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         yourAreaCArdView = findViewById(R.id.yourAreaCardViewID);
         requestHelpCardView = findViewById(R.id.requestHelpCardViewID);
         emergencyRescueSOSCardView = findViewById(R.id.emergencyRescueSOSCardViewID);
+        //home=findViewById(R.id.homeMenuID);
+        helpline=findViewById(R.id.helplineMenuID);
+        aboutUs=findViewById(R.id.aboutUsMenuID);
 
     }
 
@@ -114,6 +114,15 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
             start_EmergencyRescueSOS_activity();
 
         }
+        else if(v.getId()==R.id.helplineMenuID)
+        {
+            start_Helpline_activity();
+        }
+        else if(v.getId()==R.id.aboutUsMenuID)
+        {
+            start_AboutUs_activity();
+        }
+
 
     }
 
@@ -185,6 +194,23 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
 
     public static void makeBackPressedCntZero() {
         backPressedCnt = 0;
+    }
+
+    public void start_Helpline_activity()
+    {
+        Intent intent = new Intent(this, Helpline.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+    }
+    public void start_AboutUs_activity()
+    {
+        Intent intent = new Intent(this, AboutUs.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
     }
 
 }

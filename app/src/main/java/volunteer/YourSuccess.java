@@ -24,8 +24,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import commonClasses.AboutUs;
 import navigationBars.DrawerBaseActivity;
-import navigationBars.Helpline;
+import commonClasses.Helpline;
 
 public class YourSuccess extends DrawerBaseActivity implements View.OnClickListener {
 
@@ -151,7 +152,7 @@ public class YourSuccess extends DrawerBaseActivity implements View.OnClickListe
         Intent intent = new Intent(getApplicationContext(), HomeScreenVolunteer.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     public void start_Helpline_activity()
@@ -159,15 +160,15 @@ public class YourSuccess extends DrawerBaseActivity implements View.OnClickListe
         Intent intent = new Intent(this, Helpline.class);
         startActivity(intent);
 
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     }
     public void start_AboutUs_activity()
     {
-        Intent intent = new Intent(this, Helpline.class);
+        Intent intent = new Intent(this, AboutUs.class);
         startActivity(intent);
 
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     }
 }

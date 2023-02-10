@@ -23,8 +23,9 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
+import commonClasses.AboutUs;
 import navigationBars.DrawerBaseActivity;
-import navigationBars.Helpline;
+import commonClasses.Helpline;
 
 public class RequestHelp extends DrawerBaseActivity implements View.OnClickListener {
 
@@ -155,15 +156,15 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
         Intent intent = new Intent(this, Helpline.class);
         startActivity(intent);
 
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     }
     public void start_AboutUs_activity()
     {
-        Intent intent = new Intent(this, Helpline.class);
+        Intent intent = new Intent(this, AboutUs.class);
         startActivity(intent);
 
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     }
 
