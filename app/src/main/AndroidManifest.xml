@@ -20,17 +20,15 @@
         tools:ignore="ExtraText"
         tools:targetApi="31">
         <activity
-<<<<<<< HEAD
             android:name="navigationBars.Helpline"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-=======
+        <activity
             android:name="volunteer.AffectedAreas"
             android:exported="false" />
->>>>>>> 623966d61c7d7abcf306c4f3a7840846252f4df7
         <activity
             android:name="volunteer.YourSuccess"
             android:exported="false" />
