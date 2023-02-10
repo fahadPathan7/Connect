@@ -2,6 +2,9 @@ package user;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,6 +49,24 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
         earthquakeCardView.setOnClickListener(this);
         cycloneCardView.setOnClickListener(this);
         fireCardView.setOnClickListener(this);
+        activitySafetyTipsBinding.bottomNavID.setOnItemSelectedListener(item -> {
+
+            if(item.getItemId()==R.id.homeMenuID){
+                start_HomeScreenUser_activity();
+
+            }
+            else if(item.getItemId()==R.id.helplineMenuID)
+            {
+
+            }
+            else if(item.getItemId()==R.id.aboutUsMenuID)
+            {
+
+            }
+
+            return true;
+
+        });
 
 
 
@@ -128,5 +149,14 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
     public static void makeBackPressedCntZero() {
         backPressedCnt = 0;
     }
+
+   public void start_HomeScreenUser_activity()
+   {
+       Intent intent = new Intent(this, HomeScreenUser.class);
+       startActivity(intent);
+
+       overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
+   }
 
 }
