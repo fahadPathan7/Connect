@@ -1,5 +1,6 @@
 package user;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -8,11 +9,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.android.R;
 import com.example.android.databinding.ActivityHomeScreenUserBinding;
 import com.example.android.databinding.ActivitySafetyTipsBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 import navigationBars.DrawerBaseActivity;
 import safetyTips.Cyclone;
@@ -32,8 +36,8 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
     CardView cycloneCardView;
     CardView fireCardView;
 
-    public static int backPressedCnt = 0;
-
+    BottomNavigationView bottomNavigationView;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,30 +53,42 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
         earthquakeCardView.setOnClickListener(this);
         cycloneCardView.setOnClickListener(this);
         fireCardView.setOnClickListener(this);
-        activitySafetyTipsBinding.bottomNavID.setOnItemSelectedListener(item -> {
 
-            if(item.getItemId()==R.id.homeMenuID){
-                start_HomeScreenUser_activity();
-
+        bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.homeMenuID) {
+                    start_HomeScreenUser_activity();
+                }
             }
-            else if(item.getItemId()==R.id.helplineMenuID)
-            {
-
-            }
-            else if(item.getItemId()==R.id.aboutUsMenuID)
-            {
-
-            }
-
-            return true;
-
         });
+
+//        activitySafetyTipsBinding.bottomNavID.setOnItemSelectedListener(item -> {
+//
+//            if(item.getItemId()==R.id.homeMenuID){
+//                start_HomeScreenUser_activity();
+//
+//            }
+//            else if(item.getItemId()==R.id.helplineMenuID)
+//            {
+//
+//            }
+//            else if(item.getItemId()==R.id.aboutUsMenuID)
+//            {
+//
+//            }
+//
+//            return true;
+//
+//        });
 
 
 
     }
     private void initializeViewIDs()
     {
+        bottomNavigationView = findViewById(R.id.bottomNavID);
+
         floodCardView=findViewById(R.id.floodCardViewID);
         tsunamiCardView=findViewById(R.id.tsunamiCardViewID);
         earthquakeCardView=findViewById(R.id.earthquakeCardViewID);
@@ -146,17 +162,13 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
-    public static void makeBackPressedCntZero() {
-        backPressedCnt = 0;
-    }
-
    public void start_HomeScreenUser_activity()
    {
-       Intent intent = new Intent(this, HomeScreenUser.class);
+       HomeScreenUser.makeBackPressedCntZero();
+       Intent intent = new Intent(getApplicationContext(), HomeScreenUser.class);
+       intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
        startActivity(intent);
-
        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-
    }
 
 }

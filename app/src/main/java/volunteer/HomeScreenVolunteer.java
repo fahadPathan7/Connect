@@ -32,6 +32,7 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
 
     CardView rescueRequestsCardView;
     CardView yourSuccessCardView;
+    CardView affectedAreasCardView;
 
     ActivityHomeScreenVolunteerBinding activityHomeScreenVolunteerBinding;
     @Override
@@ -63,6 +64,9 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
 
         yourSuccessCardView = findViewById(R.id.yourSuccessCardViewID);
         yourSuccessCardView.setOnClickListener(this);
+
+        affectedAreasCardView = findViewById(R.id.affectedAreasCardViewID);
+        affectedAreasCardView.setOnClickListener(this);
     }
 
     @Override
@@ -84,6 +88,9 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
         }
         if (v.getId() == R.id.yourSuccessCardViewID) {
             start_YourSuccess_activity();
+        }
+        if (v.getId() == R.id.affectedAreasCardViewID) {
+            start_affectedAreas_activity();
         }
     }
 
@@ -113,6 +120,11 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
     }
     public void start_RescueRequests_activity() {
         Intent intent = new Intent(getApplicationContext(), RescueRequests.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+    public void start_affectedAreas_activity() {
+        Intent intent = new Intent(getApplicationContext(), AffectedAreas.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }

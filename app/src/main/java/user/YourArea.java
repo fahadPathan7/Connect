@@ -66,23 +66,25 @@ public class YourArea extends DrawerBaseActivity {
                     try {
                         String status = value.getString(key);
 
-                        if (status.equals("green")) {
-                            imageView.setImageResource(R.drawable.safe);
-                            textView.setTextColor(Color.parseColor("#4CAF50"));
-                            textView.setText(R.string.safe);
-                        } else if (status.equals("yellow")) {
+                        if (status.equals("yellow")) {
                             imageView.setImageResource(R.drawable.warning);
                             textView.setText(R.string.warning);
                             textView.setTextColor(Color.parseColor("#FF9800"));
-                        } else if (status.equals("red")) {
+                        }
+                        else if (status.equals("red")) {
                             imageView.setImageResource(R.drawable.danger);
                             textView.setText(R.string.danger);
                             textView.setTextColor(Color.parseColor("#E91E63"));
                         }
+                        else {
+                            imageView.setImageResource(R.drawable.safe);
+                            textView.setTextColor(Color.parseColor("#4CAF50"));
+                            textView.setText(R.string.safe);
+                        }
                     } catch (Exception e) {
-                        imageView.setImageResource(R.drawable.sad);
-                        textView.setText(R.string.complete_profile);
-                        textView.setTextColor(Color.parseColor("#FF000000"));
+                        imageView.setImageResource(R.drawable.safe);
+                        textView.setTextColor(Color.parseColor("#4CAF50"));
+                        textView.setText(R.string.safe);
                     }
                 }
             }
