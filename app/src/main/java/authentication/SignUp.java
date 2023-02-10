@@ -19,9 +19,18 @@ import commonClasses.UpdateProfile;
 import user.HomeScreenUser;
 import com.example.android.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
@@ -117,6 +126,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                             // Sign up success, update UI with the signed-in user's information
                             Toast.makeText(getApplicationContext(), "Registration is successful", Toast.LENGTH_SHORT).show();
 
+                            writeOnVolunteerList();
+
                             start_UpdateProfile_activity();
                         } else {
                             // If sign up fails, display a message to the user.
@@ -126,8 +137,33 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 });
     }
 
-    private void createWithGoogle(String emailText, String passText) {
+    public void writeOnVolunteerList() {
+        try {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+            DocumentReference documentReference = db.collection("Volunteer List").document(uid);
 
+
+            Map<String, Object> info = new HashMap<>();
+
+            info.put("Registered", "no");
+            documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    //Toast.makeText(getApplicationContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
+                    //start_HomeScreenUser_activity();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    //Toast.makeText(getApplicationContext(), "Profile Update Failed!", Toast.LENGTH_SHORT).show();
+                    //start_HomeScreenUser_activity();
+                }
+            });
+        } catch (Exception e) {
+            //
+        }
     }
 
     public void start_SignIn_activity() {

@@ -51,6 +51,7 @@ public class AffectedAreas extends DrawerBaseActivity implements View.OnClickLis
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.activity_your_success, null);
 
+
         linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -66,7 +67,7 @@ public class AffectedAreas extends DrawerBaseActivity implements View.OnClickLis
         ScrollView scrollView = view.findViewById(R.id.scroll_view);
         scrollView.addView(linearLayout);
 
-        //setContentView(view);
+        setContentView(view);
 
         home=findViewById(R.id.homeMenuID);
         helpline=findViewById(R.id.helplineMenuID);

@@ -27,6 +27,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name="commonClasses.AboutUs"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name="volunteer.AffectedAreas"
             android:exported="false" />
         <activity

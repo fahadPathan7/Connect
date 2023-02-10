@@ -1,17 +1,34 @@
 package user;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 
 import com.example.android.R;
 import com.example.android.databinding.ActivityHomeScreenUserBinding;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import authentication.SignIn;
 import commonClasses.AboutUs;
@@ -55,7 +72,7 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 switchCompat.setChecked(false);
-                start_HomeScreenVolunteer_activity();
+                checkVolunteerList();
             }
         });
         //button click
@@ -137,6 +154,95 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtra("Exit me", true);
             startActivity(intent);
+        }
+    }
+
+    public void checkVolunteerList() {
+
+        try {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+            DocumentReference documentReference = db.collection("Volunteer List").document(uid);
+
+            documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+
+                    if (error != null) {
+                        return;
+                    }
+                    if (value.exists()) {
+                        String status = value.getString("Registered");
+                        if (status.equals("yes")) {
+                            switchCompat.setChecked(false);
+                            start_HomeScreenVolunteer_activity();
+                        }
+                        else {
+                            showDialog();
+                        }
+                    }
+                    else {
+                        showDialog();
+                        //Toast.makeText(getApplicationContext(), "exception", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        } catch (Exception e) {
+            showDialog();
+        }
+    }
+
+    public void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Not a volunteer");
+        builder.setMessage("Confirm as a volunteer and take the responsibilities to the Humanity.");
+        builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                writeOnVolunteerList();
+                Toast.makeText(getApplicationContext(), "Welcome to the world of Heroes.", Toast.LENGTH_SHORT).show();
+                switchCompat.setChecked(false);
+                start_HomeScreenVolunteer_activity();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switchCompat.setChecked(false);
+                // nothing to do
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public void writeOnVolunteerList() {
+        try {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+            DocumentReference documentReference = db.collection("Volunteer List").document(uid);
+
+
+            Map<String, Object> info = new HashMap<>();
+
+            info.put("Registered", "yes");
+            documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    //Toast.makeText(getApplicationContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
+                    //start_HomeScreenUser_activity();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    //Toast.makeText(getApplicationContext(), "Profile Update Failed!", Toast.LENGTH_SHORT).show();
+                    //start_HomeScreenUser_activity();
+                }
+            });
+        } catch (Exception e) {
+            //
         }
     }
 
