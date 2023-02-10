@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ import com.example.android.R;
 import com.example.android.databinding.ActivityRescueRequestsBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -29,14 +31,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import navigationBars.DrawerBaseActivity;
+import navigationBars.Helpline;
 
-public class RescueRequests extends DrawerBaseActivity {
+public class RescueRequests extends DrawerBaseActivity implements View.OnClickListener {
 
     public final String KEY_INFORMATION = "Information";
     public final String KEY_TYPE = "Type";
     public final String KEY_NAME = "Name";
     public final String KEY_CONTACT = "Contact";
     public final String KEY_LOCATION = "Location";
+
+    BottomNavigationItemView home;
+    BottomNavigationItemView helpline;
+    BottomNavigationItemView aboutUs;
 
     CardView[] cardViews = new CardView[6];
     TextView[] textViews = new TextView[6];
@@ -56,6 +63,10 @@ public class RescueRequests extends DrawerBaseActivity {
 
         connectWithIDs();
         showRequests();
+
+        home.setOnClickListener(this);
+        helpline.setOnClickListener(this);
+        aboutUs.setOnClickListener(this);
     }
 
     public void showRequests() {
@@ -110,6 +121,10 @@ public class RescueRequests extends DrawerBaseActivity {
         imageViews[3] = findViewById(R.id.imageView3ID);
         imageViews[4] = findViewById(R.id.imageView4ID);
         imageViews[5] = findViewById(R.id.imageView5ID);
+
+        home=findViewById(R.id.homeMenuID);
+        helpline=findViewById(R.id.helplineMenuID);
+        aboutUs=findViewById(R.id.aboutUsMenuID);
     }
     public void makeViewsInvisible() {
         for (int i = 0; i < 6; i++) {
@@ -160,5 +175,47 @@ public class RescueRequests extends DrawerBaseActivity {
         } catch (Exception e) {
             //Toast.makeText(getApplicationContext(), "YourGoals write fault", Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.homeMenuID)
+        {
+            start_HomeScreenVolunteer_activity();
+        }
+        else if(v.getId()==R.id.helplineMenuID)
+        {
+            start_Helpline_activity();
+        }
+        else if(v.getId()==R.id.aboutUsMenuID)
+        {
+            start_AboutUs_activity();
+        }
+    }
+
+    public void start_HomeScreenVolunteer_activity() {
+        Intent intent = new Intent(getApplicationContext(), HomeScreenVolunteer.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    public void start_Helpline_activity()
+    {
+        Intent intent = new Intent(this, Helpline.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
+    }
+    public void start_AboutUs_activity()
+    {
+        Intent intent = new Intent(this, Helpline.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
     }
 }

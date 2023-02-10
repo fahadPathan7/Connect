@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import com.example.android.R;
 import com.example.android.databinding.ActivityYourGoalsBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -31,11 +33,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import navigationBars.DrawerBaseActivity;
+import navigationBars.Helpline;
 
-public class YourGoals extends DrawerBaseActivity {
+public class YourGoals extends DrawerBaseActivity implements View.OnClickListener {
 
     public final String KEY_TYPE = "Type";
     public final String KEY_INFORMATION = "Information";
+    BottomNavigationItemView home;
+    BottomNavigationItemView helpline;
+    BottomNavigationItemView aboutUs;
 
 
     CardView[] cardViews = new CardView[6];
@@ -56,6 +62,12 @@ public class YourGoals extends DrawerBaseActivity {
 
         connectWithIDs();
         showGoals();
+
+
+
+        home.setOnClickListener(this);
+        helpline.setOnClickListener(this);
+        aboutUs.setOnClickListener(this);
     }
 
     public void connectWithIDs() {
@@ -79,6 +91,11 @@ public class YourGoals extends DrawerBaseActivity {
         imageViews[3] = findViewById(R.id.yimageView3ID);
         imageViews[4] = findViewById(R.id.yimageView4ID);
         imageViews[5] = findViewById(R.id.yimageView5ID);
+
+
+        home=findViewById(R.id.homeMenuID);
+        helpline=findViewById(R.id.helplineMenuID);
+        aboutUs=findViewById(R.id.aboutUsMenuID);
     }
 
     public void showGoals() {
@@ -168,5 +185,45 @@ public class YourGoals extends DrawerBaseActivity {
         } catch (Exception e) {
             //Toast.makeText(getApplicationContext(), "YourGoals write fault", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.homeMenuID)
+        {
+            start_HomeScreenVolunteer_activity();
+        }
+        else if(v.getId()==R.id.helplineMenuID)
+        {
+            start_Helpline_activity();
+        }
+        else if(v.getId()==R.id.aboutUsMenuID)
+        {
+            start_AboutUs_activity();
+        }
+    }
+
+    public void start_HomeScreenVolunteer_activity() {
+        Intent intent = new Intent(getApplicationContext(), HomeScreenVolunteer.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    public void start_Helpline_activity()
+    {
+        Intent intent = new Intent(this, Helpline.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
+    }
+    public void start_AboutUs_activity()
+    {
+        Intent intent = new Intent(this, Helpline.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
     }
 }

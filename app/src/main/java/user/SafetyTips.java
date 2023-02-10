@@ -1,5 +1,6 @@
 package user;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -8,12 +9,18 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.android.R;
 import com.example.android.databinding.ActivityHomeScreenUserBinding;
 import com.example.android.databinding.ActivitySafetyTipsBinding;
+
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+
 
 import navigationBars.DrawerBaseActivity;
 import navigationBars.Helpline;
@@ -40,8 +47,8 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
 
 
 
-    public static int backPressedCnt = 0;
-
+    BottomNavigationView bottomNavigationView;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,14 +64,17 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
         earthquakeCardView.setOnClickListener(this);
         cycloneCardView.setOnClickListener(this);
         fireCardView.setOnClickListener(this);
-        home.setOnClickListener(this);
-        helpline.setOnClickListener(this);
-        aboutUs.setOnClickListener(this);
 
-    }
+
+        }
+
+
+
 
     private void initializeViewIDs()
     {
+        bottomNavigationView = findViewById(R.id.bottomNavID);
+
         floodCardView=findViewById(R.id.floodCardViewID);
         tsunamiCardView=findViewById(R.id.tsunamiCardViewID);
         earthquakeCardView=findViewById(R.id.earthquakeCardViewID);
@@ -153,15 +163,12 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
-    public static void makeBackPressedCntZero() {
-        backPressedCnt = 0;
-    }
-
    public void start_HomeScreenUser_activity()
    {
        HomeScreenUser.makeBackPressedCntZero();
        Intent intent = new Intent(getApplicationContext(), HomeScreenUser.class);
        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
        startActivity(intent);
        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
    }
@@ -177,9 +184,7 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
    {
        Intent intent = new Intent(this, Helpline.class);
        startActivity(intent);
-
        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-
    }
 
 }
