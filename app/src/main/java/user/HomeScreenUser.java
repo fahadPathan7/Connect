@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 
-import com.example.android.Forecast;
 import com.example.android.MainActivity;
 import com.example.android.R;
 import com.example.android.databinding.ActivityHomeScreenUserBinding;

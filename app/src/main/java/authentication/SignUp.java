@@ -39,6 +39,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.theme_color));
+
         //hideActionBar();
 
         mAuth = FirebaseAuth.getInstance();

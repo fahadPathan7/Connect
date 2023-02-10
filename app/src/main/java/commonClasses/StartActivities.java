@@ -6,7 +6,6 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.android.Forecast;
 import com.example.android.MainActivity;
 import com.example.android.R;
 
@@ -54,13 +53,6 @@ public class StartActivities extends AppCompatActivity {
 
     public void start_SafetyTips_activity(Activity activity) {
         Intent intent = new Intent(activity, SafetyTips.class);
-        startActivity(intent);
-        //finish();
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-    }
-
-    public void start_forecast_activity(Activity activity) {
-        Intent intent=new Intent(activity, Forecast.class);
         startActivity(intent);
         //finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
