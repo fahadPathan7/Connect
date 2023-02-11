@@ -36,10 +36,6 @@ import commonClasses.Helpline;
 public class RescueRequests extends DrawerBaseActivity implements View.OnClickListener {
 
     public final String KEY_INFORMATION = "Information";
-    public final String KEY_TYPE = "Type";
-    public final String KEY_NAME = "Name";
-    public final String KEY_CONTACT = "Contact";
-    public final String KEY_LOCATION = "Location";
 
     BottomNavigationItemView home;
     BottomNavigationItemView helpline;
@@ -80,19 +76,16 @@ public class RescueRequests extends DrawerBaseActivity implements View.OnClickLi
                     return;
                 }
 
-                String data = "";
 
                 int cnt = 0;
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                     if (cnt == 6) break;
 
-                    String name = documentSnapshot.getString(KEY_NAME);
-                    String contact = documentSnapshot.getString(KEY_CONTACT);
-                    String location = documentSnapshot.getString(KEY_LOCATION);
+                    String information = documentSnapshot.getString("Information");
 
                     documentSnapShotIDs[cnt] = documentSnapshot.getId();
 
-                    data = "Name: " + name + "\n\nContact: " + contact + "\n\nLocation: " + location + "\n\n";
+                    String data = information;
 
                     addData(data, cnt++);
                 }
@@ -144,6 +137,7 @@ public class RescueRequests extends DrawerBaseActivity implements View.OnClickLi
     }
 
     public void writeOnYourGoals(int idx) {
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         try {
@@ -155,16 +149,19 @@ public class RescueRequests extends DrawerBaseActivity implements View.OnClickLi
             DocumentReference documentReference1 = db.collection("Rescue Requests").document(documentName);
 
             Map<String, Object> info = new HashMap<>();
-            String information = '\n' + textViews[idx].getText().toString().trim();
 
-            info.put(KEY_TYPE, "Rescue");
+            String information = "Rescue\n\n" + textViews[idx].getText().toString().trim();
             info.put(KEY_INFORMATION, information);
 
             documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
+                    //cardViews[idx].setVisibility(View.GONE);
+
                     Toast.makeText(getApplicationContext(), "Thanks for your help.", Toast.LENGTH_SHORT).show();
                     documentReference1.delete();
+
+                    showRequests();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

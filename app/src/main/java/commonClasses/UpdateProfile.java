@@ -106,6 +106,22 @@ public class UpdateProfile extends DrawerBaseActivity {
         String road = roadEditText.getText().toString().trim();
         String house = houseEditText.getText().toString().trim();
 
+        if (name.isEmpty()) {
+            nameEditText.setError("Name can not be empty!");
+            nameEditText.requestFocus();
+            return;
+        }
+        if (contact1.isEmpty()) {
+            contact1EditText.setError("Contact can not be empty!");
+            contact1EditText.requestFocus();
+            return;
+        }
+        if (district.isEmpty()) {
+            districtEditText.setError("District can not be empty!");
+            districtEditText.requestFocus();
+            return;
+        }
+
         Map<String, Object> info = new HashMap<>();
 
         info.put(KEY_NAME, name);

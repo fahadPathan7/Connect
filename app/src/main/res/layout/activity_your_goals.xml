@@ -39,31 +39,46 @@
                 app:cardElevation="10dp">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    >
 
                     <TextView
-                        android:id="@+id/ytextView0ID"
+                        android:id="@+id/textView0ID"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:layout_marginBottom="20dp"
                         android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/yimageView0ID"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:background="#8c8c8c"
-                        android:paddingVertical="5dp"
-                        android:text="help"
-                        android:clickable="true"
-                        android:src="@drawable/completed"
-                        />
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textView0ID"
+                        >
+
+                        <ImageView
+                            android:id="@+id/confirm0ID"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:padding="5dp"
+                            android:background="@color/green"
+                            android:src="@drawable/completed" />
+
+                        <ImageView
+                            android:id="@+id/reject0ID"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:padding="5dp"
+                            android:background="@color/button_red"
+                            android:src="@drawable/cancelled" />
+
+                    </LinearLayout>
+
+
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -82,31 +97,46 @@
                 app:cardElevation="10dp">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    >
 
                     <TextView
-                        android:id="@+id/ytextView1ID"
+                        android:id="@+id/textView1ID"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:layout_marginBottom="20dp"
                         android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/yimageView1ID"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:background="#8c8c8c"
-                        android:paddingVertical="5dp"
-                        android:text="help"
-                        android:clickable="true"
-                        android:src="@drawable/completed"
-                        />
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textView1ID"
+                        >
+
+                        <ImageView
+                            android:id="@+id/confirm1ID"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:padding="5dp"
+                            android:background="@color/green"
+                            android:src="@drawable/completed" />
+
+                        <ImageView
+                            android:id="@+id/reject1ID"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:padding="5dp"
+                            android:background="@color/button_red"
+                            android:src="@drawable/cancelled" />
+
+                    </LinearLayout>
+
+
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -125,31 +155,46 @@
                 app:cardElevation="10dp">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    >
 
                     <TextView
-                        android:id="@+id/ytextView2ID"
+                        android:id="@+id/textView2ID"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:layout_marginBottom="20dp"
                         android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/yimageView2ID"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:background="#8c8c8c"
-                        android:paddingVertical="5dp"
-                        android:text="help"
-                        android:clickable="true"
-                        android:src="@drawable/completed"
-                        />
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textView2ID"
+                        >
+
+                        <ImageView
+                            android:id="@+id/confirm2ID"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:padding="5dp"
+                            android:background="@color/green"
+                            android:src="@drawable/completed" />
+
+                        <ImageView
+                            android:id="@+id/reject2ID"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:padding="5dp"
+                            android:background="@color/button_red"
+                            android:src="@drawable/cancelled" />
+
+                    </LinearLayout>
+
+
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -168,31 +213,46 @@
                 app:cardElevation="10dp">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    >
 
                     <TextView
-                        android:id="@+id/ytextView3ID"
+                        android:id="@+id/textView3ID"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:layout_marginBottom="20dp"
                         android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/yimageView3ID"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:background="#8c8c8c"
-                        android:paddingVertical="5dp"
-                        android:text="help"
-                        android:clickable="true"
-                        android:src="@drawable/completed"
-                        />
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textView3ID"
+                        >
+
+                        <ImageView
+                            android:id="@+id/confirm3ID"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:padding="5dp"
+                            android:background="@color/green"
+                            android:src="@drawable/completed" />
+
+                        <ImageView
+                            android:id="@+id/reject3ID"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:padding="5dp"
+                            android:background="@color/button_red"
+                            android:src="@drawable/cancelled" />
+
+                    </LinearLayout>
+
+
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -211,31 +271,46 @@
                 app:cardElevation="10dp">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    >
 
                     <TextView
-                        android:id="@+id/ytextView4ID"
+                        android:id="@+id/textView4ID"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:layout_marginBottom="20dp"
                         android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/yimageView4ID"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:background="#8c8c8c"
-                        android:paddingVertical="5dp"
-                        android:text="help"
-                        android:clickable="true"
-                        android:src="@drawable/completed"
-                        />
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textView4ID"
+                        >
+
+                        <ImageView
+                            android:id="@+id/confirm4ID"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:padding="5dp"
+                            android:background="@color/green"
+                            android:src="@drawable/completed" />
+
+                        <ImageView
+                            android:id="@+id/reject4ID"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:padding="5dp"
+                            android:background="@color/button_red"
+                            android:src="@drawable/cancelled" />
+
+                    </LinearLayout>
+
+
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -254,31 +329,46 @@
                 app:cardElevation="10dp">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    >
 
                     <TextView
-                        android:id="@+id/ytextView5ID"
+                        android:id="@+id/textView5ID"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:layout_marginBottom="20dp"
                         android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/yimageView5ID"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:background="#8c8c8c"
-                        android:paddingVertical="5dp"
-                        android:text="help"
-                        android:clickable="true"
-                        android:src="@drawable/completed"
-                        />
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textView5ID"
+                        >
+
+                        <ImageView
+                            android:id="@+id/confirm5ID"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:padding="5dp"
+                            android:background="@color/green"
+                            android:src="@drawable/completed" />
+
+                        <ImageView
+                            android:id="@+id/reject5ID"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:padding="5dp"
+                            android:background="@color/button_red"
+                            android:src="@drawable/cancelled" />
+
+                    </LinearLayout>
+
+
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 

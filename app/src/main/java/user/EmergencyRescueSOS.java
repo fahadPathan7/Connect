@@ -136,9 +136,7 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
 
         Map<String, Object> info = new HashMap<>();
 
-        info.put(KEY_NAME, name);
-        info.put(KEY_CONTACT, contact);
-        info.put(KEY_LOCATION, location);
+        info.put("Information", "Name: " + name + "\nContact: " + contact + "\nLocation: " + location);
 
         documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

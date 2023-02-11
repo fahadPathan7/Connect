@@ -49,11 +49,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:layout_marginBottom="20dp"
                         android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/imageView0ID"
+                        android:layout_below="@+id/textView0ID"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_alignParentLeft="true"
@@ -61,7 +61,6 @@
                         android:layout_alignParentBottom="true"
                         android:background="#8c8c8c"
                         android:paddingVertical="5dp"
-                        android:text="help"
                         android:clickable="true"
                         android:src="@drawable/rescue"/>
 
@@ -92,11 +91,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:layout_marginBottom="20dp"
                         android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/imageView1ID"
+                        android:layout_below="@id/textView1ID"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_alignParentLeft="true"
@@ -104,7 +103,6 @@
                         android:layout_alignParentBottom="true"
                         android:background="#8c8c8c"
                         android:paddingVertical="5dp"
-                        android:text="help"
                         android:clickable="true"
                         android:src="@drawable/rescue"
                         />
@@ -135,11 +133,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:layout_marginBottom="20dp"
                         android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/imageView2ID"
+                        android:layout_below="@+id/textView2ID"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_alignParentLeft="true"
@@ -147,7 +145,6 @@
                         android:layout_alignParentBottom="true"
                         android:background="#8c8c8c"
                         android:paddingVertical="5dp"
-                        android:text="help"
                         android:clickable="true"
                         android:src="@drawable/rescue"
                         />
@@ -178,11 +175,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:layout_marginBottom="20dp"
                         android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/imageView3ID"
+                        android:layout_below="@+id/textView3ID"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_alignParentLeft="true"
@@ -190,7 +187,6 @@
                         android:layout_alignParentBottom="true"
                         android:background="#8c8c8c"
                         android:paddingVertical="5dp"
-                        android:text="help"
                         android:clickable="true"
                         android:src="@drawable/rescue"
                         />
@@ -221,11 +217,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:layout_marginBottom="20dp"
                         android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/imageView4ID"
+                        android:layout_below="@+id/textView4ID"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_alignParentLeft="true"
@@ -233,7 +229,6 @@
                         android:layout_alignParentBottom="true"
                         android:background="#8c8c8c"
                         android:paddingVertical="5dp"
-                        android:text="help"
                         android:clickable="true"
                         android:src="@drawable/rescue"
                         />
@@ -264,11 +259,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:layout_marginBottom="20dp"
                         android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/imageView5ID"
+                        android:layout_below="@id/textView5ID"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_alignParentLeft="true"
@@ -276,7 +271,6 @@
                         android:layout_alignParentBottom="true"
                         android:background="#8c8c8c"
                         android:paddingVertical="5dp"
-                        android:text="help"
                         android:clickable="true"
                         android:src="@drawable/rescue"
                         />

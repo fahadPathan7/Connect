@@ -50,7 +50,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/titleViewID"
         android:layout_above="@+id/bottomNavID"
-        android:rowCount="3"
+        android:rowCount="4"
         android:columnCount="2"
         android:layout_margin="20dp"
         >
@@ -276,6 +276,43 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Emergency\nRescue\nSOS"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/eme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="3"
+            android:layout_column="0"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="10dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal|center_vertical"
+                >
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/emergency_rescue"
+                    android:scaleType="fitCenter"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Accepted\nRequests"
                     android:textStyle="bold"
                     android:textAlignment="center"
                     />

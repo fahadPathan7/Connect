@@ -35,12 +35,6 @@ import commonClasses.Helpline;
 
 public class HelpRequests extends DrawerBaseActivity implements View.OnClickListener {
 
-
-    public final String KEY_TYPE = "Type";
-    public final String KEY_NAME = "Name";
-    public final String KEY_CONTACT = "Contact";
-    public final String KEY_LOCATION = "Location";
-    public final String KEY_DETAILS = "Details";
     public final String KEY_INFORMATION = "Information";
 
     BottomNavigationItemView home;
@@ -88,21 +82,15 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
                     return;
                 }
 
-                String data = "";
-
                 int cnt = 0;
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                     if (cnt == 6) break;
 
-                    String name = documentSnapshot.getString(KEY_NAME);
-                    String contact = documentSnapshot.getString(KEY_CONTACT);
-                    String location = documentSnapshot.getString(KEY_LOCATION);
-                    String details = documentSnapshot.getString(KEY_DETAILS);
+                    String information = documentSnapshot.getString("Information");
 
                     documentSnapShotIDs[cnt] = documentSnapshot.getId();
 
-                    data = "Name: " + name + "\n\nContact: " + contact + "\n\nLocation: " + location +
-                            "\n\nDetails: " + details + "\n\n";
+                    String data = information;
 
                     addData(data, cnt++);
                 }
@@ -150,6 +138,7 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
     }
 
     public void writeOnYourGoals(int idx) {
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         try {
@@ -161,16 +150,19 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
             DocumentReference documentReference1 = db.collection("Help Requests").document(documentName);
 
             Map<String, Object> info = new HashMap<>();
-            String information = '\n' + textViews[idx].getText().toString().trim();
+            String information = "Help\n\n" + textViews[idx].getText().toString().trim();
 
-            info.put(KEY_TYPE, "Help");
             info.put(KEY_INFORMATION, information);
 
             documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
+                    //cardViews[idx].setVisibility(View.GONE);
+
                     Toast.makeText(getApplicationContext(), "Thanks for your help.", Toast.LENGTH_SHORT).show();
                     documentReference1.delete();
+
+                    showRequests();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

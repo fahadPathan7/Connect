@@ -35,7 +35,6 @@ import commonClasses.Helpline;
 
 public class YourGoals extends DrawerBaseActivity implements View.OnClickListener {
 
-    public final String KEY_TYPE = "Type";
     public final String KEY_INFORMATION = "Information";
     BottomNavigationItemView home;
     BottomNavigationItemView helpline;
@@ -44,11 +43,11 @@ public class YourGoals extends DrawerBaseActivity implements View.OnClickListene
 
     CardView[] cardViews = new CardView[6];
     TextView[] textViews = new TextView[6];
-    ImageView[] imageViews = new ImageView[6];
+    ImageView[] confirmed = new ImageView[6];
+    ImageView[] rejected = new ImageView[6];
     String[] documentSnapShotIDs = new String[6];
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    Map<String, Object> info = new HashMap<>();
     ActivityYourGoalsBinding activityYourGoalsBinding;
 
     @Override
@@ -76,19 +75,26 @@ public class YourGoals extends DrawerBaseActivity implements View.OnClickListene
         cardViews[4] = findViewById(R.id.ycardView4ID);
         cardViews[5] = findViewById(R.id.ycardView5ID);
 
-        textViews[0] = findViewById(R.id.ytextView0ID);
-        textViews[1] = findViewById(R.id.ytextView1ID);
-        textViews[2] = findViewById(R.id.ytextView2ID);
-        textViews[3] = findViewById(R.id.ytextView3ID);
-        textViews[4] = findViewById(R.id.ytextView4ID);
-        textViews[5] = findViewById(R.id.ytextView5ID);
+        textViews[0] = findViewById(R.id.textView0ID);
+        textViews[1] = findViewById(R.id.textView1ID);
+        textViews[2] = findViewById(R.id.textView2ID);
+        textViews[3] = findViewById(R.id.textView3ID);
+        textViews[4] = findViewById(R.id.textView4ID);
+        textViews[5] = findViewById(R.id.textView5ID);
 
-        imageViews[0] = findViewById(R.id.yimageView0ID);
-        imageViews[1] = findViewById(R.id.yimageView1ID);
-        imageViews[2] = findViewById(R.id.yimageView2ID);
-        imageViews[3] = findViewById(R.id.yimageView3ID);
-        imageViews[4] = findViewById(R.id.yimageView4ID);
-        imageViews[5] = findViewById(R.id.yimageView5ID);
+        confirmed[0] = findViewById(R.id.confirm0ID);
+        confirmed[1] = findViewById(R.id.confirm1ID);
+        confirmed[2] = findViewById(R.id.confirm2ID);
+        confirmed[3] = findViewById(R.id.confirm3ID);
+        confirmed[4] = findViewById(R.id.confirm4ID);
+        confirmed[5] = findViewById(R.id.confirm5ID);
+
+        rejected[0] = findViewById(R.id.reject0ID);
+        rejected[1] = findViewById(R.id.reject1ID);
+        rejected[2] = findViewById(R.id.reject2ID);
+        rejected[3] = findViewById(R.id.reject3ID);
+        rejected[4] = findViewById(R.id.reject4ID);
+        rejected[5] = findViewById(R.id.reject5ID);
 
 
         home=findViewById(R.id.homeMenuID);
@@ -111,18 +117,15 @@ public class YourGoals extends DrawerBaseActivity implements View.OnClickListene
                         return;
                     }
 
-                    String data = "";
-
                     int cnt = 0;
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                         if (cnt == 6) break;
 
-                        String type = documentSnapshot.getString(KEY_TYPE);
                         String information = documentSnapshot.getString("Information");
 
                         documentSnapShotIDs[cnt] = documentSnapshot.getId();
 
-                        data = "Type: " + type + "\n\nInformation: " + information + "\n\n";
+                        String data = information;
 
                         addData(data, cnt++);
                     }
@@ -144,15 +147,23 @@ public class YourGoals extends DrawerBaseActivity implements View.OnClickListene
     public void addData(String data, int pos) {
         cardViews[pos].setVisibility(View.VISIBLE);
         textViews[pos].setText(data);
-        imageViews[pos].setOnClickListener(new View.OnClickListener() {
+        confirmed[pos].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 writeOnYourSuccess(pos);
             }
         });
+
+        rejected[pos].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                returnData(pos);
+            }
+        });
     }
 
     public void writeOnYourSuccess(int idx) {
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         try {
             String uid = user.getUid();
@@ -171,8 +182,12 @@ public class YourGoals extends DrawerBaseActivity implements View.OnClickListene
             documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
+
                     Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_SHORT).show();
                     documentReference1.delete();
+
+                    showGoals();
+                    //cardViews[idx].setVisibility(View.GONE);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -184,6 +199,54 @@ public class YourGoals extends DrawerBaseActivity implements View.OnClickListene
             //Toast.makeText(getApplicationContext(), "YourGoals write fault", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void returnData(int idx) {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        try {
+            String uid = user.getUid();
+            String information = textViews[idx].getText().toString().trim();
+
+            String collectionName = null;
+            char type = information.charAt(0);
+            if (type == 'H') collectionName = "Help Requests";
+            else collectionName = "Rescue Requests";
+
+            String details[] = information.split("Details:");
+            String location[] = details[0].split("Location:");
+            String contact[] = location[0].split("Contact:");
+            String name[] = contact[0].split("Name:");
+
+            String documentName = documentSnapShotIDs[idx];
+            DocumentReference documentReference = db.collection(collectionName).document(documentName);
+
+            DocumentReference documentReference1 = db.collection("Your Goals: " + uid).document(documentName);
+
+            Map<String, Object> info = new HashMap<>();
+
+            if (type == 'H') info.put("Information", "Name: " + name[1].trim() + "\nContact: " + contact[1].trim() + "\nLocation: " + location[1].trim() + "\nDetails: " + details[1].trim());
+            else info.put("Information", "Name: " + name[1].trim() + "\nContact: " + contact[1].trim() + "\nLocation: " + location[1].trim());
+            documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+
+                    Toast.makeText(getApplicationContext(), "We are feeling Sad.", Toast.LENGTH_SHORT).show();
+                    documentReference1.delete();
+
+                    showGoals();
+                    //cardViews[idx].setVisibility(View.GONE);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getApplicationContext(), "Something wrong!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            //Toast.makeText(getApplicationContext(), "YourGoals write fault", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     @Override
     public void onClick(View v) {

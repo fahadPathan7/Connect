@@ -105,10 +105,7 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
 
         Map<String, Object> info = new HashMap<>();
 
-        info.put(KEY_NAME, name);
-        info.put(KEY_CONTACT, contact);
-        info.put(KEY_LOCATION, location);
-        info.put(KEY_DETAILS, details);
+        info.put("Information", "Name: " + name + "\nContact: " + contact + "\nLocation: " + location + "\nDetails: " + details);
 
         documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
