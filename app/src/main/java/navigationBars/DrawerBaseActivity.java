@@ -28,6 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.Objects;
 
 import authentication.SignIn;
+import commonClasses.Feedback;
 import commonClasses.Profile;
 import user.HomeScreenUser;
 
@@ -67,12 +68,15 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         if (id == R.id.profileMenuID) {
             start_Profile_activity();
         }
-        else if (id == R.id.homeMenuID) {
+        if (id == R.id.homeMenuID) {
             start_HomeScreenUser_activity();
         }
-        else if (id == R.id.logoutMenuID) {
+        if (id == R.id.logoutMenuID) {
             FirebaseAuth.getInstance().signOut();
             start_SignIn_activity();
+        }
+        if (id == R.id.feedbackMenuID) {
+            start_Feedback_activity();
         }
 
 
@@ -87,6 +91,13 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
 
     public void start_Profile_activity() {
         Intent intent = new Intent(this, Profile.class);
+        startActivity(intent);
+        //finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    public void start_Feedback_activity() {
+        Intent intent = new Intent(this, Feedback.class);
         startActivity(intent);
         //finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
