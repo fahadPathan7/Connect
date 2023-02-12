@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="commonClasses.LiveChat">
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/chatEditTextID"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:background="#F5F5F5"
+        android:orientation="vertical">
+
+    </ScrollView>
+
+        <TextView
+            android:id="@+id/nameTextViewID"
+            android:layout_width="20dp"
+            android:layout_height="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="2dp"
+            />
+
+        <EditText
+            android:id="@+id/chatEditTextID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/sendButtonID"
+            android:padding="10dp"
+            android:textCursorDrawable="@drawable/text_cursor"
+            android:backgroundTint="@color/theme_color"
+            android:hint="Write message" />
+
+        <Button
+            android:id="@+id/sendButtonID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:onClick="sendChat"
+            android:text="send" />
+
+</RelativeLayout>
+
+    <!--    <EditText-->
+    <!--        android:id="@+id/chatEditTextID"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentStart="true"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        android:layout_toStartOf="@+id/sendButtonID"-->
+    <!--        android:padding="10dp"-->
+    <!--        android:hint="Write message" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/sendButtonID"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentEnd="true"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        android:onClick="sendChat"-->
+    <!--        android:text="send" />-->

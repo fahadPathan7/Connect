@@ -67,6 +67,8 @@ public class YourSuccess extends DrawerBaseActivity implements View.OnClickListe
         scrollView.addView(linearLayout);
 
         setContentView(view);
+
+
         home=findViewById(R.id.homeMenuID);
         helpline=findViewById(R.id.helplineMenuID);
         aboutUs=findViewById(R.id.aboutUsMenuID);

@@ -283,7 +283,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/eme"
+            android:id="@+id/liveChatCardViewID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="3"
@@ -306,13 +306,13 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/emergency_rescue"
+                    android:src="@drawable/chat"
                     android:scaleType="fitCenter"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Accepted\nRequests"
+                    android:text="Live Chat"
                     android:textStyle="bold"
                     android:textAlignment="center"
                     />
