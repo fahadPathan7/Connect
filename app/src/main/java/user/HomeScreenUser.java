@@ -34,7 +34,6 @@ import authentication.SignIn;
 import commonClasses.AboutUs;
 import commonClasses.LiveChat;
 import navigationBars.DrawerBaseActivity;
-import commonClasses.Helpline;
 import volunteer.HomeScreenVolunteer;
 
 public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickListener {
@@ -46,7 +45,7 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
     CardView yourAreaCArdView;
     CardView requestHelpCardView;
     CardView emergencyRescueSOSCardView;
-    CardView liveChatCardView;
+    CardView yourRequestsCardView;
 
     BottomNavigationItemView home;
     BottomNavigationItemView helpline;
@@ -84,6 +83,7 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         yourAreaCArdView.setOnClickListener(this);
         requestHelpCardView.setOnClickListener(this);
         emergencyRescueSOSCardView.setOnClickListener(this);
+        yourRequestsCardView.setOnClickListener(this);
 
 
         helpline.setOnClickListener(this);
@@ -93,6 +93,7 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
 
 
     private void initializeViewIDs() {
+        yourRequestsCardView = findViewById(R.id.yourRequestsCardViewID);
         forecastCardView= findViewById(R.id.forecastCardViewID);
         safetyTipsCardView= findViewById(R.id.safetyTipsCardViewID);
         emergencyContactsCardView = findViewById(R.id.emergencyContactsCardViewID);
@@ -130,6 +131,9 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         else if (v.getId() == R.id.emergencyRescueSOSCardViewID) {
             start_EmergencyRescueSOS_activity();
 
+        }
+        else if (v.getId() == R.id.yourRequestsCardViewID) {
+            start_YourRequests_activity();
         }
         else if(v.getId()==R.id.liveChatMenuID)
         {
@@ -312,6 +316,13 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
 
     public void start_LiveChat_activity() {
         Intent intent = new Intent(this, LiveChat.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    public void start_YourRequests_activity() {
+        Intent intent = new Intent(this, YourRequests.class);
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

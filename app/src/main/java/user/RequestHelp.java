@@ -26,7 +26,6 @@ import java.util.Map;
 import commonClasses.AboutUs;
 import commonClasses.LiveChat;
 import navigationBars.DrawerBaseActivity;
-import commonClasses.Helpline;
 
 public class RequestHelp extends DrawerBaseActivity implements View.OnClickListener {
 
@@ -57,7 +56,7 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
         allocateActivityTitle("Request Help");
 
 
-        saveButton = findViewById(R.id.saveButtonID);
+        saveButton = findViewById(R.id.submitButtonID);
         nameEditText = findViewById(R.id.nameEditTextID);
         contactEditText = findViewById(R.id.contactEditTextID);
         locationEditText = findViewById(R.id.locationEditTextID);
@@ -74,6 +73,7 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
     }
 
     public void sendRequest(View v) {
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
         documentReference = db.collection("Help Requests").document();
@@ -104,6 +104,8 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
             return;
         }
 
+        saveButton.setEnabled(false);
+
         Map<String, Object> info = new HashMap<>();
 
         info.put("ID", uid);
@@ -115,6 +117,7 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(getApplicationContext(), "Request Submitted", Toast.LENGTH_SHORT).show();
+                writeOnYourRequests(uid, documentReference.getId(), info.get("Information").toString(), "Help");
                 start_HomeScreenUser_activity();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -122,6 +125,29 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getApplicationContext(), "Request Submit Failed!", Toast.LENGTH_SHORT).show();
                 start_HomeScreenUser_activity();
+            }
+        });
+    }
+
+    public void writeOnYourRequests(String userID, String documentID, String information, String type) {
+
+        Map<String, Object> info = new HashMap<>();
+
+        info.put("Information", information);
+        info.put("Type", type);
+        info.put("VolunteerID", "");
+        info.put("Status", "3");
+
+        DocumentReference documentReference1 = db.collection("Your Requests: " + userID).document(documentID);
+        documentReference1.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                //
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //
             }
         });
     }

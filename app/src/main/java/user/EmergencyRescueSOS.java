@@ -48,7 +48,6 @@ import java.util.Map;
 import commonClasses.AboutUs;
 import commonClasses.LiveChat;
 import navigationBars.DrawerBaseActivity;
-import commonClasses.Helpline;
 
 public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnClickListener {
 
@@ -135,6 +134,8 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
             return;
         }
 
+        submitButton.setEnabled(false);
+
         Map<String, Object> info = new HashMap<>();
 
         info.put("ID", uid);
@@ -145,6 +146,7 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(getApplicationContext(), "Request Submitted", Toast.LENGTH_SHORT).show();
+                writeOnYourRequests(uid, documentReference.getId(), info.get("Information").toString(), "Rescue");
                 start_HomeScreenUser_activity();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -152,6 +154,30 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getApplicationContext(), "Request Submit Failed!", Toast.LENGTH_SHORT).show();
                 start_HomeScreenUser_activity();
+            }
+        });
+    }
+
+    public void writeOnYourRequests(String userID, String documentID, String information, String type) {
+
+        Map<String, Object> info = new HashMap<>();
+
+        info.put("Information", information);
+        info.put("Type", type);
+        info.put("VolunteerID", "");
+        info.put("Status", "3");
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference documentReference1 = db.collection("Your Requests: " + userID).document(documentID);
+        documentReference1.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                //
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //
             }
         });
     }

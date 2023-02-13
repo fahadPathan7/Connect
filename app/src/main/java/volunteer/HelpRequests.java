@@ -39,7 +39,6 @@ import java.util.Map;
 import commonClasses.AboutUs;
 import commonClasses.LiveChat;
 import navigationBars.DrawerBaseActivity;
-import commonClasses.Helpline;
 
 public class HelpRequests extends DrawerBaseActivity implements View.OnClickListener {
 
@@ -101,29 +100,36 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
 
     public void showRequests() {
 
-        //makeViewsInvisible();
+        try {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
 
-        helpRequests.addSnapshotListener(this, new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(QuerySnapshot queryDocumentSnapshots, FirebaseFirestoreException e) {
-                if (e != null) {
-                    return;
+            helpRequests.addSnapshotListener(this, new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(QuerySnapshot queryDocumentSnapshots, FirebaseFirestoreException e) {
+                    if (e != null) {
+                        return;
+                    }
+
+                    linearLayout.removeAllViews();
+
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+
+                        String information = documentSnapshot.getString("Information");
+                        String userID = documentSnapshot.getString("ID");
+                        String type = documentSnapshot.getString("Type");
+
+                        if (userID.equals(uid)) continue;
+
+                        String documentID = documentSnapshot.getId();
+
+                        addData(information, documentID, userID, type);
+                    }
                 }
-
-                linearLayout.removeAllViews();
-
-                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-
-                    String information = documentSnapshot.getString("Information");
-                    String userID = documentSnapshot.getString("ID");
-                    String type = documentSnapshot.getString("Type");
-
-                    String documentID = documentSnapshot.getId();
-
-                    addData(information, documentID, userID, type);
-                }
-            }
-        });
+            });
+        } catch (Exception e) {
+            //
+        }
     }
 
 
@@ -164,6 +170,7 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                button.setEnabled(false);
                 // Perform action on click
                 writeOnYourGoals(information, documentID, userID, type);
             }
@@ -180,9 +187,8 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
 
     public void writeOnYourGoals(String information, String documentID, String userID, String type) {
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
         try {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
             String collectionName = "Your Goals: " + uid;
             String documentName = documentID;
@@ -203,6 +209,7 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
                     //cardViews[idx].setVisibility(View.GONE);
 
                     Toast.makeText(getApplicationContext(), "Thanks for your help.", Toast.LENGTH_SHORT).show();
+                    writeOnYourRequests(userID, uid, documentID, information, type);
                     documentReference1.delete();
 
                     //showRequests();
@@ -216,6 +223,30 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
         } catch (Exception e) {
             //Toast.makeText(getApplicationContext(), "YourGoals write fault", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void writeOnYourRequests(String userID, String volunteerID, String documentID, String information, String type) {
+
+        Map<String, Object> info = new HashMap<>();
+
+        info.put("Information", information);
+        info.put("Type", type);
+        info.put("VolunteerID", volunteerID);
+        info.put("Status", "2");
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference documentReference1 = db.collection("Your Requests: " + userID).document(documentID);
+        documentReference1.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                //
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //
+            }
+        });
     }
 
 

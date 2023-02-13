@@ -1,11 +1,11 @@
-package volunteer;
+package user;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -18,10 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.R;
-import com.example.android.databinding.ActivityYourGoalsBinding;
+import com.example.android.databinding.ActivityYourRequestsBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -37,33 +36,21 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
-import commonClasses.AboutUs;
-import commonClasses.LiveChat;
 import navigationBars.DrawerBaseActivity;
 
-public class YourGoals extends DrawerBaseActivity implements View.OnClickListener {
-
-    public final String KEY_INFORMATION = "Information";
-    BottomNavigationItemView home;
-    BottomNavigationItemView helpline;
-    BottomNavigationItemView aboutUs;
+public class YourRequests extends DrawerBaseActivity {
 
     LinearLayout linearLayout;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ActivityYourGoalsBinding activityYourGoalsBinding;
+
+    ActivityYourRequestsBinding activityYourRequestsBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityYourGoalsBinding = ActivityYourGoalsBinding.inflate(getLayoutInflater());
-        setContentView(activityYourGoalsBinding.getRoot());
-
-        connectWithIDs();
-
-        home.setOnClickListener(this);
-        helpline.setOnClickListener(this);
-        aboutUs.setOnClickListener(this);
+        activityYourRequestsBinding = ActivityYourRequestsBinding.inflate(getLayoutInflater());
+        setContentView(activityYourRequestsBinding.getRoot());
 
 
         // here
@@ -80,7 +67,7 @@ public class YourGoals extends DrawerBaseActivity implements View.OnClickListene
         linearLayout.setPadding(0, 0, 0, 30);
         linearLayout.setLayoutParams(params);
 
-        showGoals();
+        showRequests();
 
         ScrollView scrollView = view.findViewById(R.id.scroll_view);
         scrollView.fullScroll(View.FOCUS_DOWN);
@@ -89,52 +76,39 @@ public class YourGoals extends DrawerBaseActivity implements View.OnClickListene
         setContentView(view);
 
 
-        allocateActivityTitle("Your Goals");
-
-
-        connectWithIDs();
-
-        home.setOnClickListener(this);
-        helpline.setOnClickListener(this);
-        aboutUs.setOnClickListener(this);
+        allocateActivityTitle("Your Requests");
     }
 
-    public void connectWithIDs() {
-        home=findViewById(R.id.homeMenuID);
-        helpline=findViewById(R.id.liveChatMenuID);
-        aboutUs=findViewById(R.id.aboutUsMenuID);
-    }
-
-    public void showGoals() {
-        //makeViewsInvisible();
+    public void showRequests() {
 
         try {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
 
-            CollectionReference collectionReference = db.collection("Your Goals: " + uid);
-            collectionReference.orderBy("Type", Query.Direction.DESCENDING)
+            CollectionReference collectionReference = db.collection("Your Requests: " + uid);
+            collectionReference.orderBy("Status", Query.Direction.ASCENDING)
                     .addSnapshotListener(this, new EventListener<QuerySnapshot>() {
-                @Override
-                public void onEvent(QuerySnapshot queryDocumentSnapshots, FirebaseFirestoreException e) {
-                    if (e != null) {
-                        return;
-                    }
+                        @Override
+                        public void onEvent(QuerySnapshot queryDocumentSnapshots, FirebaseFirestoreException e) {
+                            if (e != null) {
+                                return;
+                            }
 
-                    linearLayout.removeAllViews();
+                            linearLayout.removeAllViews();
 
-                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
 
-                        String information = documentSnapshot.getString("Information");
-                        String userID = documentSnapshot.getString("ID");
-                        String type = documentSnapshot.getString("Type");
+                                String information = documentSnapshot.getString("Information");
+                                String volunteerID = documentSnapshot.getString("VolunteerID");
+                                String type = documentSnapshot.getString("Type");
+                                String status = documentSnapshot.getString("Status");
 
-                        String documentID = documentSnapshot.getId();
+                                String documentID = documentSnapshot.getId();
 
-                        addData(information, documentID, userID, type);
-                    }
-                }
-            });
+                                addData(information, documentID, uid, volunteerID, type, status);
+                            }
+                        }
+                    });
         } catch (Exception e) {
             //
         }
@@ -143,7 +117,7 @@ public class YourGoals extends DrawerBaseActivity implements View.OnClickListene
     }
 
     @SuppressLint("ResourceAsColor")
-    public void addData(String information, String documentID, String userID, String type) {
+    public void addData(String information, String documentID, String userID, String volunteerID, String type, String status) {
         CardView cardView = new CardView(this);
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -165,31 +139,31 @@ public class YourGoals extends DrawerBaseActivity implements View.OnClickListene
 
         // Add your content to the cardView
         TextView textView = new TextView(this);
-        textView.setText(type + "\n\n" + information);
+        if (status.equals("3")) status = "Pending";
+        else if (status.equals("2")) status = "Assigned";
+        else if (status.equals("1")) status = "Verifying";
+        else status = "Completed";
+        textView.setText(status + "\n\n" + type + "\n\n" + information);
         textView.setTextSize(16);
         textView.setPadding(0, 0, 0, 15);
+
 
         LinearLayout buttonLinearLayout = new LinearLayout(this);
         buttonLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
         buttonLinearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
         Button button = new Button(this);
-        button.setText("Completed");
+        if (status.equals("Verifying")) {
+            if (type.equals("Help")) button.setText("Got Help");
+            else button.setText("Rescued");
+        }
+
         button.setTextColor(Color.WHITE);
         button.setBackgroundColor(Color.parseColor("#4CAF50"));
         Typeface typeface = Typeface.create(button.getTypeface(), Typeface.BOLD);
         button.setTypeface(typeface);
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
         button.setLayoutParams(buttonParams);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                button.setEnabled(false);
-                // Perform action on click
-                sendForVerification(information, documentID, userID, type);
-            }
-        });
 
         Button button1 = new Button(this);
         button1.setText("Discard");
@@ -200,57 +174,55 @@ public class YourGoals extends DrawerBaseActivity implements View.OnClickListene
         LinearLayout.LayoutParams button1Params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
         button1.setLayoutParams(button1Params);
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                button.setEnabled(false);
+                button1.setEnabled(false);
+                //Perform action on click
+                writeOnYourSuccess(information, documentID, userID, volunteerID, type);
+            }
+        });
+
+        final String tempStatus = status;
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 button1.setEnabled(false);
-                // Perform action on click
-                returnData(information, documentID, userID, type);
+                button.setEnabled(false);
+                if (tempStatus.equals("Pending")) {
+                    removeRequest(documentID, type, userID);
+                }
+                else writeOnYourGoals(information, documentID, userID, volunteerID, type);
             }
         });
 
         buttonLinearLayout.addView(button);
         buttonLinearLayout.addView(button1);
 
+        if (status.equals("Pending")) {
+            buttonLinearLayout.removeView(button);
+        }
+        else if (status.equals("Assigned") || status.equals("Completed")) {
+            buttonLinearLayout.removeAllViews();
+        }
+
 
         innerLinearLayout.addView(textView);
         innerLinearLayout.addView(buttonLinearLayout);
+
 
         cardView.addView(innerLinearLayout);
 
         linearLayout.addView(cardView);
     }
 
-    public void sendForVerification(String information, String documentID, String userID, String type) {
+    public void writeOnYourGoals(String information, String documentID, String userID, String volunteerID, String type) {
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         try {
-            String uid = user.getUid();
-
-            DocumentReference documentReference = db.collection("Your Goals: " + uid).document(documentID);
-
-            writeOnYourRequests(userID, uid, documentID, information, type, "1");
-            documentReference.delete();
-
-            Toast.makeText(getApplicationContext(), "Congratulations\nSent for Verification!", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Try again later!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void returnData(String information, String documentID, String userID, String type) {
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        try {
-            String uid = user.getUid();
-
-            String collectionName = null;
-            if (type.equals("Help")) collectionName = "Help Requests";
-            else collectionName = "Rescue Requests";
-
+            String collectionName = "Your Goals: " + volunteerID;
 
             DocumentReference documentReference = db.collection(collectionName).document(documentID);
-            DocumentReference documentReference1 = db.collection("Your Goals: " + uid).document(documentID);
 
             Map<String, Object> info = new HashMap<>();
 
@@ -258,16 +230,12 @@ public class YourGoals extends DrawerBaseActivity implements View.OnClickListene
             info.put("Information", information);
             info.put("Type", type);
 
+
             documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
-
-                    Toast.makeText(getApplicationContext(), "We are feeling Sad.", Toast.LENGTH_SHORT).show();
-                    writeOnYourRequests(userID, "", documentID, information, type, "3");
-                    documentReference1.delete();
-
-                    //showGoals();
-                    //cardViews[idx].setVisibility(View.GONE);
+                    Toast.makeText(getApplicationContext(), "Request assigned again!", Toast.LENGTH_SHORT).show();
+                    writeOnYourRequests(userID, volunteerID, documentID, information, type, "2");
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -304,44 +272,51 @@ public class YourGoals extends DrawerBaseActivity implements View.OnClickListene
         });
     }
 
+    public void removeRequest(String documentID, String type, String userID) {
+        try {
+            DocumentReference documentReference;
+            if (type.equals("Help")) documentReference = db.collection("Help Requests").document(documentID);
+            else documentReference = db.collection("Rescue Requests").document(documentID);
 
-    @Override
-    public void onClick(View v) {
-        if(v.getId()==R.id.homeMenuID)
-        {
-            start_HomeScreenVolunteer_activity();
-        }
-        else if(v.getId()==R.id.liveChatMenuID)
-        {
-            start_LiveChat_activity();
-        }
-        else if(v.getId()==R.id.aboutUsMenuID)
-        {
-            start_AboutUs_activity();
+            documentReference.delete();
+
+            documentReference = db.collection("Your Requests: " + userID).document(documentID);
+            documentReference.delete();
+
+            Toast.makeText(getApplicationContext(), "Your request has been removed.", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Try again later!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void start_HomeScreenVolunteer_activity() {
-        Intent intent = new Intent(getApplicationContext(), HomeScreenVolunteer.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-    }
 
-    public void start_LiveChat_activity()
-    {
-        Intent intent = new Intent(this, LiveChat.class);
-        startActivity(intent);
+    public void writeOnYourSuccess(String information, String documentID, String userID, String volunteerID, String type) {
 
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        try {
+            String collectionName = "Your Success: " + volunteerID;
+            DocumentReference documentReference = db.collection(collectionName).document(documentID);
 
-    }
-    public void start_AboutUs_activity()
-    {
-        Intent intent = new Intent(this, AboutUs.class);
-        startActivity(intent);
+            Map<String, Object> info = new HashMap<>();
 
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            info.put("ID", userID);
+            info.put("Information", information);
+            info.put("Type", type);
 
+            documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+
+                    Toast.makeText(getApplicationContext(), "We are pledged!", Toast.LENGTH_SHORT).show();
+                    writeOnYourRequests(userID, volunteerID, documentID, information, type, "4");
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getApplicationContext(), "Something wrong!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            //Toast.makeText(getApplicationContext(), "YourGoals write fault", Toast.LENGTH_SHORT).show();
+        }
     }
 }

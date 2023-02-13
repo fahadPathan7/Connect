@@ -21,13 +21,13 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import commonClasses.AboutUs;
 import commonClasses.LiveChat;
 import navigationBars.DrawerBaseActivity;
-import commonClasses.Helpline;
 
 public class YourSuccess extends DrawerBaseActivity implements View.OnClickListener {
 
@@ -91,7 +91,8 @@ public class YourSuccess extends DrawerBaseActivity implements View.OnClickListe
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             CollectionReference yourSuccess = db.collection(collectionName);
 
-            yourSuccess.addSnapshotListener(this, new EventListener<QuerySnapshot>() {
+            yourSuccess.orderBy("Type", Query.Direction.DESCENDING)
+                    .addSnapshotListener(this, new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(QuerySnapshot queryDocumentSnapshots, FirebaseFirestoreException e) {
                     if (e != null) {

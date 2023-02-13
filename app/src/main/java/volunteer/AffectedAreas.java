@@ -29,7 +29,6 @@ import java.util.Map;
 import commonClasses.AboutUs;
 import commonClasses.LiveChat;
 import navigationBars.DrawerBaseActivity;
-import commonClasses.Helpline;
 
 public class AffectedAreas extends DrawerBaseActivity implements View.OnClickListener {
     public final String KEY_INFORMATION = "Information";
