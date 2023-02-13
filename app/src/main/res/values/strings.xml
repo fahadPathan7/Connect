@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HeartStrings</string>
+    <string name="app_name">Connect</string>
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
     <string name="safe">"Your area is safe."</string>

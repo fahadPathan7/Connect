@@ -208,29 +208,4 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
                 });
     }
 
-    public void loadNote(View v) {
-        documentReference.get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if (documentSnapshot.exists()) {
-                            //String title = documentSnapshot.getString(KEY_TITLE);
-                            //String description = documentSnapshot.getString(KEY_DESCRIPTION);
-
-                            //Map<String, Object> note = documentSnapshot.getData();
-
-                            //textViewData.setText("Title: " + title + "\n" + "Description: " + description);
-                        } else {
-                            Toast.makeText(Profile.this, "Document does not exist", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Profile.this, "Error!", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, e.toString());
-                    }
-                });
-    }
 }

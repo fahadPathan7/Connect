@@ -1,9 +1,16 @@
 package volunteer;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +37,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import commonClasses.AboutUs;
+import commonClasses.LiveChat;
 import navigationBars.DrawerBaseActivity;
 import commonClasses.Helpline;
 
@@ -41,10 +49,8 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
     BottomNavigationItemView helpline;
     BottomNavigationItemView aboutUs;
 
-    CardView[] cardViews = new CardView[6];
-    TextView[] textViews = new TextView[6];
-    ImageView[] imageViews = new ImageView[6];
-    String[] documentSnapShotIDs = new String[6];
+
+    LinearLayout linearLayout;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference helpRequests = db.collection("Help Requests");
@@ -56,24 +62,46 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         activityHelpRequestsBinding = ActivityHelpRequestsBinding.inflate(getLayoutInflater());
         setContentView(activityHelpRequestsBinding.getRoot());
+
+
+        // here
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.activity_help_requests, null);
+
+        linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.setMargins(0, 20, 0, 0);
+        linearLayout.setPadding(0, 0, 0, 30);
+        linearLayout.setLayoutParams(params);
+
+        showRequests();
+
+        ScrollView scrollView = view.findViewById(R.id.scroll_view);
+        scrollView.fullScroll(View.FOCUS_DOWN);
+        scrollView.addView(linearLayout);
+
+        setContentView(view);
+
+
         allocateActivityTitle("Help Requests");
 
+
         home=findViewById(R.id.homeMenuID);
-        helpline=findViewById(R.id.helplineMenuID);
+        helpline=findViewById(R.id.liveChatMenuID);
         aboutUs=findViewById(R.id.aboutUsMenuID);
 
         home.setOnClickListener(this);
         helpline.setOnClickListener(this);
         aboutUs.setOnClickListener(this);
-
-
-        connectWithIDs();
-        showRequests();
     }
 
     public void showRequests() {
 
-        makeViewsInvisible();
+        //makeViewsInvisible();
 
         helpRequests.addSnapshotListener(this, new EventListener<QuerySnapshot>() {
             @Override
@@ -82,77 +110,92 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
                     return;
                 }
 
-                int cnt = 0;
+                linearLayout.removeAllViews();
+
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                    if (cnt == 6) break;
 
                     String information = documentSnapshot.getString("Information");
+                    String userID = documentSnapshot.getString("ID");
+                    String type = documentSnapshot.getString("Type");
 
-                    documentSnapShotIDs[cnt] = documentSnapshot.getId();
+                    String documentID = documentSnapshot.getId();
 
-                    String data = information;
-
-                    addData(data, cnt++);
+                    addData(information, documentID, userID, type);
                 }
             }
         });
     }
 
-    private void connectWithIDs() {
-        cardViews[0] = findViewById(R.id.cardView0ID);
-        cardViews[1] = findViewById(R.id.cardView1ID);
-        cardViews[2] = findViewById(R.id.cardView2ID);
-        cardViews[3] = findViewById(R.id.cardView3ID);
-        cardViews[4] = findViewById(R.id.cardView4ID);
-        cardViews[5] = findViewById(R.id.cardView5ID);
 
-        textViews[0] = findViewById(R.id.textView0ID);
-        textViews[1] = findViewById(R.id.textView1ID);
-        textViews[2] = findViewById(R.id.textView2ID);
-        textViews[3] = findViewById(R.id.textView3ID);
-        textViews[4] = findViewById(R.id.textView4ID);
-        textViews[5] = findViewById(R.id.textView5ID);
+    @SuppressLint("ResourceAsColor")
+    public void addData(String information, String documentID, String userID, String type) {
+        CardView cardView = new CardView(this);
 
-        imageViews[0] = findViewById(R.id.imageView0ID);
-        imageViews[1] = findViewById(R.id.imageView1ID);
-        imageViews[2] = findViewById(R.id.imageView2ID);
-        imageViews[3] = findViewById(R.id.imageView3ID);
-        imageViews[4] = findViewById(R.id.imageView4ID);
-        imageViews[5] = findViewById(R.id.imageView5ID);
-    }
-    public void makeViewsInvisible() {
-        for (int i = 0; i < 6; i++) {
-            cardViews[i].setVisibility(View.GONE);
-        }
-    }
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
 
-    public void addData(String data, int pos) {
-        textViews[pos].setText(data);
-        cardViews[pos].setVisibility(View.VISIBLE);
-        imageViews[pos].setOnClickListener(new View.OnClickListener() {
+        params.setMargins(30, 5, 30, 5);
+
+        cardView.setLayoutParams(params);
+        cardView.setRadius(10);
+        cardView.setContentPadding(20, 20, 20, 20);
+        cardView.setCardElevation(20);
+
+        //cardView.addView(linearLayout);
+
+        LinearLayout innerLinearLayout = new LinearLayout(this);
+        innerLinearLayout.setOrientation(LinearLayout.VERTICAL);
+
+        // Add your content to the cardView
+        TextView textView = new TextView(this);
+        textView.setText(information);
+        textView.setTextSize(16);
+        textView.setPadding(0, 0, 0, 15);
+
+        Button button = new Button(this);
+        button.setText("Help");
+        button.setTextColor(Color.WHITE);
+        button.setBackgroundColor(R.color.light_theme_color);
+        Typeface typeface = Typeface.create(button.getTypeface(), Typeface.BOLD);
+        button.setTypeface(typeface);
+
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                writeOnYourGoals(pos);
+            public void onClick(View view) {
+                // Perform action on click
+                writeOnYourGoals(information, documentID, userID, type);
             }
         });
+
+
+        innerLinearLayout.addView(textView);
+        innerLinearLayout.addView(button);
+
+        cardView.addView(innerLinearLayout);
+
+        linearLayout.addView(cardView);
     }
 
-    public void writeOnYourGoals(int idx) {
+    public void writeOnYourGoals(String information, String documentID, String userID, String type) {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         try {
             String uid = user.getUid();
             String collectionName = "Your Goals: " + uid;
-            String documentName = documentSnapShotIDs[idx];
-            DocumentReference documentReference = db.collection(collectionName).document(documentName);
+            String documentName = documentID;
 
+            DocumentReference documentReference = db.collection(collectionName).document(documentName);
             DocumentReference documentReference1 = db.collection("Help Requests").document(documentName);
 
             Map<String, Object> info = new HashMap<>();
-            String information = "Help\n\n" + textViews[idx].getText().toString().trim();
 
+            info.put("ID", userID);
             info.put(KEY_INFORMATION, information);
+            info.put("Type", type);
+
 
             documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -162,7 +205,7 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
                     Toast.makeText(getApplicationContext(), "Thanks for your help.", Toast.LENGTH_SHORT).show();
                     documentReference1.delete();
 
-                    showRequests();
+                    //showRequests();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -183,9 +226,9 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
         {
             start_HomeScreenVolunteer_activity();
         }
-        else if(v.getId()==R.id.helplineMenuID)
+        else if(v.getId()==R.id.liveChatMenuID)
         {
-            start_Helpline_activity();
+            start_LiveChat_activity();
         }
         else if(v.getId()==R.id.aboutUsMenuID)
         {
@@ -200,9 +243,9 @@ public class HelpRequests extends DrawerBaseActivity implements View.OnClickList
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void start_Helpline_activity()
+    public void start_LiveChat_activity()
     {
-        Intent intent = new Intent(this, Helpline.class);
+        Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

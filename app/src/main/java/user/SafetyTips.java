@@ -15,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 import commonClasses.AboutUs;
+import commonClasses.LiveChat;
 import navigationBars.DrawerBaseActivity;
 import commonClasses.Helpline;
 import safetyTips.Cyclone;
@@ -76,7 +77,7 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
         cycloneCardView=findViewById(R.id.cycloneCardViewID);
         fireCardView=findViewById(R.id.fireCardViewID);
         home=findViewById(R.id.homeMenuID);
-        helpline=findViewById(R.id.helplineMenuID);
+        helpline=findViewById(R.id.liveChatMenuID);
         aboutUs=findViewById(R.id.aboutUsMenuID);
 
     }
@@ -106,9 +107,9 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
         {
             start_HomeScreenUser_activity();
         }
-        else if(v.getId()==R.id.helplineMenuID)
+        else if(v.getId()==R.id.liveChatMenuID)
         {
-            start_Helpline_activity();
+            start_LiveChat_activity();
         }
         else if(v.getId()==R.id.aboutUsMenuID)
         {
@@ -167,9 +168,9 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
        startActivity(intent);
        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
    }
-   public void start_Helpline_activity()
+   public void start_LiveChat_activity()
    {
-       Intent intent = new Intent(this, Helpline.class);
+       Intent intent = new Intent(this, LiveChat.class);
        startActivity(intent);
 
        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

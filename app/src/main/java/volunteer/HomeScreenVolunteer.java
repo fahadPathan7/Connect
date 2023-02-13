@@ -13,6 +13,7 @@ import com.example.android.databinding.ActivityHomeScreenVolunteerBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 
 import commonClasses.AboutUs;
+import commonClasses.LiveChat;
 import navigationBars.DrawerBaseActivity;
 import commonClasses.Helpline;
 import user.HomeScreenUser;
@@ -67,7 +68,7 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
         affectedAreasCardView = findViewById(R.id.affectedAreasCardViewID);
         affectedAreasCardView.setOnClickListener(this);
         home=findViewById(R.id.homeMenuID);
-        helpline=findViewById(R.id.helplineMenuID);
+        helpline=findViewById(R.id.liveChatMenuID);
         aboutUs=findViewById(R.id.aboutUsMenuID);
 
         home.setOnClickListener(this);
@@ -98,9 +99,9 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
         if (v.getId() == R.id.affectedAreasCardViewID) {
             start_affectedAreas_activity();
         }
-         if(v.getId()==R.id.helplineMenuID)
+         if(v.getId()==R.id.liveChatMenuID)
         {
-            start_Helpline_activity();
+            start_LiveChat_activity();
         }
          if(v.getId()==R.id.aboutUsMenuID)
         {
@@ -142,9 +143,9 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
-    public void start_Helpline_activity()
+    public void start_LiveChat_activity()
     {
-        Intent intent = new Intent(this, Helpline.class);
+        Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

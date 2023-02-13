@@ -46,6 +46,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import commonClasses.AboutUs;
+import commonClasses.LiveChat;
 import navigationBars.DrawerBaseActivity;
 import commonClasses.Helpline;
 
@@ -82,7 +83,7 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
         contactEditText = findViewById(R.id.contactEditTextID);
         submitButton = findViewById(R.id.submitButtonID);
         home=findViewById(R.id.homeMenuID);
-        helpline=findViewById(R.id.helplineMenuID);
+        helpline=findViewById(R.id.liveChatMenuID);
         aboutUs=findViewById(R.id.aboutUsMenuID);
 
         locationRequest = LocationRequest.create();
@@ -112,7 +113,7 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
-        documentReference = db.collection("Rescue Requests").document(uid);
+        documentReference = db.collection("Rescue Requests").document();
 
         String name = nameEditText.getText().toString().trim();
         String contact = contactEditText.getText().toString().trim();
@@ -136,7 +137,9 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
 
         Map<String, Object> info = new HashMap<>();
 
+        info.put("ID", uid);
         info.put("Information", "Name: " + name + "\nContact: " + contact + "\nLocation: " + location);
+        info.put("Type", "Rescue");
 
         documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -267,9 +270,9 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
             start_HomeScreenUser_activity();
         }
 
-        else if(v.getId()==R.id.helplineMenuID)
+        else if(v.getId()==R.id.liveChatMenuID)
     {
-        start_Helpline_activity();
+        start_LiveChat_activity();
     }
         else if(v.getId()==R.id.aboutUsMenuID)
     {
@@ -286,9 +289,9 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
-    public void start_Helpline_activity()
+    public void start_LiveChat_activity()
     {
-        Intent intent = new Intent(this, Helpline.class);
+        Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

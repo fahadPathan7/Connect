@@ -78,6 +78,9 @@ public class LiveChat extends DrawerBaseActivity {
         scrollView.addView(linearLayout);
 
         setContentView(view);
+
+
+        allocateActivityTitle("Live Chat");
     }
 
 
@@ -226,10 +229,4 @@ public class LiveChat extends DrawerBaseActivity {
         }
     }
 
-    public void start_LiveChat_activity() {
-        Intent intent = new Intent(LiveChat.this, LiveChat.class);
-        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        finish();
-    }
 }

@@ -84,14 +84,10 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         yourAreaCArdView.setOnClickListener(this);
         requestHelpCardView.setOnClickListener(this);
         emergencyRescueSOSCardView.setOnClickListener(this);
-        liveChatCardView.setOnClickListener(this);
 
 
         helpline.setOnClickListener(this);
         aboutUs.setOnClickListener(this);
-
-
-
     }
 
 
@@ -103,10 +99,9 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         yourAreaCArdView = findViewById(R.id.yourAreaCardViewID);
         requestHelpCardView = findViewById(R.id.requestHelpCardViewID);
         emergencyRescueSOSCardView = findViewById(R.id.emergencyRescueSOSCardViewID);
-        liveChatCardView = findViewById(R.id.liveChatCardViewID);
 
         //home=findViewById(R.id.homeMenuID);
-        helpline=findViewById(R.id.helplineMenuID);
+        helpline=findViewById(R.id.liveChatMenuID);
         aboutUs=findViewById(R.id.aboutUsMenuID);
 
     }
@@ -136,12 +131,9 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
             start_EmergencyRescueSOS_activity();
 
         }
-        else if (v.getId() == R.id.liveChatCardViewID) {
-            start_LiveChat_activity();
-        }
-        else if(v.getId()==R.id.helplineMenuID)
+        else if(v.getId()==R.id.liveChatMenuID)
         {
-            start_Helpline_activity();
+            start_LiveChat_activity();
         }
         else if(v.getId()==R.id.aboutUsMenuID)
         {
@@ -309,14 +301,6 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         backPressedCnt = 0;
     }
 
-    public void start_Helpline_activity()
-    {
-        Intent intent = new Intent(this, Helpline.class);
-        startActivity(intent);
-
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-
-    }
     public void start_AboutUs_activity()
     {
         Intent intent = new Intent(this, AboutUs.class);
@@ -330,7 +314,7 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
 
-        //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
 }

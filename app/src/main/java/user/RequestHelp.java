@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import commonClasses.AboutUs;
+import commonClasses.LiveChat;
 import navigationBars.DrawerBaseActivity;
 import commonClasses.Helpline;
 
@@ -62,7 +63,7 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
         locationEditText = findViewById(R.id.locationEditTextID);
         detailsEditText = findViewById(R.id.detailsEditTextID);
         home=findViewById(R.id.homeMenuID);
-        helpline=findViewById(R.id.helplineMenuID);
+        helpline=findViewById(R.id.liveChatMenuID);
         aboutUs=findViewById(R.id.aboutUsMenuID);
 
 
@@ -75,7 +76,7 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
     public void sendRequest(View v) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
-        documentReference = db.collection("Help Requests").document(uid);
+        documentReference = db.collection("Help Requests").document();
 
         String name = nameEditText.getText().toString().trim();
         String contact = contactEditText.getText().toString().trim();
@@ -105,7 +106,10 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
 
         Map<String, Object> info = new HashMap<>();
 
-        info.put("Information", "Name: " + name + "\nContact: " + contact + "\nLocation: " + location + "\nDetails: " + details);
+        info.put("ID", uid);
+        info.put("Information", "Name: " + name + "\nContact: " + contact
+                + "\nLocation: " + location + "\nDetails: " + details);
+        info.put("Type", "Help");
 
         documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -130,9 +134,9 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
         {
             start_HomeScreenUser_activity();
         }
-        else if(v.getId()==R.id.helplineMenuID)
+        else if(v.getId()==R.id.liveChatMenuID)
         {
-            start_Helpline_activity();
+            start_LiveChat_activity();
         }
         else if(v.getId()==R.id.aboutUsMenuID)
         {
@@ -148,9 +152,9 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void start_Helpline_activity()
+    public void start_LiveChat_activity()
     {
-        Intent intent = new Intent(this, Helpline.class);
+        Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

@@ -25,6 +25,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import commonClasses.AboutUs;
+import commonClasses.LiveChat;
 import navigationBars.DrawerBaseActivity;
 import commonClasses.Helpline;
 
@@ -45,7 +46,6 @@ public class YourSuccess extends DrawerBaseActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         activityYourSuccessBinding = ActivityYourSuccessBinding.inflate(getLayoutInflater());
         setContentView(activityYourSuccessBinding.getRoot());
-        allocateActivityTitle("Your Success");
 
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -68,9 +68,11 @@ public class YourSuccess extends DrawerBaseActivity implements View.OnClickListe
 
         setContentView(view);
 
+        allocateActivityTitle("Your Success");
+
 
         home=findViewById(R.id.homeMenuID);
-        helpline=findViewById(R.id.helplineMenuID);
+        helpline=findViewById(R.id.liveChatMenuID);
         aboutUs=findViewById(R.id.aboutUsMenuID);
 
         home.setOnClickListener(this);
@@ -96,11 +98,14 @@ public class YourSuccess extends DrawerBaseActivity implements View.OnClickListe
                         return;
                     }
 
+                    linearLayout.removeAllViews();
+
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
 
                         String information = documentSnapshot.getString(KEY_INFORMATION);
+                        String type = documentSnapshot.getString("Type");
 
-                        addData(information);
+                        addData(type + "\n\n" + information);
                     }
                 }
             });
@@ -141,9 +146,9 @@ public class YourSuccess extends DrawerBaseActivity implements View.OnClickListe
         {
             start_HomeScreenVolunteer_activity();
         }
-        else if(v.getId()==R.id.helplineMenuID)
+        else if(v.getId()==R.id.liveChatMenuID)
         {
-            start_Helpline_activity();
+            start_LiveChat_activity();
         }
         else if(v.getId()==R.id.aboutUsMenuID)
         {
@@ -157,9 +162,9 @@ public class YourSuccess extends DrawerBaseActivity implements View.OnClickListe
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void start_Helpline_activity()
+    public void start_LiveChat_activity()
     {
-        Intent intent = new Intent(this, Helpline.class);
+        Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

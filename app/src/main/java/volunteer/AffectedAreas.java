@@ -27,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Map;
 
 import commonClasses.AboutUs;
+import commonClasses.LiveChat;
 import navigationBars.DrawerBaseActivity;
 import commonClasses.Helpline;
 
@@ -45,7 +46,6 @@ public class AffectedAreas extends DrawerBaseActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         activityAffectedAreasBinding = ActivityAffectedAreasBinding.inflate(getLayoutInflater());
         setContentView(activityAffectedAreasBinding.getRoot());
-        allocateActivityTitle("Affected Areas");
 
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -69,8 +69,11 @@ public class AffectedAreas extends DrawerBaseActivity implements View.OnClickLis
 
         setContentView(view);
 
+
+        allocateActivityTitle("Affected Areas");
+
         home=findViewById(R.id.homeMenuID);
-        helpline=findViewById(R.id.helplineMenuID);
+        helpline=findViewById(R.id.liveChatMenuID);
         aboutUs=findViewById(R.id.aboutUsMenuID);
 
         home.setOnClickListener(this);
@@ -144,9 +147,9 @@ public class AffectedAreas extends DrawerBaseActivity implements View.OnClickLis
         {
             start_HomeScreenVolunteer_activity();
         }
-        else if(v.getId()==R.id.helplineMenuID)
+        else if(v.getId()==R.id.liveChatMenuID)
         {
-            start_Helpline_activity();
+            start_LiveChat_activity();
         }
         else if(v.getId()==R.id.aboutUsMenuID)
         {
@@ -160,9 +163,9 @@ public class AffectedAreas extends DrawerBaseActivity implements View.OnClickLis
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void start_Helpline_activity()
+    public void start_LiveChat_activity()
     {
-        Intent intent = new Intent(this, Helpline.class);
+        Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
