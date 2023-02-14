@@ -11,7 +11,7 @@
         android:id="@+id/scroll_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_above="@+id/chatEditTextID"
+        android:layout_above="@+id/writeChatID"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:background="#F5F5F5"
@@ -29,44 +29,52 @@
             android:layout_marginLeft="2dp"
             />
 
-        <EditText
-            android:id="@+id/chatEditTextID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_toStartOf="@+id/sendButtonID"
+        <RelativeLayout
+            android:id="@+id/writeChatID"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="5dp"
             android:padding="10dp"
-            android:textCursorDrawable="@drawable/text_cursor"
-            android:backgroundTint="@color/theme_color"
-            android:hint="Write message" />
+            android:layout_above="@id/bottomNavID">
 
-        <Button
-            android:id="@+id/sendButtonID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:onClick="sendChat"
-            android:text="send" />
+            <EditText
+                android:id="@+id/chatEditTextID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_toStartOf="@+id/sendButtonID"
+                android:background="@drawable/round_border"
+                android:hint="Write message"
+                android:inputType="textMultiLine"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="30dp"
+                android:textSize="16sp"
+                android:textCursorDrawable="@drawable/text_cursor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/sendButtonID"
+                android:layout_width="55dp"
+                android:layout_height="38dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/baseline_send_24"
+                android:paddingBottom="5dp"
+                android:onClick="sendChat"
+                />
+
+        </RelativeLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_bottom_nav"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_items" />
 
 </RelativeLayout>
-
-    <!--    <EditText-->
-    <!--        android:id="@+id/chatEditTextID"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_alignParentStart="true"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        android:layout_toStartOf="@+id/sendButtonID"-->
-    <!--        android:padding="10dp"-->
-    <!--        android:hint="Write message" />-->
-
-    <!--    <Button-->
-    <!--        android:id="@+id/sendButtonID"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_alignParentEnd="true"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        android:onClick="sendChat"-->
-    <!--        android:text="send" />-->
