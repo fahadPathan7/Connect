@@ -1,3 +1,7 @@
+/*
+this class is used to register a new account.
+ */
+
 package authentication;
 
 import androidx.annotation.NonNull;
@@ -50,16 +54,14 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
         getWindow().setNavigationBarColor(getResources().getColor(R.color.theme_color));
 
-        //hideActionBar();
-
         mAuth = FirebaseAuth.getInstance();
 
-        signIn = findViewById(R.id.signInID);
-        create = findViewById(R.id.createID);
+        signIn = findViewById(R.id.signInID); // to go to the signIn page
+        create = findViewById(R.id.createID); // to create a new account
 
-        email = findViewById(R.id.emailID);
-        password = findViewById(R.id.passwordID);
-        confirmPassword = findViewById(R.id.confirmPasswordID);
+        email = findViewById(R.id.emailID); // input email
+        password = findViewById(R.id.passwordID); // input password
+        confirmPassword = findViewById(R.id.confirmPasswordID); // retype of the password for checking match
 
         // setting on click listener
         create.setOnClickListener(this);
@@ -137,32 +139,36 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 });
     }
 
+
+    /*
+    if it is a new user then we will write on volunteer list and. mark him as a non-volunteer.
+    later he can register for volunteer.
+     */
     public void writeOnVolunteerList() {
         try {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
-            DocumentReference documentReference = db.collection("Volunteer List").document(uid);
+            DocumentReference documentReference = db.collection("Volunteer List").document(uid); // to write on
+                // volunteer list
 
 
             Map<String, Object> info = new HashMap<>();
 
-            info.put("Registered", "no");
+            info.put("Registered", "no"); // no means not a volunteer
             documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
-                    //Toast.makeText(getApplicationContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
-                    //start_HomeScreenUser_activity();
+                    // nothing to show
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    //Toast.makeText(getApplicationContext(), "Profile Update Failed!", Toast.LENGTH_SHORT).show();
-                    //start_HomeScreenUser_activity();
+                    // nothing to show
                 }
             });
         } catch (Exception e) {
-            //
+            // no need to show the user.
         }
     }
 

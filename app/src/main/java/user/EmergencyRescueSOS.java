@@ -1,3 +1,7 @@
+/*
+users can send a rescue request.
+ */
+
 package user;
 
 import androidx.annotation.NonNull;
@@ -51,10 +55,6 @@ import navigationBars.DrawerBaseActivity;
 
 public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnClickListener {
 
-    public final String KEY_NAME = "Name";
-    public final String KEY_CONTACT = "Contact";
-    public final String KEY_LOCATION = "Location";
-
     ActivityEmergencyRescueSosBinding activityEmergencyRescueSosBinding;
 
     BottomNavigationItemView home;
@@ -64,7 +64,6 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
     TextInputEditText locationEditText;
     TextInputEditText nameEditText;
     TextInputEditText contactEditText;
-    TextInputLayout locationTextInputLayout;
 
     Button submitButton;
     private LocationRequest locationRequest;
@@ -72,26 +71,27 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityEmergencyRescueSosBinding=ActivityEmergencyRescueSosBinding.inflate(getLayoutInflater());
+        activityEmergencyRescueSosBinding = ActivityEmergencyRescueSosBinding.inflate(getLayoutInflater());
         setContentView(activityEmergencyRescueSosBinding.getRoot());
         allocateActivityTitle("Emergency Rescue SOS");
 
-
+        // connecting with ids.
         locationEditText = findViewById(R.id.locationEditTextID);
         nameEditText = findViewById(R.id.nameEditTextID);
         contactEditText = findViewById(R.id.contactEditTextID);
         submitButton = findViewById(R.id.submitButtonID);
-        home=findViewById(R.id.homeMenuID);
-        helpline=findViewById(R.id.liveChatMenuID);
-        aboutUs=findViewById(R.id.aboutUsMenuID);
+        home = findViewById(R.id.homeMenuID);
+        helpline = findViewById(R.id.liveChatMenuID);
+        aboutUs = findViewById(R.id.aboutUsMenuID);
 
+        // requesting for location
         locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(5000);
         locationRequest.setFastestInterval(2000);
 
 
-        getCurrentLocation();
+        getCurrentLocation(); // to get the current location of user
 
 
         home.setOnClickListener(this);
@@ -99,12 +99,14 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
         aboutUs.setOnClickListener(this);
 
 
-
     }
 
+    /*
+    writing the requests on the database
+     */
     public void sendRequest(View v) {
         if (isGPSEnabled()) {
-            getCurrentLocation();
+            getCurrentLocation(); // get current location
         }
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -146,7 +148,8 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(getApplicationContext(), "Request Submitted", Toast.LENGTH_SHORT).show();
-                writeOnYourRequests(uid, documentReference.getId(), info.get("Information").toString(), "Rescue");
+                writeOnYourRequests(uid, documentReference.getId(), info.get("Information").toString(), "Rescue"); // to
+                    // track the request
                 start_HomeScreenUser_activity();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -158,6 +161,9 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
         });
     }
 
+    /*
+    to track of the requests of users.
+     */
     public void writeOnYourRequests(String userID, String documentID, String information, String type) {
 
         Map<String, Object> info = new HashMap<>();
@@ -172,32 +178,35 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
         documentReference1.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                //
+                // nothing to show
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                //
+                // nothing to show
             }
         });
     }
 
+
+    // working with live location
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == 1){
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == 1) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (isGPSEnabled()) {
                     getCurrentLocation();
-                }
-                else {
+                } else {
                     turnOnGPS();
                 }
             }
         }
     }
 
+
+    // getting the user's current location
     private void getCurrentLocation() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -212,28 +221,30 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
                                     LocationServices.getFusedLocationProviderClient(EmergencyRescueSOS.this)
                                             .removeLocationUpdates(this);
 
-                                    if (locationResult != null && locationResult.getLocations().size() > 0){
+                                    if (locationResult != null && locationResult.getLocations().size() > 0) {
                                         int index = locationResult.getLocations().size() - 1;
                                         double latitude = locationResult.getLocations().get(index).getLatitude();
                                         double longitude = locationResult.getLocations().get(index).getLongitude();
 
-                                        locationEditText.setText("Latitude: "+ latitude + ", Longitude: "+ longitude);
+                                        locationEditText.setText("Latitude: " + latitude + ", Longitude: " + longitude); // writing
+                                            // the current location on the editText.
                                         locationEditText.setEnabled(false);
                                     }
                                 }
                             }, Looper.getMainLooper());
+                } else {
+                    turnOnGPS(); // if gps is not enabled
                 }
-                else {
-                    turnOnGPS();
-                }
-            }
-            else {
+            } else {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             }
         }
     }
 
 
+    /*
+    to turn on the gps
+     */
     private void turnOnGPS() {
 
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
@@ -276,6 +287,9 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
     }
 
 
+    /*
+    checking if the gps is enabled or not.
+     */
     private boolean isGPSEnabled() {
         LocationManager locationManager = null;
         boolean isEnabled = false;
@@ -291,40 +305,34 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.homeMenuID)
-        {
+        if (v.getId() == R.id.homeMenuID) {
             start_HomeScreenUser_activity();
+        } else if (v.getId() == R.id.liveChatMenuID) {
+            start_LiveChat_activity();
+        } else if (v.getId() == R.id.aboutUsMenuID) {
+            start_AboutUs_activity();
         }
 
-        else if(v.getId()==R.id.liveChatMenuID)
-    {
-        start_LiveChat_activity();
-    }
-        else if(v.getId()==R.id.aboutUsMenuID)
-    {
-        start_AboutUs_activity();
+
     }
 
-
-}
-    public void start_HomeScreenUser_activity()
-    {
+    public void start_HomeScreenUser_activity() {
         HomeScreenUser.makeBackPressedCntZero();
         Intent intent = new Intent(getApplicationContext(), HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
-    public void start_LiveChat_activity()
-    {
+
+    public void start_LiveChat_activity() {
         Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     }
-    public void start_AboutUs_activity()
-    {
+
+    public void start_AboutUs_activity() {
         Intent intent = new Intent(this, AboutUs.class);
         startActivity(intent);
 

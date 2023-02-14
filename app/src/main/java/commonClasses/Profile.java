@@ -1,3 +1,7 @@
+/*
+to show the users their profile
+ */
+
 package commonClasses;
 
 import androidx.annotation.NonNull;
@@ -35,8 +39,6 @@ import navigationBars.DrawerBaseActivity;
 import user.HomeScreenUser;
 
 public class Profile extends DrawerBaseActivity implements View.OnClickListener {
-    private static final String TAG = "MainActivity";
-
     private final String KEY_EMAIL = "Email";
     private final String KEY_NAME = "Name";
     private final String KEY_CONTACT1 = "Contact1";
@@ -47,7 +49,8 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
     private final String KEY_AREA = "Area";
     private final String KEY_ROAD = "Road";
     private final String KEY_HOUSE = "House";
-
+    TextView emailTextView1;
+    ActivityProfileBinding activityProfileBinding;
     private TextView emailTextView;
     private TextView nameTextView;
     private TextView contact1TextView;
@@ -59,14 +62,8 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
     private TextView roadTextView;
     private TextView houseTextView;
     private Button editProfileButton;
-
-    TextView emailTextView1;
-
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference documentReference;
-
-    ActivityProfileBinding activityProfileBinding;
-
     private FirebaseAuth mAuth;
 
     @SuppressLint("MissingInflatedId")
@@ -82,7 +79,6 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
 
 
         mAuth = FirebaseAuth.getInstance();
-        // String email = mAuth.getCurrentUser().getEmail();
 
         // for reading and writing on specific fireBase collection and document.
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -121,6 +117,7 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
                     return;
                 }
                 if (value.exists()) {
+                    // getting all the info from database.
                     String email = value.getString(KEY_EMAIL);
                     String name = value.getString(KEY_NAME).toUpperCase();
                     String contact1 = value.getString(KEY_CONTACT1);
@@ -132,6 +129,7 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
                     String road = value.getString(KEY_ROAD);
                     String house = value.getString(KEY_HOUSE);
 
+                    // setting the info's in the textViews.
                     emailTextView.setText(email);
                     nameTextView.setText(name);
                     contact1TextView.setText(contact1);
@@ -142,10 +140,6 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
                     areaTextView.setText(area);
                     roadTextView.setText(road);
                     houseTextView.setText(house);
-                    //Map<String, Object> note = documentSnapshot.getData();
-
-                    //textViewData.setText("Title: " + title + "\n" + "Description: " + description);
-                    //emailTextView1.setText(email);
                 }
             }
         });
@@ -155,6 +149,7 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
     public void onBackPressed() {
         super.onBackPressed();
         HomeScreenUser.makeBackPressedCntZero();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     @Override
@@ -164,11 +159,12 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
         }
     }
 
+
     public void start_UpdateProfile_activity() {
         Intent intent = new Intent(this, UpdateProfile.class);
         startActivity(intent);
         //finish();
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     public void start_HomeScreenUser_activity() {
@@ -177,35 +173,6 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-    }
-
-
-
-
-
-
-    public void saveNote(View v) {
-        //String title = editTextTitle.getText().toString();
-        //String description = editTextDescription.getText().toString();
-
-        Map<String, Object> note = new HashMap<>();
-        //note.put(KEY_TITLE, title);
-        //note.put(KEY_DESCRIPTION, description);
-
-        documentReference.set(note)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(Profile.this, "Note saved", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Profile.this, "Error!", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, e.toString());
-                    }
-                });
     }
 
 }

@@ -1,3 +1,7 @@
+/*
+to show the users about the current status of their area. safe, under warning or under danger.
+ */
+
 package user;
 
 import androidx.annotation.Nullable;
@@ -51,6 +55,10 @@ public class YourArea extends DrawerBaseActivity {
         updateData();
     }
 
+
+    /*
+    showing the user about the current status of their area.
+     */
     private void updateData() {
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @SuppressLint("ResourceAsColor")
@@ -91,6 +99,9 @@ public class YourArea extends DrawerBaseActivity {
         });
     }
 
+    /*
+    getting the user location(district) from database.
+     */
     private void getDistrictInfo() {
         documentReference1.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override

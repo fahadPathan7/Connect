@@ -28,7 +28,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.Objects;
 
 import authentication.SignIn;
+import commonClasses.AboutUs;
 import commonClasses.Feedback;
+import commonClasses.LiveChat;
 import commonClasses.Profile;
 import user.HomeScreenUser;
 

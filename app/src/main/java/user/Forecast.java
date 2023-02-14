@@ -1,3 +1,7 @@
+/*
+to show about the current weather.
+ */
+
 package user;
 
 import android.os.Bundle;
@@ -70,12 +74,14 @@ public class Forecast extends DrawerBaseActivity {
         pressureView = findViewById(R.id.pressureID);
 
 
-        getUserLocation();
-        setForeCast();
+        getUserLocation(); // getting the user location
+        setForeCast(); // showing the forecast.
     }
 
+    /*
+    showing the user about forecast.
+     */
     public void setForeCast() {
-        //Toast.makeText(getApplicationContext(), city, Toast.LENGTH_SHORT).show();
 
         String tempUrl = url + "?q=" + city + "&appid=" + appID;
         StringRequest stringRequest = new StringRequest(Request.Method.POST, tempUrl, new Response.Listener<String>() {
@@ -122,6 +128,7 @@ public class Forecast extends DrawerBaseActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                // solving a simple bug here.
                 cnt++;
                 if (cnt > 1) {
                     //Toast.makeText(getApplicationContext(), "Update Profile!", Toast.LENGTH_SHORT).show();
@@ -135,6 +142,10 @@ public class Forecast extends DrawerBaseActivity {
         requestQueue.add(stringRequest);
     }
 
+
+    /*
+    getting the user location(district) from database.
+     */
     private void getUserLocation() {
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override

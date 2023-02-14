@@ -35,7 +35,8 @@
             android:layout_height="100dp"
             android:layout_marginBottom="5dp"
             android:padding="10dp"
-            android:layout_above="@id/bottomNavID">
+            android:layout_alignParentBottom="true"
+            >
 
             <EditText
                 android:id="@+id/chatEditTextID"
@@ -66,15 +67,5 @@
                 />
 
         </RelativeLayout>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/shape_bottom_nav"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_items" />
 
 </RelativeLayout>

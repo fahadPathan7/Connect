@@ -1,3 +1,7 @@
+/*
+to send help request. like food, cloth, education materials. etc.
+ */
+
 package user;
 
 import androidx.annotation.NonNull;
@@ -38,11 +42,6 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
     BottomNavigationItemView helpline;
     BottomNavigationItemView aboutUs;
 
-    public final String KEY_NAME = "Name";
-    public final String KEY_CONTACT = "Contact";
-    public final String KEY_LOCATION = "Location";
-    public final String KEY_DETAILS = "Details";
-
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference documentReference;
 
@@ -72,12 +71,16 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
 
     }
 
+    /*
+    writing the request in the database.
+     */
     public void sendRequest(View v) {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
         documentReference = db.collection("Help Requests").document();
 
+        // getting the info's
         String name = nameEditText.getText().toString().trim();
         String contact = contactEditText.getText().toString().trim();
         String location = locationEditText.getText().toString().trim();
@@ -129,6 +132,9 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
         });
     }
 
+    /*
+    to track about the request writing on database.
+     */
     public void writeOnYourRequests(String userID, String documentID, String information, String type) {
 
         Map<String, Object> info = new HashMap<>();

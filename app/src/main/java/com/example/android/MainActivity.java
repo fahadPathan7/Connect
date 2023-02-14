@@ -6,32 +6,23 @@ after the intro it will automatically goto sign in page.
 package com.example.android;
 
 import authentication.SignIn;
-import commonClasses.Profile;
-import commonClasses.StartActivities;
-import commonClasses.UpdateProfile;
-import navigationBars.DrawerBaseActivity;
 
 import android.annotation.SuppressLint;
-import android.app.ActivityOptions;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final long SPLASH_SCREEN = 2000;
+    private static final long SPLASH_SCREEN = 2000; // time to display splash screen
     ImageView imageView;
     TextView textView1, textView2;
     Animation top, bottom;
@@ -56,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         textView1.setAnimation(bottom);
         textView2.setAnimation(bottom);
 
+        // this method is to make delay
         new Handler().postDelayed(new Runnable()
         {
             @Override
@@ -72,7 +64,9 @@ public class MainActivity extends AppCompatActivity {
         System.exit(0);
     }
 
-    public void start_activity() {
+
+    // after splash screen this activity will auto start
+    private void start_activity() {
         Intent intent = new Intent(this, SignIn.class);
         startActivity(intent);
         //Toast.makeText(this, "MainActivity", Toast.LENGTH_SHORT).show();

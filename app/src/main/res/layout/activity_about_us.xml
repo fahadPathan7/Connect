@@ -89,13 +89,4 @@
 
     </RelativeLayout>
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/shape_bottom_nav"
-        app:menu="@menu/bottom_nav_items" />
-
 </RelativeLayout>

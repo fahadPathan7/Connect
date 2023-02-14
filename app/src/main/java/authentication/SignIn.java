@@ -1,3 +1,7 @@
+/*
+this class is used to login for the already registered users.
+ */
+
 package authentication;
 
 import androidx.annotation.NonNull;
@@ -44,7 +48,9 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth; // firebase variable
 
-    // it will check if the user already logged in or not
+    /*
+    it will check if the user already logged in or not
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -52,7 +58,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
 
-            start_HomeScreenUser_activity();
+            start_HomeScreenUser_activity(); // if the user is already logged in then start HomeScreenUser
         }
     }
 

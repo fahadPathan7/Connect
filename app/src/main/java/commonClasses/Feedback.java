@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import com.example.android.R;
 import com.example.android.databinding.ActivityFeedbackBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,13 +26,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import navigationBars.DrawerBaseActivity;
+import user.HomeScreenUser;
 
-public class Feedback extends DrawerBaseActivity {
+public class Feedback extends DrawerBaseActivity implements View.OnClickListener {
 
     TextInputEditText feedbackEditText;
     Button sendButton;
 
     ActivityFeedbackBinding activityFeedbackBinding;
+
+    BottomNavigationItemView home, aboutUs, liveChat;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -40,7 +45,9 @@ public class Feedback extends DrawerBaseActivity {
         setContentView(activityFeedbackBinding.getRoot());
         allocateActivityTitle("Feedback");
 
-        feedbackEditText = findViewById(R.id.feedbackEditTextID);
+        feedbackEditText = findViewById(R.id.feedbackEditTextID); // user's writings on feedback
+
+        // sending the feedback
         sendButton = findViewById(R.id.sendButtonID);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,11 +55,32 @@ public class Feedback extends DrawerBaseActivity {
                 sendFeedback();
             }
         });
+
+        connectWithIDs();
+
+        home.setOnClickListener(this);
+        aboutUs.setOnClickListener(this);
+        liveChat.setOnClickListener(this);
     }
 
+    private void connectWithIDs() {
+        home = findViewById(R.id.homeMenuID);
+        aboutUs = findViewById(R.id.aboutUsMenuID);
+        liveChat = findViewById(R.id.liveChatMenuID);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    /*
+    used to write the user feedback on the database.
+     */
     public void sendFeedback() {
         try {
-            String feedback = feedbackEditText.getText().toString().trim();
+            String feedback = feedbackEditText.getText().toString().trim(); // feedback text
             if (feedback.isEmpty()) {
                 feedbackEditText.setError("Can not be empty!");
                 feedbackEditText.requestFocus();
@@ -63,7 +91,8 @@ public class Feedback extends DrawerBaseActivity {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
-            DocumentReference documentReference = db.collection("Feedback").document(uid);
+            DocumentReference documentReference = db.collection("Feedback").document(uid); // reference of document
+                // where to write.
 
 
             Map<String, Object> info = new HashMap<>();
@@ -85,6 +114,42 @@ public class Feedback extends DrawerBaseActivity {
             });
         } catch (Exception e) {
             //
+        }
+    }
+
+    public void start_AboutUs_activity() {
+        Intent intent = new Intent(this, AboutUs.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+    }
+
+    public void start_LiveChat_activity() {
+        Intent intent = new Intent(this, LiveChat.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    public void start_HomeScreenUser_activity() {
+        Intent intent = new Intent(this, HomeScreenUser.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        //finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.aboutUsMenuID) {
+            start_AboutUs_activity();
+        }
+        else if (v.getId() == R.id.liveChatMenuID) {
+            start_LiveChat_activity();
+        }
+        else if (v.getId() == R.id.homeMenuID) {
+            start_HomeScreenUser_activity();
         }
     }
 }

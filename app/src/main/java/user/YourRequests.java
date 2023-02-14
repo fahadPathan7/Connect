@@ -6,10 +6,12 @@ import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -21,6 +23,8 @@ import com.example.android.R;
 import com.example.android.databinding.ActivityYourRequestsBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -36,15 +40,20 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
+import commonClasses.AboutUs;
+import commonClasses.LiveChat;
 import navigationBars.DrawerBaseActivity;
 
-public class YourRequests extends DrawerBaseActivity {
+public class YourRequests extends DrawerBaseActivity implements View.OnClickListener {
 
     LinearLayout linearLayout;
+
+    BottomNavigationItemView home, aboutUs, liveChat;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     ActivityYourRequestsBinding activityYourRequestsBinding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +86,18 @@ public class YourRequests extends DrawerBaseActivity {
 
 
         allocateActivityTitle("Your Requests");
+
+        connectWithIDs();
+
+        home.setOnClickListener(this);
+        aboutUs.setOnClickListener(this);
+        liveChat.setOnClickListener(this);
+    }
+
+    private void connectWithIDs() {
+        home = findViewById(R.id.homeMenuID);
+        aboutUs = findViewById(R.id.aboutUsMenuID);
+        liveChat = findViewById(R.id.liveChatMenuID);
     }
 
     public void showRequests() {
@@ -317,6 +338,43 @@ public class YourRequests extends DrawerBaseActivity {
             });
         } catch (Exception e) {
             //Toast.makeText(getApplicationContext(), "YourGoals write fault", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    public void start_AboutUs_activity() {
+        Intent intent = new Intent(this, AboutUs.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+    }
+
+    public void start_LiveChat_activity() {
+        Intent intent = new Intent(this, LiveChat.class);
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    public void start_HomeScreenUser_activity() {
+        Intent intent = new Intent(this, HomeScreenUser.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        //finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.aboutUsMenuID) {
+            start_AboutUs_activity();
+        }
+        else if (v.getId() == R.id.liveChatMenuID) {
+            start_LiveChat_activity();
+        }
+        else if (v.getId() == R.id.homeMenuID) {
+            start_HomeScreenUser_activity();
         }
     }
 }

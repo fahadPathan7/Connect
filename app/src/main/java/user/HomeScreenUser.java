@@ -1,3 +1,8 @@
+/*
+to show the home screen to the users.
+ */
+
+
 package user;
 
 import android.app.AlertDialog;
@@ -38,7 +43,8 @@ import volunteer.HomeScreenVolunteer;
 
 public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickListener {
 
-//declaring variables
+    public static int backPressedCnt = 0;
+    //declaring variables
     CardView safetyTipsCardView;
     CardView forecastCardView;
     CardView emergencyContactsCardView;
@@ -46,16 +52,15 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
     CardView requestHelpCardView;
     CardView emergencyRescueSOSCardView;
     CardView yourRequestsCardView;
-
     BottomNavigationItemView home;
     BottomNavigationItemView helpline;
     BottomNavigationItemView aboutUs;
-
     SwitchCompat switchCompat;
-
     ActivityHomeScreenUserBinding activityHomeScreenUserBinding;
-    public static int backPressedCnt = 0;
 
+    public static void makeBackPressedCntZero() {
+        backPressedCnt = 0;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +73,18 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         initializeViewIDs();
 
 
+        // working with the switches. by clicking on it the user will go the home page of volunteers
+        // (if he is already registered)
         switchCompat = findViewById(R.id.switchID);
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 switchCompat.setChecked(false);
-                checkVolunteerList();
+                checkVolunteerList(); // checking for volunteer list. if he is a volunteer he will get access.
             }
         });
+
+
         //button click
         forecastCardView.setOnClickListener(this);
         safetyTipsCardView.setOnClickListener(this);
@@ -90,69 +99,55 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         aboutUs.setOnClickListener(this);
     }
 
-
-
     private void initializeViewIDs() {
         yourRequestsCardView = findViewById(R.id.yourRequestsCardViewID);
-        forecastCardView= findViewById(R.id.forecastCardViewID);
-        safetyTipsCardView= findViewById(R.id.safetyTipsCardViewID);
+        forecastCardView = findViewById(R.id.forecastCardViewID);
+        safetyTipsCardView = findViewById(R.id.safetyTipsCardViewID);
         emergencyContactsCardView = findViewById(R.id.emergencyContactsCardViewID);
         yourAreaCArdView = findViewById(R.id.yourAreaCardViewID);
         requestHelpCardView = findViewById(R.id.requestHelpCardViewID);
         emergencyRescueSOSCardView = findViewById(R.id.emergencyRescueSOSCardViewID);
 
         //home=findViewById(R.id.homeMenuID);
-        helpline=findViewById(R.id.liveChatMenuID);
-        aboutUs=findViewById(R.id.aboutUsMenuID);
+        helpline = findViewById(R.id.liveChatMenuID);
+        aboutUs = findViewById(R.id.aboutUsMenuID);
 
     }
 
-
-    public void onClick( View v)
-    {
+    public void onClick(View v) {
         if (v.getId() == R.id.forecastCardViewID) {
             start_forecast_activity();
-        }
-        else if (v.getId() == R.id.safetyTipsCardViewID) {
+        } else if (v.getId() == R.id.safetyTipsCardViewID) {
             start_SafetyTips_activity();
-        }
-        else if (v.getId() == R.id.emergencyContactsCardViewID) {
+        } else if (v.getId() == R.id.emergencyContactsCardViewID) {
             start_EmergencyContacts_activity();
 
-        }
-        else if (v.getId() == R.id.yourAreaCardViewID) {
+        } else if (v.getId() == R.id.yourAreaCardViewID) {
             start_YourArea_activity();
 
-        }
-        else if (v.getId() == R.id.requestHelpCardViewID) {
+        } else if (v.getId() == R.id.requestHelpCardViewID) {
             start_RequestHelp_activity();
 
-        }
-        else if (v.getId() == R.id.emergencyRescueSOSCardViewID) {
+        } else if (v.getId() == R.id.emergencyRescueSOSCardViewID) {
             start_EmergencyRescueSOS_activity();
 
-        }
-        else if (v.getId() == R.id.yourRequestsCardViewID) {
+        } else if (v.getId() == R.id.yourRequestsCardViewID) {
             start_YourRequests_activity();
-        }
-        else if(v.getId()==R.id.liveChatMenuID)
-        {
+        } else if (v.getId() == R.id.liveChatMenuID) {
             start_LiveChat_activity();
-        }
-        else if(v.getId()==R.id.aboutUsMenuID)
-        {
+        } else if (v.getId() == R.id.aboutUsMenuID) {
             start_AboutUs_activity();
         }
 
     }
 
+    // checking for double click. if double click then exit.
     @Override
     public void onBackPressed() {
         backPressedCnt++;
         if (backPressedCnt == 1) {
             Toast.makeText(this, "Press again to exit!", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             Intent intent = new Intent(this, SignIn.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtra("Exit me", true);
@@ -160,6 +155,10 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         }
     }
 
+
+    /*
+    checking for volunteer. if volunteer the go the volunteer page. otherwise show alert dialog to register.
+     */
     public void checkVolunteerList() {
 
         try {
@@ -179,15 +178,12 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
                         String status = value.getString("Registered");
                         if (status.equals("yes")) {
                             switchCompat.setChecked(false);
-                            start_HomeScreenVolunteer_activity();
+                            start_HomeScreenVolunteer_activity(); // going to volunteer page
+                        } else {
+                            showDialog(); // to register as volunteer
                         }
-                        else {
-                            showDialog();
-                        }
-                    }
-                    else {
-                        showDialog();
-                        //Toast.makeText(getApplicationContext(), "exception", Toast.LENGTH_SHORT).show();
+                    } else {
+                        showDialog(); // to register as volunteer
                     }
                 }
             });
@@ -196,6 +192,9 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         }
     }
 
+
+    // showing the dialog to register as volunteer. if accepts then write on volunteer list and then go
+    // to the volunteer page otherwise do nothing
     public void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Not a volunteer");
@@ -203,10 +202,10 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                writeOnVolunteerList();
+                writeOnVolunteerList(); // writing on volunteer list
                 Toast.makeText(getApplicationContext(), "Welcome to the world of Heroes.", Toast.LENGTH_SHORT).show();
                 switchCompat.setChecked(false);
-                start_HomeScreenVolunteer_activity();
+                start_HomeScreenVolunteer_activity(); // going to volunteer page
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -220,6 +219,9 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         dialog.show();
     }
 
+    /*
+    to write on volunteer list if he accepts.
+     */
     public void writeOnVolunteerList() {
         try {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -234,14 +236,12 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
             documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
-                    //Toast.makeText(getApplicationContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
-                    //start_HomeScreenUser_activity();
+                    // nothing to do
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    //Toast.makeText(getApplicationContext(), "Profile Update Failed!", Toast.LENGTH_SHORT).show();
-                    //start_HomeScreenUser_activity();
+                    // nothing to do
                 }
             });
         } catch (Exception e) {
@@ -263,14 +263,16 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         //finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
+
     public void start_forecast_activity() {
         makeBackPressedCntZero();
-        Intent intent=new Intent(this, Forecast.class);
+        Intent intent = new Intent(this, Forecast.class);
         startActivity(intent);
         //finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
-    public void start_EmergencyContacts_activity(){
+
+    public void start_EmergencyContacts_activity() {
         makeBackPressedCntZero();
         Intent intent = new Intent(this, EmergencyContacts.class);
         startActivity(intent);
@@ -278,35 +280,32 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     }
+
     public void start_YourArea_activity() {
         makeBackPressedCntZero();
-        Intent intent=new Intent(this,YourArea.class);
+        Intent intent = new Intent(this, YourArea.class);
         startActivity(intent);
         //finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
+
     public void start_RequestHelp_activity() {
         makeBackPressedCntZero();
-        Intent intent=new Intent(this, RequestHelp.class);
+        Intent intent = new Intent(this, RequestHelp.class);
         startActivity(intent);
         //finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
+
     public void start_EmergencyRescueSOS_activity() {
         makeBackPressedCntZero();
-        Intent intent=new Intent(this, EmergencyRescueSOS.class);
+        Intent intent = new Intent(this, EmergencyRescueSOS.class);
         startActivity(intent);
         //finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
-
-    public static void makeBackPressedCntZero() {
-        backPressedCnt = 0;
-    }
-
-    public void start_AboutUs_activity()
-    {
+    public void start_AboutUs_activity() {
         Intent intent = new Intent(this, AboutUs.class);
         startActivity(intent);
 

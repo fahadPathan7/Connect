@@ -1,3 +1,7 @@
+/*
+to make a platform where all the users and volunteers can communicate among them without any barrier.
+ */
+
 package commonClasses;
 
 import androidx.annotation.NonNull;
@@ -9,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -24,6 +29,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -46,10 +52,12 @@ import navigationBars.DrawerBaseActivity;
 
 public class LiveChat extends DrawerBaseActivity {
 
+    // creating variables.
     LinearLayout linearLayout;
     EditText chatEditText;
     TextView nameText;
     ActivityLiveChatBinding activityLiveChatBinding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +65,11 @@ public class LiveChat extends DrawerBaseActivity {
         activityLiveChatBinding = ActivityLiveChatBinding.inflate(getLayoutInflater());
         setContentView(activityLiveChatBinding.getRoot());
 
+
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.activity_live_chat, null);
 
+        // this layout will contain all the chats. in addData method we will add chats in it.
         linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -70,20 +80,24 @@ public class LiveChat extends DrawerBaseActivity {
         linearLayout.setPadding(0, 0, 0, 30);
         linearLayout.setLayoutParams(params);
 
-        setName();
-        showChat();
+        setName(); // setting the users name in a hidden textView.
+        showChat(); // showing the chats.
 
+        // this is the mother layout. it will contain the linearLayout of the chats.
         ScrollView scrollView = view.findViewById(R.id.scroll_view);
         scrollView.fullScroll(View.FOCUS_DOWN);
         scrollView.addView(linearLayout);
 
-        setContentView(view);
+        setContentView(view); // showing the view.
 
 
         allocateActivityTitle("Live Chat");
     }
 
 
+    /*
+    to show the chats
+     */
     public void showChat() {
 
         try {
@@ -93,10 +107,12 @@ public class LiveChat extends DrawerBaseActivity {
             String collectionName = "Live Chat";
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            CollectionReference liveChat = db.collection(collectionName);
+            CollectionReference liveChat = db.collection(collectionName); // reference of the database where the chats
+                // are stored.
 
-            //Toast.makeText(getApplicationContext(), "here", Toast.LENGTH_SHORT).show();
 
+            // this will read chats from database and show the users according to the ascending
+            // order of the field writeTime. so the sequence will be maintained.
             liveChat.orderBy("writeTime", Query.Direction.ASCENDING)
                     .addSnapshotListener(this, new EventListener<QuerySnapshot>() {
                 @Override
@@ -105,14 +121,16 @@ public class LiveChat extends DrawerBaseActivity {
                         return;
                     }
 
-                    linearLayout.removeAllViews();
+                    linearLayout.removeAllViews(); // removing all the chats from linearLayout because in the next loop
+                        // the chats will be read again and it will write the chats on the screen again. If I don't remove here
+                        // all the chats will be written again and again.
 
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
 
                         String information = documentSnapshot.getString("Chat");
                         String name = documentSnapshot.getString("Name");
 
-                        addData("(" + name + ")\n" + information);
+                        addData("(" + name + ")\n" + information); // passing the chat to show.
                     }
                 }
             });
@@ -123,7 +141,7 @@ public class LiveChat extends DrawerBaseActivity {
 
 
     public void addData(String data) {
-        CardView cardView = new CardView(this);
+        CardView cardView = new CardView(this); // inside the cardView single chats will be shown
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -137,16 +155,20 @@ public class LiveChat extends DrawerBaseActivity {
         cardView.setContentPadding(20, 20, 20, 20);
         cardView.setCardElevation(20);
 
-        // Add your content to the cardView
+        // Adding chat text into the cardView
         TextView textView = new TextView(this);
         textView.setText(data);
         textView.setTextSize(15);
-        cardView.addView(textView);
+        cardView.addView(textView); // adding text
 
-        // Add the cardView to the linearLayout
-        linearLayout.addView(cardView);
+        linearLayout.addView(cardView); // adding all the cardViews into the linearLayout.
     }
 
+
+    /*
+    to set the name of the current user into a hidden textView.
+    from the textView we will read the name and attach it with the chat.
+     */
     public void setName() {
         try {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -171,6 +193,9 @@ public class LiveChat extends DrawerBaseActivity {
         }
     }
 
+    /*
+    to write the chat in the database.
+     */
     public void sendChat(View v) {
         try {
             chatEditText = findViewById(R.id.chatEditTextID);
@@ -194,6 +219,7 @@ public class LiveChat extends DrawerBaseActivity {
 
             Map<String, Object> info = new HashMap<>();
 
+            // getting the time to sort the chats according to it.
             Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH) + 1;
@@ -205,7 +231,6 @@ public class LiveChat extends DrawerBaseActivity {
             String time = String.format("%04d%02d%02d%02d%02d%02d",year, month, day, hour, minute, second);
 
             String name = nameText.getText().toString();
-            //chatEditText.setText("");
 
             info.put("Name", name);
             info.put("Chat", chat);
@@ -215,17 +240,15 @@ public class LiveChat extends DrawerBaseActivity {
                 @Override
                 public void onSuccess(Void unused) {
                     chatEditText.setText("");
-                    //showChat();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(getApplicationContext(), "Message send Failed!", Toast.LENGTH_SHORT).show();
-                    //start_HomeScreenUser_Activity();
                 }
             });
         } catch (Exception e) {
-            //
+            // nothing to show the user.
         }
     }
 

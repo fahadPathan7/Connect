@@ -1,3 +1,7 @@
+/*
+to get the info's from the users and write on the database.
+ */
+
 package commonClasses;
 
 import androidx.annotation.NonNull;
@@ -80,6 +84,12 @@ public class UpdateProfile extends DrawerBaseActivity {
         documentReference = db.collection("User Profile").document(uid);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
     private void connectWithIDs() {
         nameEditText = findViewById(R.id.nameID);
         emailEditText = findViewById(R.id.emailID);
@@ -95,6 +105,7 @@ public class UpdateProfile extends DrawerBaseActivity {
 
 
     public void updateProfile(View v) {
+        // getting the info's from the editTexts.
         String name = nameEditText.getText().toString().trim();
         String email = emailEditText.getText().toString().trim();
         String contact1 = contact1EditText.getText().toString().trim();
