@@ -1,3 +1,7 @@
+/*
+to show the volunteers about his success list.
+ */
+
 package volunteer;
 
 import androidx.cardview.widget.CardView;
@@ -61,7 +65,7 @@ public class YourSuccess extends DrawerBaseActivity implements View.OnClickListe
         linearLayout.setPadding(0, 0, 0, 30);
         linearLayout.setLayoutParams(params);
 
-        showSuccessList();
+        showSuccessList(); // showing his success list
 
         ScrollView scrollView = view.findViewById(R.id.scroll_view);
         scrollView.addView(linearLayout);
@@ -81,7 +85,10 @@ public class YourSuccess extends DrawerBaseActivity implements View.OnClickListe
     }
 
 
-    public void showSuccessList() {
+    /*
+    to show the success list.
+     */
+    private void showSuccessList() {
 
         try {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -99,45 +106,46 @@ public class YourSuccess extends DrawerBaseActivity implements View.OnClickListe
                         return;
                     }
 
-                    linearLayout.removeAllViews();
+                    linearLayout.removeAllViews(); // deleting the previous views before re-writing on the screen.
 
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
 
                         String information = documentSnapshot.getString(KEY_INFORMATION);
                         String type = documentSnapshot.getString("Type");
 
-                        addData(type + "\n\n" + information);
+                        addData(type + "\n\n" + information); // passing to add the data on specific views.
                     }
                 }
             });
         } catch (Exception e) {
-            //
+            // nothing to show.
         }
     }
 
 
-    public void addData(String data) {
+    /*
+    adding the data to show on the screen
+     */
+    private void addData(String data) {
+        // contains each success
         CardView cardView = new CardView(this);
-
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-
         params.setMargins(30, 5, 30, 5);
-
         cardView.setLayoutParams(params);
         cardView.setRadius(10);
         cardView.setContentPadding(20, 20, 20, 20);
         cardView.setCardElevation(20);
 
-        // Add your content to the cardView
+        // adding info's
         TextView textView = new TextView(this);
         textView.setText(data);
         textView.setTextSize(15);
         cardView.addView(textView);
 
-        // Add the cardView to the linearLayout
+        // adding on the layout
         linearLayout.addView(cardView);
     }
 
@@ -156,14 +164,14 @@ public class YourSuccess extends DrawerBaseActivity implements View.OnClickListe
             start_AboutUs_activity();
         }
     }
-    public void start_HomeScreenVolunteer_activity() {
+    private void start_HomeScreenVolunteer_activity() {
         Intent intent = new Intent(getApplicationContext(), HomeScreenVolunteer.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void start_LiveChat_activity()
+    private void start_LiveChat_activity()
     {
         Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
@@ -171,7 +179,7 @@ public class YourSuccess extends DrawerBaseActivity implements View.OnClickListe
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     }
-    public void start_AboutUs_activity()
+    private void start_AboutUs_activity()
     {
         Intent intent = new Intent(this, AboutUs.class);
         startActivity(intent);

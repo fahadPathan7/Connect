@@ -12,10 +12,12 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -58,6 +60,9 @@ public class LiveChat extends DrawerBaseActivity {
     TextView nameText;
     ActivityLiveChatBinding activityLiveChatBinding;
 
+    BottomNavigationView bottomNavigationView;
+    BottomNavigationItemView home, aboutUs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +73,7 @@ public class LiveChat extends DrawerBaseActivity {
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.activity_live_chat, null);
+
 
         // this layout will contain all the chats. in addData method we will add chats in it.
         linearLayout = new LinearLayout(this);
@@ -98,7 +104,7 @@ public class LiveChat extends DrawerBaseActivity {
     /*
     to show the chats
      */
-    public void showChat() {
+    private void showChat() {
 
         try {
 
@@ -140,7 +146,7 @@ public class LiveChat extends DrawerBaseActivity {
     }
 
 
-    public void addData(String data) {
+    private void addData(String data) {
         CardView cardView = new CardView(this); // inside the cardView single chats will be shown
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -169,7 +175,7 @@ public class LiveChat extends DrawerBaseActivity {
     to set the name of the current user into a hidden textView.
     from the textView we will read the name and attach it with the chat.
      */
-    public void setName() {
+    private void setName() {
         try {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();

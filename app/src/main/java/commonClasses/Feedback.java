@@ -78,7 +78,7 @@ public class Feedback extends DrawerBaseActivity implements View.OnClickListener
     /*
     used to write the user feedback on the database.
      */
-    public void sendFeedback() {
+    private void sendFeedback() {
         try {
             String feedback = feedbackEditText.getText().toString().trim(); // feedback text
             if (feedback.isEmpty()) {
@@ -117,7 +117,7 @@ public class Feedback extends DrawerBaseActivity implements View.OnClickListener
         }
     }
 
-    public void start_AboutUs_activity() {
+    private void start_AboutUs_activity() {
         Intent intent = new Intent(this, AboutUs.class);
         startActivity(intent);
 
@@ -125,14 +125,14 @@ public class Feedback extends DrawerBaseActivity implements View.OnClickListener
 
     }
 
-    public void start_LiveChat_activity() {
+    private void start_LiveChat_activity() {
         Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
-    public void start_HomeScreenUser_activity() {
+    private void start_HomeScreenUser_activity() {
         Intent intent = new Intent(this, HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

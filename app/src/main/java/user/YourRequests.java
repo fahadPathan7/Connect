@@ -1,3 +1,12 @@
+/*
+this class is used to track user requests.
+there are four levels of requests.
+1 -> verifying (volunteer sends that he completed his task and now the user will verify it)
+2 -> Assigned (a volunteer has accepted the request of the user)
+3 -> pending (the request is not accepted by any volunteer)
+4 -> completed (the request is now completed)
+ */
+
 package user;
 
 import androidx.annotation.NonNull;
@@ -66,6 +75,7 @@ public class YourRequests extends DrawerBaseActivity implements View.OnClickList
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.activity_help_requests, null);
 
+        // in this layout the cardViews of requests (info) will be added.
         linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -76,16 +86,17 @@ public class YourRequests extends DrawerBaseActivity implements View.OnClickList
         linearLayout.setPadding(0, 0, 0, 30);
         linearLayout.setLayoutParams(params);
 
-        showRequests();
+        showRequests(); // showing the requests.
 
+        // mother layout. in this layout the linearLayout will be added.
         ScrollView scrollView = view.findViewById(R.id.scroll_view);
         scrollView.fullScroll(View.FOCUS_DOWN);
         scrollView.addView(linearLayout);
 
-        setContentView(view);
+        setContentView(view); // setting the view.
 
 
-        allocateActivityTitle("Your Requests");
+        allocateActivityTitle("Your Requests"); // nav bar title.
 
         connectWithIDs();
 
@@ -100,14 +111,18 @@ public class YourRequests extends DrawerBaseActivity implements View.OnClickList
         liveChat = findViewById(R.id.liveChatMenuID);
     }
 
-    public void showRequests() {
+
+    /*
+    showing the user about the requests.
+     */
+    private void showRequests() {
 
         try {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
 
-            CollectionReference collectionReference = db.collection("Your Requests: " + uid);
-            collectionReference.orderBy("Status", Query.Direction.ASCENDING)
+            CollectionReference collectionReference = db.collection("Your Requests: " + uid); // reference
+            collectionReference.orderBy("Status", Query.Direction.ASCENDING) // shorting the requests.
                     .addSnapshotListener(this, new EventListener<QuerySnapshot>() {
                         @Override
                         public void onEvent(QuerySnapshot queryDocumentSnapshots, FirebaseFirestoreException e) {
@@ -115,10 +130,13 @@ public class YourRequests extends DrawerBaseActivity implements View.OnClickList
                                 return;
                             }
 
-                            linearLayout.removeAllViews();
+                            linearLayout.removeAllViews(); // removing views. because if there is a change in database the
+                                // the views will be added again. so after re-adding removing the previous views to show
+                                // the latest.
 
                             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
 
+                                // getting info's
                                 String information = documentSnapshot.getString("Information");
                                 String volunteerID = documentSnapshot.getString("VolunteerID");
                                 String type = documentSnapshot.getString("Type");
@@ -126,40 +144,42 @@ public class YourRequests extends DrawerBaseActivity implements View.OnClickList
 
                                 String documentID = documentSnapshot.getId();
 
-                                addData(information, documentID, uid, volunteerID, type, status);
+                                addData(information, documentID, uid, volunteerID, type, status); // for adding info's in
+                                    // a cardView and after that all the cardViews will be added to the linearLayout.
                             }
                         }
                     });
         } catch (Exception e) {
-            //
+            // nothing to do
         }
 
 
     }
 
+    /*
+    to add the info's in cardView and after that all the cardViews will be added to the linearLayout
+     */
     @SuppressLint("ResourceAsColor")
-    public void addData(String information, String documentID, String userID, String volunteerID, String type, String status) {
+    private void addData(String information, String documentID, String userID, String volunteerID, String type, String status) {
+        // each info will be added in each cardView
         CardView cardView = new CardView(this);
-
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-
         params.setMargins(30, 5, 30, 5);
-
         cardView.setLayoutParams(params);
         cardView.setRadius(10);
         cardView.setContentPadding(20, 20, 20, 20);
         cardView.setCardElevation(20);
 
-        //cardView.addView(linearLayout);
-
+        // this layout contains the info's and the buttons required for a single request.
         LinearLayout innerLinearLayout = new LinearLayout(this);
         innerLinearLayout.setOrientation(LinearLayout.VERTICAL);
 
-        // Add your content to the cardView
+        // adding the info into the cardView
         TextView textView = new TextView(this);
+        // status is according to it's type. here we using numbers primarily because we need to sort according to the states.
         if (status.equals("3")) status = "Pending";
         else if (status.equals("2")) status = "Assigned";
         else if (status.equals("1")) status = "Verifying";
@@ -168,17 +188,22 @@ public class YourRequests extends DrawerBaseActivity implements View.OnClickList
         textView.setTextSize(16);
         textView.setPadding(0, 0, 0, 15);
 
-
+        // if there is choice for the user then maximum two buttons will be needed. for setting the buttons
+        // horizontally we need an extra linearLayout.
         LinearLayout buttonLinearLayout = new LinearLayout(this);
         buttonLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
         buttonLinearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
+        // the positive button. it will be shown to the user if the volunteer thinks he has completed his task.
+        // and if the user verifies then it will be added to the success list of the volunteer.
         Button button = new Button(this);
         if (status.equals("Verifying")) {
+            // button text will be according to the type
             if (type.equals("Help")) button.setText("Got Help");
             else button.setText("Rescued");
         }
 
+        // style of the positive button. (to verify)
         button.setTextColor(Color.WHITE);
         button.setBackgroundColor(Color.parseColor("#4CAF50"));
         Typeface typeface = Typeface.create(button.getTypeface(), Typeface.BOLD);
@@ -186,6 +211,7 @@ public class YourRequests extends DrawerBaseActivity implements View.OnClickList
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
         button.setLayoutParams(buttonParams);
 
+        // the negative button (to discard)
         Button button1 = new Button(this);
         button1.setText("Discard");
         button1.setTextColor(Color.WHITE);
@@ -195,55 +221,71 @@ public class YourRequests extends DrawerBaseActivity implements View.OnClickList
         LinearLayout.LayoutParams button1Params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
         button1.setLayoutParams(button1Params);
 
+        // by clicking the button he verifies that he got what he requested.
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // for avoiding unnecessary inputs setting buttons disabled.
                 button.setEnabled(false);
                 button1.setEnabled(false);
-                //Perform action on click
-                writeOnYourSuccess(information, documentID, userID, volunteerID, type);
+
+                writeOnYourSuccess(information, documentID, userID, volunteerID, type); // writing on volunteer's success list.
             }
         });
 
+        // if the status is in pending or he didn't get the help he requested he can discard.
         final String tempStatus = status;
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // for avoiding unnecessary inputs setting buttons disabled.
                 button1.setEnabled(false);
                 button.setEnabled(false);
                 if (tempStatus.equals("Pending")) {
-                    removeRequest(documentID, type, userID);
+                    removeRequest(documentID, type, userID); // if he thinks that he doesn't want the help/rescue he
+                        // requested then he can discard the request. it will only be possible if the request is in
+                        // pending state. otherwise he can not cancel. but the volunteer who accepted the request can cancel
+                        // from his side. after that the request can be finally cancelled by the user.
                 }
-                else writeOnYourGoals(information, documentID, userID, volunteerID, type);
+                else writeOnYourGoals(information, documentID, userID, volunteerID, type); // if he thinks he did not
+                    // the help he requested then he can discard and after that it will be written on the volunteer's goal list.
             }
         });
 
+        // adding the buttons the layout.
         buttonLinearLayout.addView(button);
         buttonLinearLayout.addView(button1);
 
         if (status.equals("Pending")) {
+            // if the status is in pending state. then the positive button should be hidden.
             buttonLinearLayout.removeView(button);
         }
         else if (status.equals("Assigned") || status.equals("Completed")) {
+            // if the states are in assigned or completed then there is no choice for the user.
             buttonLinearLayout.removeAllViews();
         }
 
-
+        // this is the layout which contains the info and the buttons.
         innerLinearLayout.addView(textView);
         innerLinearLayout.addView(buttonLinearLayout);
 
-
+        // and the cardView contains everything of a single request.
         cardView.addView(innerLinearLayout);
 
+        // all the requests are contained by this layout. and a scrollView contains this layout.
         linearLayout.addView(cardView);
     }
 
-    public void writeOnYourGoals(String information, String documentID, String userID, String volunteerID, String type) {
+
+    /*
+    if the user does not verify that he didn't what he wanted. then the request will be written again on volunteer's goal list.
+     */
+    private void writeOnYourGoals(String information, String documentID, String userID, String volunteerID, String type) {
 
         try {
             String collectionName = "Your Goals: " + volunteerID;
 
-            DocumentReference documentReference = db.collection(collectionName).document(documentID);
+            DocumentReference documentReference = db.collection(collectionName).document(documentID); // reference
 
             Map<String, Object> info = new HashMap<>();
 
@@ -251,12 +293,13 @@ public class YourRequests extends DrawerBaseActivity implements View.OnClickList
             info.put("Information", information);
             info.put("Type", type);
 
-
+            // writing on volunteer's success list
             documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
                     Toast.makeText(getApplicationContext(), "Request assigned again!", Toast.LENGTH_SHORT).show();
-                    writeOnYourRequests(userID, volunteerID, documentID, information, type, "2");
+                    writeOnYourRequests(userID, volunteerID, documentID, information, type, "2"); // updating on user's
+                        // requests. that his request has been completed.
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -265,11 +308,14 @@ public class YourRequests extends DrawerBaseActivity implements View.OnClickList
                 }
             });
         } catch (Exception e) {
-            //Toast.makeText(getApplicationContext(), "YourGoals write fault", Toast.LENGTH_SHORT).show();
+            // nothing to show.
         }
     }
 
-    public void writeOnYourRequests(String userID, String volunteerID, String documentID, String information, String type, String status) {
+    /*
+    to update the user's request list.
+     */
+    private void writeOnYourRequests(String userID, String volunteerID, String documentID, String information, String type, String status) {
 
         Map<String, Object> info = new HashMap<>();
 
@@ -293,16 +339,20 @@ public class YourRequests extends DrawerBaseActivity implements View.OnClickList
         });
     }
 
-    public void removeRequest(String documentID, String type, String userID) {
+    /*
+    if the user thinks he does not need what he requested. then he can discard the request if the request
+    is in pending state.
+     */
+    private void removeRequest(String documentID, String type, String userID) {
         try {
             DocumentReference documentReference;
             if (type.equals("Help")) documentReference = db.collection("Help Requests").document(documentID);
             else documentReference = db.collection("Rescue Requests").document(documentID);
 
-            documentReference.delete();
+            documentReference.delete(); // deleting from help/rescue requests
 
             documentReference = db.collection("Your Requests: " + userID).document(documentID);
-            documentReference.delete();
+            documentReference.delete(); // deleting from user's requests.
 
             Toast.makeText(getApplicationContext(), "Your request has been removed.", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
@@ -311,7 +361,10 @@ public class YourRequests extends DrawerBaseActivity implements View.OnClickList
     }
 
 
-    public void writeOnYourSuccess(String information, String documentID, String userID, String volunteerID, String type) {
+    /*
+    after the user verifies that he got what he requested, then it will be written the the volunteers success list.
+     */
+    private void writeOnYourSuccess(String information, String documentID, String userID, String volunteerID, String type) {
 
         try {
             String collectionName = "Your Success: " + volunteerID;
@@ -328,7 +381,8 @@ public class YourRequests extends DrawerBaseActivity implements View.OnClickList
                 public void onSuccess(Void unused) {
 
                     Toast.makeText(getApplicationContext(), "We are pledged!", Toast.LENGTH_SHORT).show();
-                    writeOnYourRequests(userID, volunteerID, documentID, information, type, "4");
+                    writeOnYourRequests(userID, volunteerID, documentID, information, type, "4"); // updating the
+                        // user's request list. (he now got the help what he wanted. '4' represents that)
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -342,7 +396,7 @@ public class YourRequests extends DrawerBaseActivity implements View.OnClickList
     }
 
 
-    public void start_AboutUs_activity() {
+    private void start_AboutUs_activity() {
         Intent intent = new Intent(this, AboutUs.class);
         startActivity(intent);
 
@@ -350,14 +404,14 @@ public class YourRequests extends DrawerBaseActivity implements View.OnClickList
 
     }
 
-    public void start_LiveChat_activity() {
+    private void start_LiveChat_activity() {
         Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
-    public void start_HomeScreenUser_activity() {
+    private void start_HomeScreenUser_activity() {
         Intent intent = new Intent(this, HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

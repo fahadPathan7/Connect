@@ -81,7 +81,7 @@ public class Forecast extends DrawerBaseActivity {
     /*
     showing the user about forecast.
      */
-    public void setForeCast() {
+    private void setForeCast() {
 
         String tempUrl = url + "?q=" + city + "&appid=" + appID;
         StringRequest stringRequest = new StringRequest(Request.Method.POST, tempUrl, new Response.Listener<String>() {

@@ -164,7 +164,7 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
     /*
     to track of the requests of users.
      */
-    public void writeOnYourRequests(String userID, String documentID, String information, String type) {
+    private void writeOnYourRequests(String userID, String documentID, String information, String type) {
 
         Map<String, Object> info = new HashMap<>();
 
@@ -316,7 +316,7 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
 
     }
 
-    public void start_HomeScreenUser_activity() {
+    private void start_HomeScreenUser_activity() {
         HomeScreenUser.makeBackPressedCntZero();
         Intent intent = new Intent(getApplicationContext(), HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -324,7 +324,7 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void start_LiveChat_activity() {
+    private void start_LiveChat_activity() {
         Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
 
@@ -332,7 +332,7 @@ public class EmergencyRescueSOS extends DrawerBaseActivity implements View.OnCli
 
     }
 
-    public void start_AboutUs_activity() {
+    private void start_AboutUs_activity() {
         Intent intent = new Intent(this, AboutUs.class);
         startActivity(intent);
 

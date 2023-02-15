@@ -4,10 +4,9 @@ to show the users about the developers of this app.
 
 package commonClasses;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
@@ -15,6 +14,8 @@ import android.widget.RelativeLayout;
 
 import com.example.android.R;
 import com.example.android.databinding.ActivityAboutUsBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import navigationBars.DrawerBaseActivity;
 
@@ -25,6 +26,9 @@ public class AboutUs extends DrawerBaseActivity {
     RelativeLayout sanzida; // to work with Sanzida
 
     Animation left, right; // creating anim variables
+
+    BottomNavigationView bottomNavigationView;
+    BottomNavigationItemView home, liveChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,5 +45,6 @@ public class AboutUs extends DrawerBaseActivity {
 
         fahad.setAnimation(left); // views of fahad wil come from the left
         sanzida.setAnimation(right); // views of sanzida will come from rigth
+
     }
 }

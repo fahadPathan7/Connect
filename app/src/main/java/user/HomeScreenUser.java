@@ -159,7 +159,7 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
     /*
     checking for volunteer. if volunteer the go the volunteer page. otherwise show alert dialog to register.
      */
-    public void checkVolunteerList() {
+    private void checkVolunteerList() {
 
         try {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -195,7 +195,7 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
 
     // showing the dialog to register as volunteer. if accepts then write on volunteer list and then go
     // to the volunteer page otherwise do nothing
-    public void showDialog() {
+    private void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Not a volunteer");
         builder.setMessage("Confirm as a volunteer and take the responsibilities to the Humanity.");
@@ -222,7 +222,7 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
     /*
     to write on volunteer list if he accepts.
      */
-    public void writeOnVolunteerList() {
+    private void writeOnVolunteerList() {
         try {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -249,14 +249,14 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         }
     }
 
-    public void start_HomeScreenVolunteer_activity() {
+    private void start_HomeScreenVolunteer_activity() {
         Intent intent = new Intent(getApplicationContext(), HomeScreenVolunteer.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
-    public void start_SafetyTips_activity() {
+    private void start_SafetyTips_activity() {
         makeBackPressedCntZero();
         Intent intent = new Intent(this, SafetyTips.class);
         startActivity(intent);
@@ -264,7 +264,7 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
-    public void start_forecast_activity() {
+    private void start_forecast_activity() {
         makeBackPressedCntZero();
         Intent intent = new Intent(this, Forecast.class);
         startActivity(intent);
@@ -272,7 +272,7 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
-    public void start_EmergencyContacts_activity() {
+    private void start_EmergencyContacts_activity() {
         makeBackPressedCntZero();
         Intent intent = new Intent(this, EmergencyContacts.class);
         startActivity(intent);
@@ -281,7 +281,7 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
 
     }
 
-    public void start_YourArea_activity() {
+    private void start_YourArea_activity() {
         makeBackPressedCntZero();
         Intent intent = new Intent(this, YourArea.class);
         startActivity(intent);
@@ -289,7 +289,7 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
-    public void start_RequestHelp_activity() {
+    private void start_RequestHelp_activity() {
         makeBackPressedCntZero();
         Intent intent = new Intent(this, RequestHelp.class);
         startActivity(intent);
@@ -297,7 +297,7 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
-    public void start_EmergencyRescueSOS_activity() {
+    private void start_EmergencyRescueSOS_activity() {
         makeBackPressedCntZero();
         Intent intent = new Intent(this, EmergencyRescueSOS.class);
         startActivity(intent);
@@ -305,7 +305,7 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
-    public void start_AboutUs_activity() {
+    private void start_AboutUs_activity() {
         Intent intent = new Intent(this, AboutUs.class);
         startActivity(intent);
 
@@ -313,14 +313,14 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
 
     }
 
-    public void start_LiveChat_activity() {
+    private void start_LiveChat_activity() {
         Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
-    public void start_YourRequests_activity() {
+    private void start_YourRequests_activity() {
         Intent intent = new Intent(this, YourRequests.class);
         startActivity(intent);
 

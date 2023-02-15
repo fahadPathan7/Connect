@@ -1,3 +1,7 @@
+/*
+this class will inform the volunteers that which area needs help badly and which area will need help later.
+ */
+
 package volunteer;
 
 import androidx.annotation.NonNull;
@@ -40,6 +44,7 @@ public class AffectedAreas extends DrawerBaseActivity implements View.OnClickLis
 
     LinearLayout linearLayout;
     ActivityAffectedAreasBinding activityAffectedAreasBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +66,7 @@ public class AffectedAreas extends DrawerBaseActivity implements View.OnClickLis
         linearLayout.setPadding(0, 0, 0, 30);
         linearLayout.setLayoutParams(params);
 
-        showSuccessList();
+        showAreasList(); // showing the affected areas list.
 
         ScrollView scrollView = view.findViewById(R.id.scroll_view);
         scrollView.addView(linearLayout);
@@ -71,16 +76,19 @@ public class AffectedAreas extends DrawerBaseActivity implements View.OnClickLis
 
         allocateActivityTitle("Affected Areas");
 
-        home=findViewById(R.id.homeMenuID);
-        helpline=findViewById(R.id.liveChatMenuID);
-        aboutUs=findViewById(R.id.aboutUsMenuID);
+        home = findViewById(R.id.homeMenuID);
+        helpline = findViewById(R.id.liveChatMenuID);
+        aboutUs = findViewById(R.id.aboutUsMenuID);
 
         home.setOnClickListener(this);
         helpline.setOnClickListener(this);
         aboutUs.setOnClickListener(this);
     }
 
-    public void showSuccessList() {
+    /*
+    getting the area's info from database.
+     */
+    private void showAreasList() {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("Areas").document("info");
@@ -94,7 +102,7 @@ public class AffectedAreas extends DrawerBaseActivity implements View.OnClickLis
                         for (Map.Entry<String, Object> entry : data.entrySet()) {
                             String dis = entry.getKey();
                             String status = entry.getValue().toString();
-                            addData(dis, status);
+                            addData(dis, status); // passing the info's to show the volunteers about the situation.
                         }
                     } else {
                         //
@@ -107,27 +115,27 @@ public class AffectedAreas extends DrawerBaseActivity implements View.OnClickLis
     }
 
 
-    public void addData(String data, String status) {
+    /*
+    to add in cardViews and to show the volunteers about the current situation of the affected areas.
+     */
+    private void addData(String data, String status) {
+        // in this view a single area's info will be added.
         CardView cardView = new CardView(this);
-
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-
         params.setMargins(30, 5, 30, 5);
-
         cardView.setLayoutParams(params);
         cardView.setRadius(10);
         cardView.setContentPadding(20, 20, 20, 20);
         cardView.setCardElevation(20);
 
-        // Add your content to the cardView
+        // adding the info's in a textView.
         TextView textView = new TextView(this);
         if (status.equals("yellow")) {
             textView.setTextColor(getResources().getColor(R.color.yellow));
-        }
-        else {
+        } else {
             textView.setTextColor(getResources().getColor(R.color.red));
         }
         textView.setText(data);
@@ -136,42 +144,37 @@ public class AffectedAreas extends DrawerBaseActivity implements View.OnClickLis
         textView.setGravity(Gravity.CENTER);
         cardView.addView(textView);
 
-        // Add the cardView to the linearLayout
-        linearLayout.addView(cardView);
+        linearLayout.addView(cardView); // adding all the cardViews in a linear layout. after that it will be
+            // added into the scrollView.
     }
 
     @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.homeMenuID)
-        {
+        if (v.getId() == R.id.homeMenuID) {
             start_HomeScreenVolunteer_activity();
-        }
-        else if(v.getId()==R.id.liveChatMenuID)
-        {
+        } else if (v.getId() == R.id.liveChatMenuID) {
             start_LiveChat_activity();
-        }
-        else if(v.getId()==R.id.aboutUsMenuID)
-        {
+        } else if (v.getId() == R.id.aboutUsMenuID) {
             start_AboutUs_activity();
         }
     }
-    public void start_HomeScreenVolunteer_activity() {
+
+    private void start_HomeScreenVolunteer_activity() {
         Intent intent = new Intent(getApplicationContext(), HomeScreenVolunteer.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void start_LiveChat_activity()
-    {
+    private void start_LiveChat_activity() {
         Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     }
-    public void start_AboutUs_activity()
-    {
+
+    private void start_AboutUs_activity() {
         Intent intent = new Intent(this, AboutUs.class);
         startActivity(intent);
 

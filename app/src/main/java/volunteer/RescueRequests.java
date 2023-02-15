@@ -1,3 +1,7 @@
+/*
+to show the rescue requests to the volunteers.
+ */
+
 package volunteer;
 
 import androidx.annotation.NonNull;
@@ -61,10 +65,10 @@ public class RescueRequests extends DrawerBaseActivity implements View.OnClickLi
         setContentView(activityRescueRequestsBinding.getRoot());
 
 
-        // here
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.activity_rescue_requests, null);
 
+        // this layout will contain all the rescue requests
         linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -75,13 +79,14 @@ public class RescueRequests extends DrawerBaseActivity implements View.OnClickLi
         linearLayout.setPadding(0, 0, 0, 30);
         linearLayout.setLayoutParams(params);
 
-        showRequests();
+        showRequests(); // showing the rescue requests to the volunteers.
 
+        // this scrollView will contain the linear layout
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) ScrollView scrollView = view.findViewById(R.id.rescueScroll_viewID);
         scrollView.fullScroll(View.FOCUS_DOWN);
         scrollView.addView(linearLayout);
 
-        setContentView(view);
+        setContentView(view); // setting the view
 
 
         allocateActivityTitle("Rescue Requests");
@@ -94,7 +99,10 @@ public class RescueRequests extends DrawerBaseActivity implements View.OnClickLi
         aboutUs.setOnClickListener(this);
     }
 
-    public void showRequests() {
+    /*
+    showing the requests to the volunteers
+     */
+    private void showRequests() {
 
         try {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -107,7 +115,7 @@ public class RescueRequests extends DrawerBaseActivity implements View.OnClickLi
                         return;
                     }
 
-                    linearLayout.removeAllViews();
+                    linearLayout.removeAllViews(); // removing the requests before showing again.
 
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
 
@@ -115,11 +123,13 @@ public class RescueRequests extends DrawerBaseActivity implements View.OnClickLi
                         String userID = documentSnapshot.getString("ID");
                         String type = documentSnapshot.getString("Type");
 
-                        if (userID.equals(uid)) continue;
+                        if (userID.equals(uid)) continue; // if the volunteers and the person who requested are the same person
+                            // then the volunteer will not see the request.
 
                         String documentID = documentSnapshot.getId();
 
-                        addData(information, documentID, userID, type);
+                        addData(information, documentID, userID, type); // passing the values to add in specific views
+                            // to the volunteers.
                     }
                 }
             });
@@ -128,40 +138,41 @@ public class RescueRequests extends DrawerBaseActivity implements View.OnClickLi
         }
     }
 
-    public void connectWithIDs() {
+    private void connectWithIDs() {
         home=findViewById(R.id.homeMenuID);
         helpline=findViewById(R.id.liveChatMenuID);
         aboutUs=findViewById(R.id.aboutUsMenuID);
     }
 
 
+    /*
+    adding data to views to show the volunteers.
+     */
     @SuppressLint("ResourceAsColor")
-    public void addData(String information, String documentID, String userID, String type) {
+    private void addData(String information, String documentID, String userID, String type) {
+        // this view will contain single rescue request
         CardView cardView = new CardView(this);
-
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-
         params.setMargins(30, 5, 30, 5);
-
         cardView.setLayoutParams(params);
         cardView.setRadius(10);
         cardView.setContentPadding(20, 20, 20, 20);
         cardView.setCardElevation(20);
 
-        //cardView.addView(linearLayout);
-
+        // the rescue button and the info's of the user will be added to this view.
         LinearLayout innerLinearLayout = new LinearLayout(this);
         innerLinearLayout.setOrientation(LinearLayout.VERTICAL);
 
-        // Add your content to the cardView
+        // adding info's to the textView
         TextView textView = new TextView(this);
         textView.setText(information);
         textView.setTextSize(16);
         textView.setPadding(0, 0, 0, 15);
 
+        // the rescue button.
         Button button = new Button(this);
         button.setText("Rescue");
         button.setTextColor(Color.WHITE);
@@ -169,12 +180,12 @@ public class RescueRequests extends DrawerBaseActivity implements View.OnClickLi
         Typeface typeface = Typeface.create(button.getTypeface(), Typeface.BOLD);
         button.setTypeface(typeface);
 
+        // by clicking on it volunteer will accept the rescue request.
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Perform action on click
                 button.setEnabled(false);
-                writeOnYourGoals(information, documentID, userID, type);
+                writeOnYourGoals(information, documentID, userID, type); // now writing on volunteer's goals.
             }
         });
 
@@ -187,7 +198,10 @@ public class RescueRequests extends DrawerBaseActivity implements View.OnClickLi
         linearLayout.addView(cardView);
     }
 
-    public void writeOnYourGoals(String information, String documentID, String userID, String type) {
+    /*
+    writing on volunteers goals.
+     */
+    private void writeOnYourGoals(String information, String documentID, String userID, String type) {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -208,13 +222,13 @@ public class RescueRequests extends DrawerBaseActivity implements View.OnClickLi
             documentReference.set(info, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
-                    //cardViews[idx].setVisibility(View.GONE);
 
                     Toast.makeText(getApplicationContext(), "Thanks for your help.", Toast.LENGTH_SHORT).show();
-                    writeOnYourRequests(userID, uid, documentID, information, type);
-                    documentReference1.delete();
+                    writeOnYourRequests(userID, uid, documentID, information, type); // the request of the user is
+                        // accepted. so it's updating.
+                    documentReference1.delete(); // deleting the request from the rescue requests as the request
+                        // is accepted by a volunteer.
 
-                    //showRequests();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -223,11 +237,14 @@ public class RescueRequests extends DrawerBaseActivity implements View.OnClickLi
                 }
             });
         } catch (Exception e) {
-            //Toast.makeText(getApplicationContext(), "YourGoals write fault", Toast.LENGTH_SHORT).show();
+            // nothing to show
         }
     }
 
-    public void writeOnYourRequests(String userID, String volunteerID, String documentID, String information, String type) {
+    /*
+    updating the list of user's request. his request is accepted.
+     */
+    private void writeOnYourRequests(String userID, String volunteerID, String documentID, String information, String type) {
 
         Map<String, Object> info = new HashMap<>();
 
@@ -269,14 +286,14 @@ public class RescueRequests extends DrawerBaseActivity implements View.OnClickLi
         }
     }
 
-    public void start_HomeScreenVolunteer_activity() {
+    private void start_HomeScreenVolunteer_activity() {
         Intent intent = new Intent(getApplicationContext(), HomeScreenVolunteer.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void start_LiveChat_activity()
+    private void start_LiveChat_activity()
     {
         Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
@@ -284,7 +301,7 @@ public class RescueRequests extends DrawerBaseActivity implements View.OnClickLi
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     }
-    public void start_AboutUs_activity()
+    private void start_AboutUs_activity()
     {
         Intent intent = new Intent(this, AboutUs.class);
         startActivity(intent);

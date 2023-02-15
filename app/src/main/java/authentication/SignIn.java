@@ -159,7 +159,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
 
     // changing activity starts
-    public void start_SignUp_activity() {
+    private void start_SignUp_activity() {
         Intent intent = new Intent(this, SignUp.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
@@ -167,7 +167,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
-    public void start_HomeScreenUser_activity() {
+    private void start_HomeScreenUser_activity() {
         HomeScreenUser.makeBackPressedCntZero();
         Intent intent = new Intent(this, HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);

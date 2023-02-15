@@ -91,21 +91,21 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         }
     }
 
-    public void start_Profile_activity() {
+    private void start_Profile_activity() {
         Intent intent = new Intent(this, Profile.class);
         startActivity(intent);
         //finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void start_Feedback_activity() {
+    private void start_Feedback_activity() {
         Intent intent = new Intent(this, Feedback.class);
         startActivity(intent);
         //finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void start_HomeScreenUser_activity() {
+    private void start_HomeScreenUser_activity() {
         Intent intent = new Intent(this, HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -113,7 +113,7 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void start_SignIn_activity() {
+    private void start_SignIn_activity() {
         Intent intent = new Intent(this, SignIn.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);

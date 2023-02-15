@@ -17,6 +17,7 @@ import com.example.android.databinding.ActivityRequestHelpBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -135,7 +136,7 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
     /*
     to track about the request writing on database.
      */
-    public void writeOnYourRequests(String userID, String documentID, String information, String type) {
+    private void writeOnYourRequests(String userID, String documentID, String information, String type) {
 
         Map<String, Object> info = new HashMap<>();
 
@@ -176,7 +177,7 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
         }
     }
 
-    public void start_HomeScreenUser_activity() {
+    private void start_HomeScreenUser_activity() {
         HomeScreenUser.makeBackPressedCntZero();
         Intent intent = new Intent(getApplicationContext(), HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -184,7 +185,7 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void start_LiveChat_activity()
+    private void start_LiveChat_activity()
     {
         Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
@@ -192,7 +193,7 @@ public class RequestHelp extends DrawerBaseActivity implements View.OnClickListe
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     }
-    public void start_AboutUs_activity()
+    private void start_AboutUs_activity()
     {
         Intent intent = new Intent(this, AboutUs.class);
         startActivity(intent);

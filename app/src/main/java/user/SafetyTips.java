@@ -116,7 +116,7 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
         }
 
     }
-    public void start_Flood_activity()
+    private void start_Flood_activity()
     {
         //makeBackPressedCntZero();
         Intent intent = new Intent(this, Flood.class);
@@ -124,7 +124,7 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
-    public void start_Tsunami_activity()
+    private void start_Tsunami_activity()
     {
         //makeBackPressedCntZero();
 
@@ -133,7 +133,7 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
-    public void start_Earthquake_activity()
+    private void start_Earthquake_activity()
     {
         //makeBackPressedCntZero();
 
@@ -142,7 +142,7 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
-    public void start_Cyclone_activity()
+    private void start_Cyclone_activity()
     {
         //makeBackPressedCntZero();
         Intent intent = new Intent(this, Cyclone.class);
@@ -150,7 +150,7 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
-    public void start_Fire_activity()
+    private void start_Fire_activity()
     {
         //makeBackPressedCntZero();
         Intent intent = new Intent(this, Fire.class);
@@ -158,7 +158,7 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
-   public void start_HomeScreenUser_activity()
+   private void start_HomeScreenUser_activity()
    {
        HomeScreenUser.makeBackPressedCntZero();
        Intent intent = new Intent(getApplicationContext(), HomeScreenUser.class);
@@ -167,7 +167,7 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
        startActivity(intent);
        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
    }
-   public void start_LiveChat_activity()
+   private void start_LiveChat_activity()
    {
        Intent intent = new Intent(this, LiveChat.class);
        startActivity(intent);
@@ -175,7 +175,7 @@ public class SafetyTips extends DrawerBaseActivity implements View.OnClickListen
        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
    }
-   public void start_AboutUs_activity()
+   private void start_AboutUs_activity()
    {
        Intent intent = new Intent(this, AboutUs.class);
        startActivity(intent);

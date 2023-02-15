@@ -1,3 +1,7 @@
+/*
+the volunteer home screen.
+ */
+
 package volunteer;
 
 import androidx.appcompat.widget.SwitchCompat;
@@ -41,7 +45,7 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
         setContentView(activityHomeScreenVolunteerBinding.getRoot());
         allocateActivityTitle("Home");
 
-
+        // by clicking on the switch he will go to the user screen.
         switchCompat = findViewById(R.id.switchID);
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -51,7 +55,7 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
             }
         });
 
-
+        // setting up the home page views
         helpRequestsCardView = findViewById(R.id.helpRequestsCardViewID);
         helpRequestsCardView.setOnClickListener(this);
 
@@ -108,7 +112,7 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
         }
     }
 
-    public void start_HomeScreenUser_activity() {
+    private void start_HomeScreenUser_activity() {
         HomeScreenUser.makeBackPressedCntZero();
         Intent intent = new Intent(getApplicationContext(), HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -116,33 +120,33 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void start_HelpRequests_activity() {
+    private void start_HelpRequests_activity() {
         Intent intent = new Intent(getApplicationContext(), HelpRequests.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
-    public void start_YourGoals_activity() {
+    private void start_YourGoals_activity() {
         Intent intent = new Intent(getApplicationContext(), YourGoals.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
-    public void start_YourSuccess_activity() {
+    private void start_YourSuccess_activity() {
         Intent intent = new Intent(getApplicationContext(), YourSuccess.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
-    public void start_RescueRequests_activity() {
+    private void start_RescueRequests_activity() {
         Intent intent = new Intent(getApplicationContext(), RescueRequests.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
-    public void start_affectedAreas_activity() {
+    private void start_affectedAreas_activity() {
         Intent intent = new Intent(getApplicationContext(), AffectedAreas.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
-    public void start_LiveChat_activity()
+    private void start_LiveChat_activity()
     {
         Intent intent = new Intent(this, LiveChat.class);
         startActivity(intent);
@@ -150,7 +154,7 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     }
-    public void start_AboutUs_activity()
+    private void start_AboutUs_activity()
     {
         Intent intent = new Intent(this, AboutUs.class);
         startActivity(intent);

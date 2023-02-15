@@ -160,14 +160,14 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
     }
 
 
-    public void start_UpdateProfile_activity() {
+    private void start_UpdateProfile_activity() {
         Intent intent = new Intent(this, UpdateProfile.class);
         startActivity(intent);
         //finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void start_HomeScreenUser_activity() {
+    private void start_HomeScreenUser_activity() {
         HomeScreenUser.makeBackPressedCntZero();
         Intent intent = new Intent(getApplicationContext(), HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);

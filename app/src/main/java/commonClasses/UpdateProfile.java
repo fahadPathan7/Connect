@@ -104,7 +104,7 @@ public class UpdateProfile extends DrawerBaseActivity {
     }
 
 
-    public void updateProfile(View v) {
+    private void updateProfile(View v) {
         // getting the info's from the editTexts.
         String name = nameEditText.getText().toString().trim();
         String email = emailEditText.getText().toString().trim();
@@ -161,7 +161,7 @@ public class UpdateProfile extends DrawerBaseActivity {
                 });
     }
 
-    public void start_HomeScreenUser_Activity() {
+    private void start_HomeScreenUser_Activity() {
         HomeScreenUser.makeBackPressedCntZero();
         Intent intent = new Intent(this, HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);

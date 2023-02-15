@@ -144,7 +144,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     if it is a new user then we will write on volunteer list and. mark him as a non-volunteer.
     later he can register for volunteer.
      */
-    public void writeOnVolunteerList() {
+    private void writeOnVolunteerList() {
         try {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -172,7 +172,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void start_SignIn_activity() {
+    private void start_SignIn_activity() {
         Intent intent = new Intent(this, SignIn.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
@@ -180,7 +180,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void start_HomeScreenUser_activity() {
+    private void start_HomeScreenUser_activity() {
         HomeScreenUser.makeBackPressedCntZero();
         Intent intent = new Intent(this, HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -189,7 +189,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void start_UpdateProfile_activity() {
+    private void start_UpdateProfile_activity() {
         HomeScreenUser.makeBackPressedCntZero();
         Intent intent = new Intent(this, UpdateProfile.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
