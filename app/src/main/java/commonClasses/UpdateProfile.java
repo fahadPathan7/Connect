@@ -104,7 +104,7 @@ public class UpdateProfile extends DrawerBaseActivity {
     }
 
 
-    private void updateProfile(View v) {
+    public void updateProfile(View v) {
         // getting the info's from the editTexts.
         String name = nameEditText.getText().toString().trim();
         String email = emailEditText.getText().toString().trim();
