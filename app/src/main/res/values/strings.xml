@@ -6,6 +6,65 @@
     <string name="warning">"Warning!\n\nBe prepared for the upcoming disaster!"</string>
     <string name="danger">"Danger!\n\nMove to a safe place and stay connected."</string>
     <string name="complete_profile">"Please update your profile!"</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="beforeflood"><b><p>To prepare for a flood, you should:</p></b>
+        \n\n
+<ul>
+
+
+<li>Avoid building in a floodplain unless you elevate and reinforce your home.\n\n</li>
+<li>Elevate the furnace, water heater and electric panel in your home if you live in an area that has a high flood risk.\n\n</li>
+<li>Consider installing "check valves" to prevent flood water from backing up into the drains of your home.\n\n</li>
+<li>If feasible, construct barriers to stop floodwater from entering the building and seal walls in basements with waterproofing compounds.\n\n</li>
+</ul>
+    </string>
+
+    <string name="duringflood"><b><p>If a flood is likely in your area, you should:</p></b>\n\n
+<ul>
+<li>Listen to the radio or television for information.\n\n</li>
+<li>Be aware that flash flooding can occur. If there is any possibility of a flash flood, move immediately to higher ground. Do not wait for instructions to move.\n\n</li>
+<li>Be aware of stream, drainage channels, canyons and other areas known to flood suddenly. Flash floods can occur in these areas with or without typical warnings such as rain clouds or heavy rain.\n\n</li>
+</ul><p><b>If you must prepare to evacuate, you should do the following:</b>\n\n</p>
+<ul>
+<li>Secure your home. If you have time, bring in outdoor furniture. Move essential items to an upper floor.\n\n</li>
+<li>Turn off the main switches or valves if instructed to do so.\n\n</li>
+<li>Disconnect electrical appliances.\n\n</li>
+<li>Do not touch electrical equipment if you are wet or standing in water.\n\n</li>
+</ul>
+    </string>
+
+<string name="afterflood"><b><p>Although floodwaters may be down in some areas, many dangers still exist. Here are some things to remember in the days ahead:</p></b>\n\n
+<ul>
+<li>Avoid moving water.\n\n</li>
+<li>Stay away from damaged areas unless your assistance has been specifically requested by police, fire, or relief organization.\n\n</li>
+<li>Emergency workers will be assisting people in flooded areas. You can help them by staying off the roads and out of the way.\n\n</li>
+<li>Return home only when authorities indicate it is safe.\n\n</li>
+
+</ul><b><p>Staying Healthy</p></b>\n\n
+<p>A flood can cause physical hazards and emotional stress. You need to look after yourself and your family as you focus on cleanup and repair.</p>\n\n
+<ul>
+<li>Avoid floodwaters; water may be contaminated by oil, gasoline or raw sewage.\n\n</li>
+<li>Clean and disinfect everything that got wet. Mud left from floodwaters can contain sewage and chemicals.\n\n</li>
+<li>Rest often and eat well.\n\n</li>
+<li>Discuss your concerns with others and seek help. Contact Red Cross for information on emotional support available in your area.\n\n</li>
+</ul>
+<b>Cleaning up And Repairing Your Home</b>\n\n
+<ul>
+<li>Turn off the electricity at the main breaker or fuse box, even if the power is off in your community. That way, you can decide when your home is dry enough to turn it back on.\n\n</li>
+<li>Enter your home safely.\n\n</li>
+<li>Protect your home and belongings from further damage.\n\n</li>
+<li>Record damage to support insurance claims and requests for assistance.\n\n</li>
+<li>Check for gas or water leaks and how to have service restored.\n\n</li>
+<li>Clean up appliances, furniture, floors and other belongs.\n\n</li>
+<li>Contact your insurance agent to discuss claims.\n\n</li>
+<li>Listen to your radio for information on assistance that may be provided by the state or federal government or other organizations.\n\n</li>
+<li>If you hire cleanup or repair contractors, check references and be sure they are qualified to do the job. Be wary of people who drive through neighborhoods offering help in cleaning up or repairing your home.\n\n</li>
+</ul>
+
+
+</string>
+
+
+
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

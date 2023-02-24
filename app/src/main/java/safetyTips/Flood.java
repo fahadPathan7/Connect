@@ -15,7 +15,7 @@ import navigationBars.DrawerBaseActivity;
 public class Flood extends DrawerBaseActivity implements View.OnClickListener {
     ActivityFloodBinding activityFloodBinding;
 
-     Button beforeFloodButton;
+    Button beforeFloodButton;
     Button duringFloodButton;
     Button afterFloodButton;
 
