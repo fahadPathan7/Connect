@@ -40,6 +40,7 @@ public class Flood extends DrawerBaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         if(v.getId()==R.id.beforeFloodButtonID)
         {
+
             FragmentManager fragmentManager=getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainerView6,BeforeFlood.class,null)
@@ -50,6 +51,8 @@ public class Flood extends DrawerBaseActivity implements View.OnClickListener {
         }
         if(v.getId()==R.id.duringFloodButtonID)
         {
+
+
             FragmentManager fragmentManager=getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainerView6,DuringFlood.class,null)
@@ -60,6 +63,7 @@ public class Flood extends DrawerBaseActivity implements View.OnClickListener {
         }
         if(v.getId()==R.id.afterFloodButtonID)
         {
+
             FragmentManager fragmentManager=getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainerView6,AfterFlood.class,null)

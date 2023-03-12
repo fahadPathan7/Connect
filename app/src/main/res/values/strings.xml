@@ -32,7 +32,7 @@
 </ul>
     </string>
 
-<string name="afterflood"><b><p>Although floodwaters may be down in some areas, many dangers still exist. Here are some things to remember in the days ahead:</p></b>\n\n
+    <string name="afterflood"><b><p>Although floodwaters may be down in some areas, many dangers still exist. Here are some things to remember in the days ahead:</p></b>\n\n
 <ul>
 <li>Avoid moving water.\n\n</li>
 <li>Stay away from damaged areas unless your assistance has been specifically requested by police, fire, or relief organization.\n\n</li>
@@ -62,8 +62,102 @@
 
 
 </string>
+    <string name="beforeearthquake"><b>What to Do Before an Earthquake\n\n</b>
+<ul>
+<li>Make sure you have a fire extinguisher, first aid kit, a battery-powered radio, a flashlight, and extra batteries at home.\n\n</li>
+<li>Learn first aid.\n\n</li>
+<li>Learn how to turn off the gas, water, and electricity.\n</li>
+<li>Make up a plan of where to meet your family after an earthquake.\n\n</li>
+<li>Do not leave heavy objects on shelves (they will fall during a quake).\n\n</li>
+<li>Anchor heavy furniture, cupboards, and appliances to the walls or floor.\n\n</li>
+<li>Learn the earthquake plan at your school or workplace.\n</li>
+</ul>
 
+    </string>
 
+    <string name="duringearthquake"><b>What to Do During an Earthquake\n\n</b>
+<ul>
+<li><b>Stay calm.</b> If you are indoors, stay inside. If you are outside, stay outside.\n\n</li>
+ <li>If you are indoors, stand against a wall near the center of the building.\n\n</li>
+<li>stand in a doorway, or crawl under heavy furniture.a desk or table. Stay away from windows and outside doors.\n\n</li>
+<li>If you are outdoors, stay in the open away from power lines or anything that might fall. Stay away from buildings.\n\n </li>
+<li>Do not use matches, candles, or any flame. Broken gas lines and fire do not mix.\n\n</li>
+<li>If you are in a car, stop the car and stay inside the car until the earthquake stops.\n\n</li>
+ <li>Do not use elevators .they may shut down.\n</li>
+</ul>
+
+    </string>
+    <string name="afterearthquake"><b>What to Do After an Earthquake\n\n</b>
+<ul>
+<li>Check yourself and others for injuries. Provide first aid for anyone who needs it.\n\n</li>
+<li>Check water, gas, and electric lines for damage.\n\n </li>
+
+<li>Turn on the radio. Do not use the phone unless it is an emergency.\n\n</li>
+<li>Stay out of damaged buildings.\n\n</li>
+<li>Be careful around broken glass and debris. Wear boots or sturdy shoes to keep from cutting your feet.\n\n</li>
+<li>Be careful of chimneys .they may fall on you.\n\n</li>
+<li>Stay away from beaches. Tsunamis sometimes hit after the ground has stopped shaking.\n\n</li>
+<li>Stay away from damaged areas.\n\n</li>
+<li>If you are at school or work, follow the emergency plan or the instructions of the person in charge.\n\n</li>
+</ul>
+
+    </string>
+    <string name="beforecyclone"><b>Precautions of cyclone \n\n</b>
+<ul>
+<li>Ensure good condition of your house so that it can withstand strong winds.\n\n</li>
+<li>Trim down trees to make sure they do not fall over telephone or electricity lines during the storm.\n\n</li>
+<li>Keep your mobile phone fully charged and other appliances like torches handy as there may be power cuts during a cyclone.\n\n</li>
+<li>Store essential items like groceries and medicines in advance. It is vital to keep dry foods that are not perishable during emergencies.\n\n</li>
+<li>Prepare an emergency first-aid kit.\n\n</li>
+<li>Store water because the water supply may be disrupted during cyclones.\n\n</li>
+</ul>
+        <p><b>Apart from the above cyclone precautions, one should avoid some factors at any cost while preparing for a storm. They are as follows:\n\n</b></p>
+<ul>
+<li>Do not leave any loose sharp objects lying around your property, as they can injure people during gusty winds.\n\n</li>
+<li>It is vital to steer clear of demolished buildings during cyclones.\n\n</li>
+<li>Do not keep dying and low-hanging branches of trees near your premises.\n\n</li>
+</ul>
+
+    </string>
+    <string name="duringcyclone"><b>Safety measures to be taken during a cyclone \n\n</b>
+<ul>
+<li>Be aware of the official cyclone warning by listening to the radio or other authentic sources.\n\n</li>
+<li>Install storm shutters or board up glass windows.\n\n</li>
+<li>Keep all the doors and windows closed.\n\n</li>
+<li>Take proper care of adults or children who need attention.\n\n</li>
+<li>Switch off the electrical mains in your house.\n\n</li>
+<li>Park your vehicles beneath a solid shelter with a hand brake or in gear to guard them.\n\n</li>
+</ul>
+        <p><b>Other than this, if the eye of the cyclone passes over your house, you should strictly avoid doing some activities as follows:\n\n </b></p>
+<ul>
+<li>If you are asked to evacuate, do not hesitate. Move to a house built on high grounds.\n]n</li>
+<li>Do not move outside the house immediately after the eye passes, as there will be wind gusts from the opposite direction.\n\n</li>
+<li>Avoid rumours of any sort, and do not panic.\n\n</li>
+<li>Do not drive immediately after a storm because the roads are left slippery due to heavy downpours.\n\n</li>
+<li>Stay away from concrete walls and floors because thunder lightning can pass through the metal bars in them.\n\n</li>
+</ul>
+
+    </string>
+
+    <string name="aftercyclone"><b>Safety measures to be taken after a cyclone :\n\n</b>
+<ul>
+<li>Eat fresh dry food and keep it away from pests and flies.\n\n</li>
+<li>Boil water before drinking or cooking.\n\n</li>
+<li>Keep your surroundings clean by using disinfectants.\n\n</li>
+<li> Cover drains holes to prevent backflow of sewage.\n\n</li>
+<li>Clear debris from your premises.\n\n</li>
+<li>Stay in the shelter until you receive proper information regarding safety in moving outside.\n\n</li>
+<li>Drive your car carefully after the cyclone passes.\n\n</li>
+</ul>
+        <p><b>Besides, there are some strict activities associated with safety measures after a cyclonic storm. They are as follows:\n\n</b></p>
+<ul>
+<li>Do not go near loose electric wires.\n\n</li>
+<li>Avoid going to areas covered with floodwater.\n\n</li>
+<li>Stay away from sewerage lines, gutters and drains.\n\n</li>
+<li>Do not use tap water for drinking or cooking as the sewerage lines may be contaminated.\n\n</li>
+</ul>
+
+    </string>
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
