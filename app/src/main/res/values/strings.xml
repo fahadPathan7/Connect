@@ -251,6 +251,12 @@
 </p>
 
     </string>
+    <string name="firestation"><p><b>Fire Station numbers:\n\nDhaka\n\n</b> 9552573,01713008045,0152433040\n\n<b>Gazipur\n\n</b> 01816811401,01727259055\n\n<b>Narayangonj\n\n</b>9751111,01712226585
+9750035	,01712592562,9750041,01716875492
+
+
+
+    </string>
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
