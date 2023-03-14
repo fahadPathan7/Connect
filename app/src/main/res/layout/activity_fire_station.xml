@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
-            android:text="@string/afterflood"
+            android:text="@string/firestation"
             android:textAlignment="textStart"
             android:textColor="#1B1616"
             android:textSize="16dp"
