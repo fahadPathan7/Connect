@@ -119,6 +119,14 @@
 </ul>
 
     </string>
+    <string name="beforetsunami"><p><b> Before Tsunami these measures should be followed:\n\n</b></p>
+
+<ul>
+<li>Move to higher ground.\n\n</li>
+ <li>Stay away from coast, tidal estuaries, rivers and streams; if at sea, stay there until all clearis issued.\n\n</li>
+<li>Be aware of secondary hazards such as landslides, flooding and mudflows.\n\n</li>
+</ul>
+    </string>
     <string name="duringcyclone"><b>Safety measures to be taken during a cyclone \n\n</b>
 <ul>
 <li>Be aware of the official cyclone warning by listening to the radio or other authentic sources.\n\n</li>
@@ -130,11 +138,25 @@
 </ul>
         <p><b>Other than this, if the eye of the cyclone passes over your house, you should strictly avoid doing some activities as follows:\n\n </b></p>
 <ul>
-<li>If you are asked to evacuate, do not hesitate. Move to a house built on high grounds.\n]n</li>
+<li>If you are asked to evacuate, do not hesitate. Move to a house built on high grounds.\n\n</li>
 <li>Do not move outside the house immediately after the eye passes, as there will be wind gusts from the opposite direction.\n\n</li>
 <li>Avoid rumours of any sort, and do not panic.\n\n</li>
 <li>Do not drive immediately after a storm because the roads are left slippery due to heavy downpours.\n\n</li>
 <li>Stay away from concrete walls and floors because thunder lightning can pass through the metal bars in them.\n\n</li>
+</ul>
+
+    </string>
+    <string name="duringtsunami"><p><b>Be aware of the signs of a tsunami:\n\n</b></p>
+<ul>
+    <li>A strong earthquake lasting 20 seconds or more near the coast.\n\n</li>
+    <li>A noticeable rapid rise or fall of coastal waters.\n\n</li>
+    <li>Coastal water making unusual noise. The noise may sounds like an approaching train, plane, or whistling.\n\n</li>
+    <li>Following an earthquake, move quickly to higher ground away from the coast. In case of a tsunami warning,be prepared ready to evacuate at a moments notice.\n\n</li>
+    <li>Follow posted evacuation routes, where present. Take your animals with you but do not delay your evacuation to collect them.\n\n</li>
+    <li>A tsunami is a series of waves that can continue for hours and the next waves may be larger than earlier ones. Do not assume that after one wave, the danger is over. If you cannot evacuate to higher ground, evacuate vertically to a higher floor, onto a roof, up a tree, or grab a floating object.\n\n</li>
+    <li>If you are at sea, stay there. Boats are generally safer in water deeper than 20 metres. Ships are safest on high seas in water deeper than 100 metres.</li>
+    <li>Watching a tsunami could put you in grave danger. If you can see the wave, you are too close to escape it.\n\n</li>
+    <li>Monitor the tsunami progress and listen for warnings or instructions from local officials. If you are safe when the first tsunami hits, stay put until authorities declare all is safe as more waves may follow.\n\n</li>
 </ul>
 
     </string>
@@ -158,7 +180,20 @@
 </ul>
 
     </string>
-    <string name="thana"><p><b>All police station numbers:\n\n</b>1) OC Ramana 01713373125\n\n2) OC Dhanamandi 01713373126\n\n3) OC Sahabag 01713373127\n\n4) OC 01713373128 New Market\n\n5) OC Lalabag 01713373134\n\n
+    <string name="aftertsunami"><p><b>After Tsunami these measures should be followed:\n\n</b></p>
+ <ul>
+    <li>Be prepared for aftershocks, which could generate another tsunami.\n\n</li>
+    <li>Return home only after local officials tell you it is safe. A tsunami is a series of waves that may continue for hours. Do not assume that after one wave the danger is over. The next wave may be larger than the first one.\n\n</li>
+    <li>Be aware of secondary effects. These include landslides, contaminated water, mudflows, damaged bridges, buildings and roads, and other hazards.\n\n</li>
+    <li>Only make calls if you require emergency services.\n\n</li>
+    <li>Stay out of any building that has water around it. Tsunami force can cause floors to crack or walls to collapse.\n\n</li>
+    <li>If you suspect your home is unsafe, do not enter. Rely on the professionals to clear your home for re-entry, if you are unsure.\n\n</li>
+    <li>Do not light matches or turn on lights or appliances until you are sure there are no gas leaks or flammable liquids spilled. Avoid use of contaminated water.\n\n</li>
+    <li>Place a HELP sign in your window if you need assistance.\n\n</li>
+</ul>
+
+    </string>
+    <string name="thana"><p><b>All police station numbers:\n\nDMP, Dhaka\n\n</b>1) OC Ramana 01713373125\n\n\n2) OC Dhanamandi 01713373126\n\n\n3) OC Sahabag 01713373127\n\n\n4) OC 01713373128 New Market\n\n\n5) OC Lalabag 01713373134\n\n
 6) OC Kotayali 01713373135\n\n
 7) OC Hajaribag 01713373136\n\n
 8)OC Kamarangiracar 01713373137\n\n
@@ -187,7 +222,7 @@
 31) OC Pallabi 01713373190\n\n
 32) OC Kafrul 01713373191\n\n
 33) OC Shah Ali 01713373192\n\n
-CMP, Chittagong\n\n
+<b>CMP, Chittagong\n\n</b>
 1) OC Kotwali, CMP- 01713373256\n\n
 2) OC Pahartali (North Zone) – 01713373257\n\n
 3) OC Panchlaish 01713373258\n\n
@@ -195,510 +230,25 @@ CMP, Chittagong\n\n
 5) OC Khulasi 01713373260\n\n
 6) OC Bakoliya 01713373261\n\n
 7) OC Bayezid Bostami 01713373262\n\n
-😎 OC Bandar, 01713373267\n\n
+8) OC Bandar, 01713373267\n\n
 9) OC Double Muring 01713373268\n\n
 10) OC Halisahar 01713373269\n\n
 11) OC Patenga 01713373270\n\n
 1) OC Karnaphuli 01713373271\n\n
 13) OC Immigration (Bandar) – 01713373272\n\n
 14) OC Pahartali (Bandar Zone) – 01713373273\n\n
-KMP, Khulna\n\n
+<b>KMP, Khulna\n\n</b>
 1) OC Khulana 01713373285\n\n
 2) OC Sonadanga 01713373286\n\n
 3) OC Khalisapur 01713373287\n\n
 4) OC Daulatapur 01713373288\n\n
 5) OC Khan Jahan Ali 01713373289\n\n
-RMP, Rajshahi\n\n
+<b>RMP, Rajshahi</b>\n\n
 1) OC Boyaliya 01713373309\n\n
-2) OC Rajpara 01713373310
-3) OC Matihar 01713373311
-4) OC Shah Makhdum 01713373312
-Dhaka Division
-1) OC Savar 01713373327
-2) OC Dhamarai 01713373328
-3) OC Keraniganj 01713373329
-4) OC Nababganj 01713373330
-5) OC Dohar 01713373331
-6) OC Ashuliya 01713373332
-7) OC Dokkhin Keraniganj 01713373333
-😎 OC Narayanganj 01713373345
-9) OC Fatulla 01713373346
-10) OC Bandar (Narayangonj), 01713373347
-11) OC Shiddhirganj 01713373348
-12) OC Araihajar 01713373349
-13) OC Sonargao 01713373350
-14) OC Rupganj 01713373351
-15) OC Joydebpur 01713373363
-16) OC Tongi 01713373364
-17) OC Kaliyakair 01713373365
-18) OC Sripur 01713373366
-19) OC Kapasiya 01713373367
-20) OC Kaliganj 01713373368
-21) OC Manikganj 01713373379
-22) OC Ghior 01713373380
-23) OC Sibaloy 01713373381
-24) OC Daulatpur 01713373382
-25) OC Harirampur 01713373383
-26) OC Saturiya 01713373384
-27) OC Singair 01713373385
-28) OC Munsiganj 01713373396
-29) OC Tongibari 01713373397
-30) OC Lauhajang 01713373398
-31) OC Srinagar 01713373399
-32) OC Sirajdikhan 01713373400
-33) OC Gojariya 01713373401
-34) OC Narsingdi 01713373412
-35) OC Raypura 01713373413
-36) OC Shibpur 01713373414
-37) OC Belabo 01713373415
-38) OC Monohardi 01713373416
-39) OC Palash 01713373417
-40) OC Kotwali Mayamanasinha -01713373430
-41) OC Muktagacha 01713373431
-42) OC Fulbari 01713373432
-43) OC Trishal 01713373433
-44) OC Gauripur 01713373434
-45) OC IswarGanj 01713373435
-46) OC Nandail 01713373436
-47) OC Fulpur 01713373437
-48) OC Haluyaghat 01713373438
-49) OC Dhobaura 01713373439
-50) OC Gaffargao 01713373440
-51) OC Valuka 01713373441
-52) OC Tarakandi 01713373442
-53) OC Tangail 01713373454
-54) OC Mirjapur 01713373455
-55) OC Nagorpur 01713373456
-56) OC Sakhipur 01713373457
-57) OC Basail 01713373458
-58) OC Delduar 01713373459
-59) OC Madhupur 01713373460
-60) OC Ghatail 01713373461
-61) OC Kalihati 01713373462
-62) OC Vuyapur 01713373463
-63) OC Jamuna Bridge East -01713373464
-64) OC Dhanbar 01713373465
-65) OC Gopalpur 01713373466
-66) OC Kishorgonj-01713373480
-67) OC Karimganj 01713373481
-68) OC Tarail 01713373482
-69) OC Hosenpur 01713373483
-70) OC Katiyadi 01713373484
-71) OC Bajittur 01713373485
-72) OC Kuliyarchar 01713373486
-73) OC Vairab 01713373487
-74) OC Itna 01713373488
-75) OC Mithamain 01713373489
-76) OC Nikli 01713373490
-77) OC Pakundiya 01713373491
-78) OC Astagram 01713373492
-79) OC Netrokona 01713373505
-80) OC Barahatta 01713373506
-81) OC Kalmakanda 01713373507
-82) OC Atpara 01713373508
-83) OC Durgapur 01713373509
-84) OC Purbo Dhala 01713373510
-85) OC Kenduya 01713373511
-86) OC Modon 01713373512
-87) OC Mohanganj 01713373513
-88) OC Khalijuri 01713373514
-89) OC Sherpur 01713373523
-90) OC Nokla 01713373524
-91) OC Nalitabari 01713373525
-92) OC Shribardi 01713373526
-93) OC Jhinaigati 01713373527
-94) OC Jamalpur 01713373538
-95) OC Melandah 01713373539
-96) OC Sharisabari 01713373540
-97) OC Deoyanganj 01713373541
-98) OC Islampur 01713373542
-99) OC Madarganj 01713373543
-100) OC Baksiganj 01713373544
-101) OC Bahadurabad 01713373545
-102) OC Faridpur Kotwali -01713373556
-103) OC Madhukhali 01713373557
-104) OC Boyalmari 01713373558
-105) OC Alaphadanga 01713373559
-106) OC Char Vodrosan 01713373560
-107) OC Nagarkanda 01713373561
-108) OC Sadarpur 01713373562
-109) OC Salta 01713373563
-110) OC Bhanga 01713373564
-111) OC Gopalganj 01713373572
-112) OC Makasudpur 01713373573
-113) OC Kasiyani 01713373574
-114) OC Kotalipara -01713373575
-115) OC Tungipara 01713373576
-116) OC Madaripur 01713373585
-117) OC Rajoir 01713373586
-118) OC Kalkini 01713373587
-119) OC Sibachar 01713373588
-120) OC Rajbari 01713373598
-121) OC Baliakandi -01713373599
-122) OC Pangsha 01713373600
-123) OC Goyalanda 01713373601
-124) OC Gosairha 01713373612
-125) OC Vedarganj 01713373613
-126) OC Damuddya 01713373614
-127) OC Jajira 01713373615
-128) OC Nariya 01713373616
-129) OC Palang 01713373617
-130) OC Shakhipur 01713373618
-Chittagong Division:
-1) OC Raujan 01713373639
-2) OC Hathajari 01713373640
-3) OC Fatikchari 01713373641
-4) OC Ranguniya 01713373642
-5) OC Potiya 01713373643
-6) OC Mireswarai 01713373644
-7) OC Sitakunda 01713373645
-😎 OC Anowara 01713373646
-9) OC Boyalkhali 01713373647
-10) OC Bashkhali 01713373648
-11) OC Satkaniya 01713373649
-1) OC Lohagora 01713373650
-13) OC Candnais 01713373651
-14) OC Sandwip 01713373652
-15) OC Cox’s Bazar 01713373663
-16) OC Ramu 01713373664
-17) OC Ukhiya 01713373665
-18) OC Tekanaf 01713373666
-19) OC Chakoriya 01713373667
-20) OC Kutubdiya 01713373668
-21) OC Maheskhali 01713373669
-22) OC Pekuya 01713373670
-23) OC Comilla Kotwali -01713373685
-24) OC Chauddagram 01713373686
-25) OC Debirdwar 01713373687
-26) OC Homna 01713373688
-27) OC Laksam 01713373689
-28) OC Daudkandi 01713373690
-29) OC Buricang 01713373691
-30) OC Chandina 01713373692
-32) OC Barura 01713373693
-33) OC Langalakot 01713373694
-34) OC Muradnagar 01713373695
-35) OC Brammanpara 01713373696
-36) OC Meghna 01713373697
-37) OC Manoharganj 01713373698
-38) OC Titas 01713373699
-39) Police Headquarters South Comilla -01713373700
-40) OC Chandpur 01713373712
-41) OC Hajiganj 01713373713
-42) OC Motlab 01713373714
-43) OC Motlab Uttar 01713373714
-44) OC Motlab South 01713373715
-45) OC Shaharasti 01713373716
-46) OC Kachuya 01713373717
-47) OC Faridaganj 01713373718
-48) OC Haimchar 01713373719
-49) Police Headquarter Bramman Bariya -01713373730
-50) OC Sarail 01713373731
-51) OC Ashuganj 01713373732
-52) OC Nasirnagar 01713373733
-53) OC Nabinagar 01713373734
-54) OC Bancharampur 01713373735
-55) OC Kosba 01713373736
-56) OC Akhaura 01713373737
-57) OC Sudharam, Noakhali -01713373748
-58) OC Begamganj 01713373749
-59) OC Senbag 01713373750
-60) OC Sonaimuri 01713373751
-61) OC Companyganj 01713373752
-62) OC Chatkhil 01713373753
-63) OC Hatiya 01713373754
-64) OC Char Jabbar 01713373755
-65) OC Laxmipur 01713373765
-66) OC Raypur 01713373766
-67) OC Ramganj 01713373767
-68) OC Ramgati 01713373768
-69) OC Feni 01713373778
-70) OC Sonagaji 01713373779
-71) OC Fulgaji 01713373780
-7) OC Parshuram 01713373781
-73) OC Chagalnaiya 01713373782
-74) OC Dagonbhuiya 01713373783
-Rajshahi and Rangpur Division
-1) OC Paba 01713373800
-2) OC Gudagari 01713373801
-3) OC Tanor 01713373802
-4) OC Mohonpur 01713373803
-5) OC Puthiya 01713373804
-6) OC Bagmara 01713373805
-7) OC Durgapur 01713373806
-😎 OC Carghata 01713373807
-9) OC Bagha 01713373808
-10) OC Chapai Nawbganj -01713373819
-11) OC Shibganj 01713373820
-12) OC Gomastapur 01713373821
-13) OC Nachol 01713373822
-14) OC Volahat 01713373823
-15) OC Naogoan 01713373836
-16) OC Raynagar 01713373837
-17) OC Atrai 01713373838
-18) OC Dhamrai 01713373839
-19) OC Badalgachi 01713373840
-20) OC Mahadebpur 01713373841
-21) OC Potnitola 01713373842
-22) OC Niyamatpur 01713373843
-23) OC Manda 01713373844
-24) OC Shapahar 01713373845
-25) OC Porsha 01713373846
-26) OC Nator 01713373857
-27) OC Shingra 01713373858
-28) OC Baghatipara -01713373859
-29) OC Gurudaspur 01713373860
-30) OC Lalapur 01713373861
-31) OC Baraigram 01713373862
-32) OC Noldanga 01713373863
-33) OC Kotwali, Rangpur -01713373874
-34) OC GongaChora 01713373875
-35) OC Bodarganj 01713373876
-36) OC Taraganj 01713373877
-37) OC Mithapukur 01713373878
-38) OC Pirgacha 01713373879
-39) OC Kauniya 01713373880
-40) OC Pirganj 01713373881
-41) OC Gaibandha 01713373892
-42) OC Sadullapur 01713373893
-43) OC Sundarganj 01713373894
-45) OC Palashbari 01713373895
-46) OC Gobindogonj 01713373896
-47) OC Saoghata 01713373897
-48) OC Fulachari 01713373898
-49) OC Nilfamari 01713373909
-50) OC Sayedpur 01713373910
-51) OC Jol dhaka 01713373911
-52) OC Kishor Gonj (Nilphamari) 01713373912
-53) OC Domar 01713373913
-54) OC Dimla 01713373914
-55) OC Kurigram 01713373926
-56) OC Rajarhat 01713373927
-57) OC Fulabari 01713373928
-58) OC Nageswari 01713373929
-59) OC Burungamari 01713373930
-60) OC Ulipur 01713373931
-61) OC Chilmari 01713373932
-62) OC Roumari 01713373933
-63) OC Rajibpur 01713373934
-64) OC Dhusamara 01713373935
-65) OC CoChakata 01713373936
-66) OC Lalmanirhat 01713373946
-67) OC Aditmari 01713373947
-68) OC Kaliganj 01713373948
-69) OC Hatibandha 01713373949
-70) OC Patgram 01713373950
-71)OC Dinajpur Kotwali -01713373963
-72) OC Chirir Bondor 01713373964
-73) OC Birol 01713373965
-74) OC Parbatipur 01713373966
-75) OC Birganj 01713373967
-76) OC Bochaganj 01713373968
-77) OC Kaharula 01713373969
-78) OC Khansama 01713373970
-79) OC Fulabari 01713373971
-80) OC Birampur 01713373972
-82) OC Nawabganj (Dinajpur) -01713373973
-83) OC Ghoraghat 01713373974
-84) OC Hakimpur 01713373975
-85) OC Thakurgaon 01713373985
-86) OC Baliadangi -01713373986
-87) OC Ranisankaoil 01713373987
-88) OC Pirganj 01713373988
-89) OC Haripur 01713373989
-90) OC Panchagar 01713373999
-91) OC Boda 01713374000
-92) OC Atoyari 01713374001
-93) OC Tetuliya 01713374002
-94) OC Debiganj 01713374003
-95) OC Pabna 01713374016
-96) OC Iswardi 01713374017
-97) OC Atghariya 01713374018
-98) OC Chatmohar 01713374019
-99) OC Bhangura 01713374020
-100) OC Faridpur (Pabna) 01713374021
-101) OC Surjonagar 01713374022
-102) OC Bera 01713374023
-103) OC Sathiya 01713374024
-104) OC Ataikula 01713374025
-105) OC Sirajganj 01713374038
-106) OC Sahajadpur 01713374039
-107) OC Ullapara 01713374040
-108) OC Cauhali 01713374041
-109) OC Tarash 01713374042
-110) OC Kajipur 01713374043
-111) OC Kamarkhanda 01713374044
-11) OC Rayganj 01713374045
-113) OC Belkuchi 01713374046
-114) OC Jamuna Bridge West -01713374047
-115) OC Salanga 01713374048
-116) OC Enayetpur 01713374049
-117) OC Bogra 01713374061
-118) OC Shibganj 01713374062
-119) OC Sonatola 01713374063
-120) OC Gabtoli 01713374064
-121) OC Sariakandi -01713374065
-122) OC Adamdighi 01713374066
-123) OC Dhupchachiya 01713374067
-124) OC Kahalu 01713374068
-125) OC Sherpur 01713374069
-126) OC Dhunat 01713374070
-127) OC Nandigram 01713374071
-128) OC Sahajahanpur 01713374072
-129) OC Jaypurahat 01713374082
-130) OC Kalai 01713374083
-131) OC Khetlal 01713374084
-132) OC Akkelpur 01713374085
-133) OC Pachbibi 01713374086
-Khulna Division
-1) OC PFultola 01713374103
-2) OC Digholiya 01713374104
-3) OC Paikgacha 01713374105
-4) OC Batiyaghata 01713374106
-5) OC Dumuriya 01713374107
-6) OC Terokhada 01713374108
-7) OC Rupsa 01713374109
-😎 OC Dakopa 01713374110
-9) OC Koyara 01713374111
-10) OC Bagerhat 01713374122
-11) OC Fakirhat 01713374123
-12) OC Mollarhat 01713374124
-13) OC Chitalmari 01713374125
-14) OC Kachuya 01713374126
-15) OC Moralganj 01713374127
-16) OC Sharankhola 01713374128
-17) OC Mongla 01713374129
-18) OC Rampal 01713374130
-19) OC Satkhira 01713374141
-20) OC Kolaroya 01713374142
-21) OC Tala 01713374143
-22) OC Kaliganj 01713374144
-23) OC Shyamnagar 01713374145
-24) OC Debhata 01713374146
-25) OC Ashashuni 01713374147
-26) OC Patkelghata 01713374148
-27) OC Jessore Kotwali -01713374161
-28) OC Jhikargacha 01713374162
-29) OC Sharsha 01713374163
-30) OC Caugacha 01713374164
-31) OC Manirampur 01713374165
-32) OC Kesobpur 01713374166
-33) OC Ovoynagar 01713374167
-34) OC Bagharpara 01713374168
-35) OC Benapole -01713374169
-36) OC Benapol Check Post -01713374170
-37) OC Magura 01713374179
-38) OC Salikha 01713374180
-39) OC Shripur 01713374181
-40) OC Mohammadapur 01713374182
-41) OC Jhinaidah 01713374192
-42) OC Kaliganj 01713374193
-43) OC Shailkupa 01713374194
-44) OC Horinakundu 01713374195
-45) OC Kotchadpur 01713374196
-46) OC Maheshpur 01713374197
-47) OC Norail 01713374206
-48) OC Kaliya 01713374207
-49) OC Lohagora 01713374208
-50) OC Naragati 01713374209
-51) OC Kushtiya 01713374220
-52) OC Khoksa 01713374221
-53) OC Kumarkhali 01713374222
-54) OC Veramara 01713374223
-55) OC Daulatpur 01713374224
-56) OC Mirpur 01713374225
-57) OC Islamic University 01713374226
-58) OC Chuyadanga 01713374236
-59) OC Alamdanga 01713374237
-60) OC Jibannagar 01713374238
-61) OC Damurhuda 01713374239
-62) OC Meherpur 01713374249
-63) OC Gangni 01713374250
-64) OC Mujibnagar 01713374251
-Barisal Division
-1) OC Barisal Kotwali 01713374267
-2) OC Hijla 01713374268
-3) OC Mehediganj 01713374269
-4) OC Muladi 01713374270
-5) OC Babuganj 01713374271
-6) OC Bakerganj 01713374272
-7) OC Banaripara 01713374273
-😎 OC Agauljhara 01713374274
-9) OC Gauronodi 01713374275
-10) OC Ujirpur 01713374276
-11) OC Jhalkathi 01713374286
-12) OC Nolchithi 01713374287
-13) OC Rajapur 01713374288
-14) OC Kathaliya 01713374289
-15) OC Vola 01713374300
-16) OC Daulatkhan 01713374301
-17) OC Tajumuddin 01713374302
-18) OC Borahanuddin 01713374303
-19) OC Lalmohan 01713374304
-20) OC Charfasion 01713374305
-21) OC Monpura 01713374306
-22) OC Potuyakhali 01713374318
-23) OC Baufal 01713374319
-24) OC Golachipa 01713374320
-25) OC Doshmina 01713374321
-26) OC Dumki 01713374322
-27) OC Kolapara 01713374323
-28) OC Mirjaganj 01713374324
-29) OC Rangabali 01713374325
-30) OC Pirojpur 01713374336
-31) OC Vavdariya 01713374337
-32) OC Nesarabad 01713374338
-33) OC Kaukhali 01713374339
-34) OC Najirapur 01713374340
-35) OC Zianagar 01713374341
-36) OC Mothbariya 01713374342
-37) OC Borguna 01713374353
-38) OC Amtali 01713374354
-39) OC Pathorghata 01713374355
-40) OC Betagi 01713374356
-41) OC Bamona 01713374357
-42) OC Taltoli 01713374358
-Sylhet Division
-1) OC Kotowali Sylhet -01713374375
-2) OC Balaganj 01713374376
-3) OC Jaintapur 01713374377
-4) OC Goyainghat 01713374378
-5) OC Kanaighat 01713374379
-6) OC Companyganja 01713374380
-7) OC Jokiganj 01713374381
-😎 OC Biyanibazar 01713374382
-9) OC Golapganj 01713374383
-10) OC Biswonath 01713374384
-11) OC Fenchuganj 01713374385
-12) OC South Surma 01713374386
-13) OC Osmani Nagar 01713374387
-14) OC Habiganj 01713374398
-15) OC Madhabpur 01713374399
-16) OC Chunarughat 01713374400
-17) OC Bahubol 01713374401
-18) OC Lakhai 01713374402
-19) OC Nabiganj 01713374403
-20) OC Baniyachang 01713374404
-21) OC Ajmiriganj 01713374405
-22) OC Shayestaganj 01713374406
-23) OC Sunamganj 01713374418
-24) OC Chatak 01713374419
-25) OC Jagannathpur 01713374420
-26) OC Tahirpur 01713374421
-27) OC Biswambarpur 01713374422
-28) OC Doyarabazar 01713374423
-29) OC Dirai 01713374424
-30) OC Shalna 01713374425
-31) OC Jamalaganj 01713374426
-32) OC Dharmapasa 01713374427
-33) OC Madhyanagar 01713374428
-34) OC Maulvibazar -01713374439
-35) OC Shrimangol 01713374440
-36) OC Komolaganj 01713374441
-37) OC Rajanagar 01713374442
-38) OC Kulaura 01713374443
-39) OC Borolekha 01713374444
-40) OC Juri 01713374445</p>
+2) OC Rajpara 01713373310\n\n
+3) OC Matihar 01713373311\n\n
+4) OC Shah Makhdum 01713373312\n\n
+</p>
 
     </string>
 
