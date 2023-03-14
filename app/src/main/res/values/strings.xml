@@ -193,10 +193,10 @@
 </ul>
 
     </string>
-    <string name="thana"><p><b>All police station numbers:\n\nDMP, Dhaka\n\n</b>1) OC Ramana 01713373125\n\n\n2) OC Dhanamandi 01713373126\n\n\n3) OC Sahabag 01713373127\n\n\n4) OC 01713373128 New Market\n\n\n5) OC Lalabag 01713373134\n\n
+    <string name="thana"><p><b>All police station numbers:\n\nDMP, Dhaka\n\n</b>1) OC Ramana 01713373125\n\n2) OC Dhanamandi 01713373126\n\n3) OC Sahabag 01713373127\n\n4) OC New Market 01713373128\n\n5) OC Lalabag 01713373134\n\n
 6) OC Kotayali 01713373135\n\n
 7) OC Hajaribag 01713373136\n\n
-8)OC Kamarangiracar 01713373137\n\n
+8) OC Kamarangiracar 01713373137\n\n
 9) OC Sutrapur 01713373143\n\n
 10) OC Demar 01713373144\n\n
 11) OC Syamapur 01713373145\n\n
@@ -251,10 +251,44 @@
 </p>
 
     </string>
-    <string name="firestation"><p><b>Fire Station numbers:\n\nDhaka\n\n</b> 9552573,01713008045,0152433040\n\n<b>Gazipur\n\n</b> 01816811401,01727259055\n\n<b>Narayangonj\n\n</b>9751111,01712226585,
-        9750035,01712592562,9750041,01716875492</p>
+    <string name="firestation"><p><b>Fire Station numbers:\n\nDhaka\n\n</b> 9552573,  01713008045,  0152433040\n\n<b>Gazipur\n\n</b> 01816811401,  01727259055\n\n<b>Narayangonj\n\n</b>9751111,  01712226585,  9750035,  01712592562,  9750041,  01716875492</p>
 
 
+
+    </string>
+    <string name="beforefire"><p><b>Before a fire starts these measures should be followed:\n\n</b></p>
+<ul>
+    <li>     Have an emergency fire plan in place, including a warning/communication system to alert employees of a fire, designated evacuation routes, periodic evacuation drills, extinguisher usage training, and prevention controls. Regularly review your plan to ensure it is still appropriate for your facility, staff, and operations.\n\n</li>
+    <li>Inspect your facility for fire hazards. Conduct a walk-through inspection, or ask your local fire department to do so. Correct discovered hazards.\n\n</li>
+    <li>Consider installing a building sprinkler system. If a sprinkler system is already in place, inspect and test it on a regular basis.\n\n</li>
+    <li>Provide the appropriate number and type of fire extinguishers, and train employees how to use them. Provide periodic refresher training.\n\n</li>
+    <li>Consider which operations or processes in your workplace may require special fire safeguards. Be sure proper controls are in place and employees are trained on safeguards.\n\n</li>
+    <li>Establish housekeeping rules in your workplace, including frequent cleaning, prompt waste disposal and proper material handling.\n\n</li>
+    <li>Enforce no smoking policy. If smoking is allowed, restrict it to posted safe areas and provide receptacles for disposal.\n\n</li>
+    <li>Establish a preventive maintenance schedule to keep equipment and operations running safely.\n\n</li>
+    <li>Consider using infrared testing of equipment and electrical systems to detect potential problems.\n\n</li>
+</ul>
+
+    </string>
+    <string name="duringfire"><p><b>During a fire these tips should be followed :\n\n</b></p>
+<ul>
+    <li>    Immediately contact the fire department.\n\n</li>
+    <li>Follow your emergency fire plan and evacuate the building. Account for all employees, visitors, and customers.\n\n</li>
+    <li>If the fire is small, allow trained employees to extinguish the fire. Follow the fire department\'s instructions upon arrival.\n\n</li>
+</ul>
+
+
+    </string>
+    <string name="afterfire"><p><b>After a fire is extinguished :\n\n</b></p>
+<ul>
+ <li>Contact with insurance company.\n\n</li>
+ <li>Take steps to prevent additional loss.\n\n</li>
+</ul>
+
+    </string>
+    <string name="hospital">
+
+        <b>Health Call Centre-16263</b>
 
     </string>
 

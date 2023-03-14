@@ -7,7 +7,7 @@
     android:layout_marginRight="15dp"
     android:layout_marginLeft="15dp"
     android:layout_marginBottom="10dp"
-    android:layout_marginTop="15dp"
+    android:layout_marginTop="100dp"
     tools:context="user.Hospital">
 
     <!-- TODO: Update blank fragment layout -->
@@ -18,15 +18,15 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            android:text="@string/afterflood"
-            android:textAlignment="textStart"
-            android:textColor="#1B1616"
-            android:textSize="16dp"
-            android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"
+            android:background="@color/white"
+            android:text="@string/hospital"
+            android:textAlignment="center"
+            android:textColor="#1B1616"
+            android:textSize="16dp"
             android:visibility="visible" />
     </ScrollView>
 
