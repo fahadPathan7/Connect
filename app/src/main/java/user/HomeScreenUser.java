@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
@@ -17,6 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.android.R;
 import com.example.android.databinding.ActivityHomeScreenUserBinding;
@@ -63,6 +66,17 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        DrawerLayout drawer = findViewById(R.id.drawerLayoutID);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        //drawer.openDrawer(GravityCompat.START);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityHomeScreenUserBinding = ActivityHomeScreenUserBinding.inflate(getLayoutInflater());
@@ -71,7 +85,6 @@ public class HomeScreenUser extends DrawerBaseActivity implements View.OnClickLi
 
         //initializing the viewID
         initializeViewIDs();
-
 
         // working with the switches. by clicking on it the user will go the home page of volunteers
         // (if he is already registered)

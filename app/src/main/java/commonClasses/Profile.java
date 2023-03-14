@@ -6,6 +6,8 @@ package commonClasses;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
@@ -109,6 +111,12 @@ public class Profile extends DrawerBaseActivity implements View.OnClickListener 
     @Override
     protected void onStart() {
         super.onStart();
+
+        DrawerLayout drawer = findViewById(R.id.drawerLayoutID);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
+
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {

@@ -7,6 +7,8 @@ package authentication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
@@ -148,6 +150,9 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    email.setText("");
+                    password.setText("");
+                    //finish();
                     start_HomeScreenUser_activity(); // changing activity
                 }
                 else {
@@ -172,7 +177,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         Intent intent = new Intent(this, HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
-        //finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
     // changing activity ends

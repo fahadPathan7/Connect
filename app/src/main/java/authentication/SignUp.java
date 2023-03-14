@@ -128,8 +128,12 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                             // Sign up success, update UI with the signed-in user's information
                             Toast.makeText(getApplicationContext(), "Registration is successful", Toast.LENGTH_SHORT).show();
 
-                            writeOnVolunteerList();
+                            email.setText("");
+                            password.setText("");
+                            confirmPassword.setText("");
 
+                            writeOnVolunteerList();
+                            //finish();
                             start_UpdateProfile_activity();
                         } else {
                             // If sign up fails, display a message to the user.

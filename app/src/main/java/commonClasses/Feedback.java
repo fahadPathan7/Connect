@@ -2,6 +2,8 @@ package commonClasses;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -36,6 +38,16 @@ public class Feedback extends DrawerBaseActivity implements View.OnClickListener
     ActivityFeedbackBinding activityFeedbackBinding;
 
     BottomNavigationItemView home, aboutUs, liveChat;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        DrawerLayout drawer = findViewById(R.id.drawerLayoutID);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
+    }
 
     @SuppressLint("MissingInflatedId")
     @Override

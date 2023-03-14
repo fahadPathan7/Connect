@@ -6,6 +6,8 @@ package volunteer;
 
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,6 +40,19 @@ public class HomeScreenVolunteer extends DrawerBaseActivity implements View.OnCl
     BottomNavigationItemView aboutUs;
 
     ActivityHomeScreenVolunteerBinding activityHomeScreenVolunteerBinding;
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        DrawerLayout drawer = findViewById(R.id.drawerLayoutID);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        //drawer.openDrawer(GravityCompat.START);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

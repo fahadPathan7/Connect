@@ -150,6 +150,7 @@ public class UpdateProfile extends DrawerBaseActivity {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(getApplicationContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
+                //finish();
                 start_HomeScreenUser_Activity();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -166,7 +167,6 @@ public class UpdateProfile extends DrawerBaseActivity {
         Intent intent = new Intent(this, HomeScreenUser.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
-        //finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 

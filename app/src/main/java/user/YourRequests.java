@@ -413,7 +413,7 @@ public class YourRequests extends DrawerBaseActivity implements View.OnClickList
 
     private void start_HomeScreenUser_activity() {
         Intent intent = new Intent(this, HomeScreenUser.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         //finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
